@@ -9,13 +9,31 @@ const errorPolicy: ErrorPolicy = "all"
 export class ApiService {
 	constructor(private apollo: Apollo) {}
 
+	async retrieveArticle(queryData: string, variables: { uuid: string }) {
+		return await this.apollo
+			.query<{
+				retrieveArticle: ArticleResource
+			}>({
+				query: gql`
+				query RetrieveArticle($uuid: String!) {
+					retrieveArticle(uuid: $uuid) {
+						${queryData}
+					}
+				}
+			`,
+				variables,
+				errorPolicy
+			})
+			.toPromise()
+	}
+
 	async listArticles(
 		queryData: string,
 		variables: { limit?: number; offset?: number }
 	): Promise<
 		ApolloQueryResult<{ listArticles: List<ArticleResource> }> | undefined
 	> {
-		let result = await this.apollo
+		return await this.apollo
 			.query<{
 				listArticles: List<ArticleResource>
 			}>({
@@ -30,7 +48,5 @@ export class ApiService {
 				errorPolicy
 			})
 			.toPromise()
-
-		return result
 	}
 }
