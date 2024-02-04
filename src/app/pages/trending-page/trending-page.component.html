@@ -1,11 +1,13 @@
 <div class="container">
-	<dav-list>
-		@for (article of articles; track article.uuid) {
-		<dav-list-item
-			[imageSrc]="article.image"
-			[headline]="article.title"
-			subhead="Tagesschau"
-		></dav-list-item>
-		}
-	</dav-list>
+	<div class="article-list-container">
+		<dav-list>
+			@for (article of articles; track article.uuid) {
+			<dav-list-item
+				[imageSrc]="article.image"
+				[headline]="article.title"
+				subhead="Tagesschau"
+			></dav-list-item>
+			}
+		</dav-list>
+	</div>
 </div>
