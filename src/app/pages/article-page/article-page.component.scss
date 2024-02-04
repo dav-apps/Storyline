@@ -5,6 +5,12 @@
 	padding: 16px;
 }
 
+.container > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 h1 {
 	font-weight: 400;
 	text-align: center;
