@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router"
-import { TrendingPageComponent } from "./pages/trending-page/trending-page.component"
+import { StartPageComponent } from "./pages/start-page/start-page.component"
 import { ArticlePageComponent } from "./pages/article-page/article-page.component"
 
 export const routes: Routes = [
 	{
 		path: "",
-		component: TrendingPageComponent
+		component: StartPageComponent
 	},
 	{
 		path: "article/:uuid",

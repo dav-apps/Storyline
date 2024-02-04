@@ -5,12 +5,12 @@ import { ArticleResource } from "../../types"
 
 @Component({
 	standalone: true,
-	templateUrl: "./trending-page.component.html",
-	styleUrl: "./trending-page.component.scss",
+	templateUrl: "./start-page.component.html",
+	styleUrl: "./start-page.component.scss",
 	providers: [ApiService],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TrendingPageComponent {
+export class StartPageComponent {
 	articles: ArticleResource[] = []
 
 	constructor(private apiService: ApiService, private router: Router) {}
