@@ -10,10 +10,56 @@ import { ArticleResource } from "../../types"
 })
 export class StartPageComponent {
 	articles: ArticleResource[] = []
+	limit: number = 10
+	offset: number = 0
+	articlesLoading: boolean = false
 
-	constructor(private apiService: ApiService, private router: Router) {}
+	constructor(
+		private apiService: ApiService,
+		private dataService: DataService,
+		private router: Router
+	) {}
 
 	async ngOnInit() {
+		const articles = await this.loadArticles()
+
+		for (let article of articles) {
+			this.articles.push(article)
+		}
+
+		this.dataService.contentContainer.addEventListener(
+			"scroll",
+			this.onScroll
+		)
+	}
+
+	ngOnDestroy() {
+		this.dataService.contentContainer.removeEventListener(
+			"scroll",
+			this.onScroll
+		)
+	}
+
+	onScroll = () => {
+		const contentContainer = this.dataService.contentContainer
+		const hasReachedBottom =
+			Math.abs(
+				contentContainer.scrollHeight -
+					contentContainer.scrollTop -
+					contentContainer.clientHeight
+			) < 1
+
+		if (hasReachedBottom) {
+			this.loadMoreArticles()
+		}
+	}
+
+	articleItemClick(event: Event, article: ArticleResource) {
+		event.preventDefault()
+		this.router.navigate(["article", article.uuid])
+	}
+
+	async loadArticles(limit: number = 10, offset: number = 0) {
 		const result = await this.apiService.listArticles(
 			`
 				total
@@ -24,16 +70,30 @@ export class StartPageComponent {
 					image
 				}
 			`,
-			{}
+			{
+				limit,
+				offset
+			}
 		)
 
 		if (result != null) {
-			this.articles = result?.data.listArticles.items
+			return result?.data.listArticles.items
 		}
+
+		return []
 	}
 
-	articleItemClick(event: Event, article: ArticleResource) {
-		event.preventDefault()
-		this.router.navigate(["article", article.uuid])
+	async loadMoreArticles() {
+		if (this.articlesLoading) return
+		this.articlesLoading = true
+
+		this.offset += this.limit
+		const articles = await this.loadArticles(this.limit, this.offset)
+
+		for (let article of articles) {
+			this.articles.push(article)
+		}
+
+		this.articlesLoading = false
 	}
 }

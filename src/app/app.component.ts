@@ -8,7 +8,14 @@ import { DataService } from "./services/data-service"
 	styleUrl: "./app.component.scss"
 })
 export class AppComponent {
-	constructor() {
+	@ViewChild("contentContainer", { static: true })
+	contentContainer: ElementRef<HTMLDivElement>
+
+	constructor(private dataService: DataService) {
 		DavUIComponents.setLocale("en-EN")
+	}
+
+	ngOnInit() {
+		this.dataService.contentContainer = this.contentContainer.nativeElement
 	}
 }
