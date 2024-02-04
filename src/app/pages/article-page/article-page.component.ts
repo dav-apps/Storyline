@@ -4,10 +4,8 @@ import { ApiService } from "../../services/api-service"
 import { ArticleResource } from "../../types"
 
 @Component({
-	standalone: true,
 	templateUrl: "./article-page.component.html",
-	styleUrl: "./article-page.component.scss",
-	providers: [ApiService]
+	styleUrl: "./article-page.component.scss"
 })
 export class ArticlePageComponent {
 	article: ArticleResource = null

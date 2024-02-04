@@ -1,14 +1,12 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
+import { Component, HostListener } from "@angular/core"
 import { Router } from "@angular/router"
 import { ApiService } from "../../services/api-service"
+import { DataService } from "../../services/data-service"
 import { ArticleResource } from "../../types"
 
 @Component({
-	standalone: true,
 	templateUrl: "./start-page.component.html",
-	styleUrl: "./start-page.component.scss",
-	providers: [ApiService],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	styleUrl: "./start-page.component.scss"
 })
 export class StartPageComponent {
 	articles: ArticleResource[] = []

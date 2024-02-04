@@ -1,14 +1,11 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
-import { RouterOutlet, RouterLink } from "@angular/router"
+import { Component, ViewChild, ElementRef } from "@angular/core"
 import * as DavUIComponents from "dav-ui-components"
+import { DataService } from "./services/data-service"
 
 @Component({
 	selector: "app-root",
-	standalone: true,
-	imports: [RouterOutlet, RouterLink],
 	templateUrl: "./app.component.html",
-	styleUrl: "./app.component.scss",
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	styleUrl: "./app.component.scss"
 })
 export class AppComponent {
 	constructor() {
