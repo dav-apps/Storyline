@@ -1,13 +1,17 @@
-import { Component } from "@angular/core"
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
 import { ApiService } from "../../services/api-service"
+import { ArticleResource } from "../../types"
 
 @Component({
 	standalone: true,
 	templateUrl: "./trending-page.component.html",
 	styleUrl: "./trending-page.component.scss",
-	providers: [ApiService]
+	providers: [ApiService],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TrendingPageComponent {
+	articles: ArticleResource[] = []
+
 	constructor(private apiService: ApiService) {}
 
 	async ngOnInit() {
@@ -15,13 +19,17 @@ export class TrendingPageComponent {
 			`
 				total
 				items {
+					uuid
 					title
 					url
+					image
 				}
 			`,
 			{}
 		)
 
-		console.log(result?.data.listArticles)
+		if (result != null) {
+			this.articles = result?.data.listArticles.items
+		}
 	}
 }
