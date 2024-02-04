@@ -6,6 +6,8 @@
 				[imageSrc]="article.image"
 				[headline]="article.title"
 				subhead="Tagesschau"
+				[href]="'article/' + article.uuid"
+				(click)="articleItemClick($event, article)"
 			></dav-list-item>
 			}
 		</dav-list>

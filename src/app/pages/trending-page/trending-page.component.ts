@@ -1,4 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
+import { Router } from "@angular/router"
 import { ApiService } from "../../services/api-service"
 import { ArticleResource } from "../../types"
 
@@ -12,7 +13,7 @@ import { ArticleResource } from "../../types"
 export class TrendingPageComponent {
 	articles: ArticleResource[] = []
 
-	constructor(private apiService: ApiService) {}
+	constructor(private apiService: ApiService, private router: Router) {}
 
 	async ngOnInit() {
 		const result = await this.apiService.listArticles(
@@ -31,5 +32,10 @@ export class TrendingPageComponent {
 		if (result != null) {
 			this.articles = result?.data.listArticles.items
 		}
+	}
+
+	articleItemClick(event: Event, article: ArticleResource) {
+		event.preventDefault()
+		this.router.navigate(["article", article.uuid])
 	}
 }
