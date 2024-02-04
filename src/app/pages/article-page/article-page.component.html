@@ -1,1 +1,11 @@
-<h1>Hello World</h1>
+<div class="container">
+	@if (article != null) {
+	<h1>{{ article.title }}</h1>
+
+	<img [src]="article.image" />
+
+	<div>
+		<p>{{ article.text }}</p>
+	</div>
+	}
+</div>

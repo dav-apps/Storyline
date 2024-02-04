@@ -23,6 +23,8 @@ export class ArticlePageComponent {
 		const result = await this.apiService.retrieveArticle(
 			`
 				title
+				image
+				text
 			`,
 			{ uuid }
 		)
