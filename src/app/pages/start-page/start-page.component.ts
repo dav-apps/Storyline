@@ -68,6 +68,9 @@ export class StartPageComponent {
 					title
 					url
 					image
+					publisher {
+						name
+					}
 				}
 			`,
 			{

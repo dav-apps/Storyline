@@ -6,7 +6,7 @@
 				<dav-list-item
 					[imageSrc]="article.image"
 					[headline]="article.title"
-					subhead="Tagesschau"
+					[subhead]="article.publisher.name"
 					[href]="'article/' + article.uuid"
 					(click)="articleItemClick($event, article)"
 				></dav-list-item>
