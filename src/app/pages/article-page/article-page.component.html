@@ -5,8 +5,12 @@
 
 		<img [src]="article.imageUrl" />
 
-		<div>
-			<p>{{ article.content }}</p>
+		<div class="article-content" [innerHTML]="article.content"></div>
+
+		<div class="link-container">
+			<dav-link-button [url]="article.url" target="blank">
+				Ganzen Artikel lesen
+			</dav-link-button>
 		</div>
 	</div>
 	}

@@ -22,10 +22,15 @@ img {
 	border-radius: 24px;
 }
 
-p {
+::ng-deep .article-content {
 	white-space: pre-line;
 	text-align: justify;
 	font-size: 20px;
 	line-height: 24px;
 	max-width: 500px;
+	margin-top: 20px;
+}
+
+.link-container {
+	margin-top: 16px;
 }

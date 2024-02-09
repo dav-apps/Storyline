@@ -20,6 +20,7 @@ export class ArticlePageComponent {
 
 		const result = await this.apiService.retrieveArticle(
 			`
+				url
 				title
 				imageUrl
 				content
