@@ -8,6 +8,7 @@ export interface PublisherResource {
 	uuid: string
 	name: string
 	url: string
+	logoUrl: string
 }
 
 export interface ArticleResource {
@@ -17,8 +18,7 @@ export interface ArticleResource {
 	title: string
 	description: string
 	date: string
-	lang: string
-	image: string
-	text: string
+	imageUrl: string
+	content: string
 }
 //#endregion

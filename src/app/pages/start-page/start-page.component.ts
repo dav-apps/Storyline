@@ -65,9 +65,9 @@ export class StartPageComponent {
 				total
 				items {
 					uuid
-					title
 					url
-					image
+					title
+					imageUrl
 					publisher {
 						name
 					}

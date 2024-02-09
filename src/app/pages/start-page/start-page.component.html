@@ -4,7 +4,7 @@
 			@for (article of articles; track article.uuid) {
 			<div class="slide-up-in">
 				<dav-list-item
-					[imageSrc]="article.image"
+					[imageSrc]="article.imageUrl"
 					[headline]="article.title"
 					[subhead]="article.publisher.name"
 					[href]="'article/' + article.uuid"
