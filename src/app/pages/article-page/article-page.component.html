@@ -7,9 +7,13 @@
 
 		<div class="article-content" [innerHTML]="article.content"></div>
 
+		<div>
+			<p [innerHTML]="'Copyright: ' + article.publisher.copyright"></p>
+		</div>
+
 		<div class="link-container">
 			<dav-link-button [url]="article.url" target="blank">
-				Ganzen Artikel lesen
+				Originalen Artikel öffnen
 			</dav-link-button>
 		</div>
 	</div>

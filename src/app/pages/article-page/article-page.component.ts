@@ -25,6 +25,9 @@ export class ArticlePageComponent {
 				title
 				imageUrl
 				content
+				publisher {
+					copyright
+				}
 			`,
 			{ uuid }
 		)
