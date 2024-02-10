@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
-import { ActivatedRoute } from "@angular/router"
+import { Router, ActivatedRoute } from "@angular/router"
 import {
 	faArrowUpRightFromSquare,
 	faPlus
 } from "@fortawesome/pro-regular-svg-icons"
 import { ApiService } from "../../services/api-service"
-import { PublisherResource } from "../../types"
+import { ArticleResource, PublisherResource } from "../../types"
 
 @Component({
 	templateUrl: "./publisher-page.component.html",
@@ -18,6 +18,7 @@ export class PublisherPageComponent {
 
 	constructor(
 		private apiService: ApiService,
+		private router: Router,
 		private activatedRoute: ActivatedRoute
 	) {}
 
@@ -31,7 +32,9 @@ export class PublisherPageComponent {
 				logoUrl
 				articles {
 					items {
+						uuid
 						title
+						imageUrl
 					}
 				}
 			`,
@@ -46,5 +49,10 @@ export class PublisherPageComponent {
 
 	openWebsite() {
 		window.open(this.publisher.url, "_blank")
+	}
+
+	articleItemClick(event: Event, article: ArticleResource) {
+		event.preventDefault()
+		this.router.navigate(["article", article.uuid])
 	}
 }

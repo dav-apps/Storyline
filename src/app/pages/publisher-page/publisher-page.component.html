@@ -17,6 +17,22 @@
 				Open website
 			</dav-button>
 		</div>
+
+		<div class="article-list-container">
+			<dav-list>
+				@for (article of publisher.articles.items; track article.uuid) {
+				<div class="slide-up-in">
+					<dav-list-item
+						[imageSrc]="article.imageUrl"
+						[headline]="article.title"
+						[subhead]="publisher.name"
+						[href]="'article/' + article.uuid"
+						(click)="articleItemClick($event, article)"
+					></dav-list-item>
+				</div>
+				}
+			</dav-list>
+		</div>
 	</div>
 	}
 </div>
