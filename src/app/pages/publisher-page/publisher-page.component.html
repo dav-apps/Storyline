@@ -20,7 +20,7 @@
 
 		<div class="article-list-container">
 			<dav-list>
-				@for (article of publisher.articles.items; track article.uuid) {
+				@for (article of articles; track article.uuid) {
 				<div class="slide-up-in">
 					<dav-list-item
 						[imageSrc]="article.imageUrl"
