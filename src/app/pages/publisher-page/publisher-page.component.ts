@@ -1,5 +1,9 @@
 import { Component } from "@angular/core"
 import { ActivatedRoute } from "@angular/router"
+import {
+	faArrowUpRightFromSquare,
+	faPlus
+} from "@fortawesome/pro-regular-svg-icons"
 import { ApiService } from "../../services/api-service"
 import { PublisherResource } from "../../types"
 
@@ -9,6 +13,8 @@ import { PublisherResource } from "../../types"
 })
 export class PublisherPageComponent {
 	publisher: PublisherResource = null
+	faArrowUpRightFromSquare = faArrowUpRightFromSquare
+	faPlus = faPlus
 
 	constructor(
 		private apiService: ApiService,

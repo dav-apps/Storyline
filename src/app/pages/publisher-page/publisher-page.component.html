@@ -5,6 +5,18 @@
 			<img [src]="publisher.logoUrl" width="72" height="72" />
 			<h1>{{ publisher.name }}</h1>
 		</div>
+
+		<div class="head-buttons-container">
+			<dav-button size="small">
+				<fa-icon [icon]="faPlus"></fa-icon>
+				Follow
+			</dav-button>
+
+			<dav-button outline size="small">
+				<fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+				Open website
+			</dav-button>
+		</div>
 	</div>
 	}
 </div>
