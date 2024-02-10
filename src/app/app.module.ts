@@ -15,13 +15,19 @@ import { AppComponent } from "./app.component"
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
 import { ArticlePageComponent } from "./pages/article-page/article-page.component"
+import { PublisherPageComponent } from "./pages/publisher-page/publisher-page.component"
 
 // Services
 import { ApiService } from "./services/api-service"
 import { DataService } from "./services/data-service"
 
 @NgModule({
-	declarations: [AppComponent, StartPageComponent, ArticlePageComponent],
+	declarations: [
+		AppComponent,
+		StartPageComponent,
+		ArticlePageComponent,
+		PublisherPageComponent
+	],
 	imports: [
 		BrowserModule,
 		ApolloModule,

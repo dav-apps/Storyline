@@ -9,7 +9,8 @@
 			<dav-profile-card
 				[imageSrc]="article.publisher.logoUrl"
 				[name]="article.publisher.name"
-				[href]="article.publisher.url"
+				[href]="'/publisher/' + article.publisher.uuid"
+				(click)="navigateToPublisherPage($event)"
 			></dav-profile-card>
 		</div>
 

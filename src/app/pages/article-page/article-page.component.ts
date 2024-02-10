@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { ActivatedRoute } from "@angular/router"
+import { Router, ActivatedRoute } from "@angular/router"
 import { ApiService } from "../../services/api-service"
 import { ArticleResource } from "../../types"
 
@@ -13,7 +13,8 @@ export class ArticlePageComponent {
 
 	constructor(
 		private apiService: ApiService,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private router: Router
 	) {}
 
 	async ngOnInit() {
@@ -26,6 +27,7 @@ export class ArticlePageComponent {
 				imageUrl
 				content
 				publisher {
+					uuid
 					name
 					url
 					logoUrl
@@ -39,5 +41,10 @@ export class ArticlePageComponent {
 		if (responseData == null) return
 
 		this.article = responseData
+	}
+
+	navigateToPublisherPage(event: Event) {
+		event.preventDefault()
+		this.router.navigate(["publisher", this.article.publisher.uuid])
 	}
 }
