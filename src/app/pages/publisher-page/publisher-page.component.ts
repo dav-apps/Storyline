@@ -38,4 +38,8 @@ export class PublisherPageComponent {
 
 		this.publisher = responseData
 	}
+
+	openWebsite() {
+		window.open(this.publisher.url, "_blank")
+	}
 }
