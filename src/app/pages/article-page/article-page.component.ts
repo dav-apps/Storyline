@@ -26,6 +26,9 @@ export class ArticlePageComponent {
 				imageUrl
 				content
 				publisher {
+					name
+					url
+					logoUrl
 					copyright
 				}
 			`,

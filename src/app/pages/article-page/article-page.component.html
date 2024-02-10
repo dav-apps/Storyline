@@ -5,6 +5,14 @@
 
 		<img [src]="article.imageUrl" />
 
+		<div class="profile-card-container">
+			<dav-profile-card
+				[imageSrc]="article.publisher.logoUrl"
+				[name]="article.publisher.name"
+				[href]="article.publisher.url"
+			></dav-profile-card>
+		</div>
+
 		<div class="article-content" [innerHTML]="article.content"></div>
 
 		<div>

@@ -22,12 +22,15 @@ img {
 	border-radius: 24px;
 }
 
+.profile-card-container {
+	margin-top: 20px;
+}
+
 ::ng-deep .article-content {
 	text-align: justify;
 	font-size: 20px;
 	line-height: 24px;
 	max-width: 500px;
-	margin-top: 20px;
 
 	h1, h2, h3, h4, h5, h6 {
 		text-align: left;
