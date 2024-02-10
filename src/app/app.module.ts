@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
 
 // Local modules
 import { GraphQLModule } from "./graphql.module"
@@ -30,6 +31,7 @@ import { DataService } from "./services/data-service"
 	],
 	imports: [
 		BrowserModule,
+		FontAwesomeModule,
 		ApolloModule,
 		HttpClientModule,
 		AppRoutingModule,
