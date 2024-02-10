@@ -9,6 +9,7 @@ import { ArticleResource } from "../../types"
 })
 export class ArticlePageComponent {
 	article: ArticleResource = null
+	content: string = null
 
 	constructor(
 		private apiService: ApiService,
@@ -18,7 +19,7 @@ export class ArticlePageComponent {
 	async ngOnInit() {
 		const uuid = this.activatedRoute.snapshot.paramMap.get("uuid")
 
-		const result = await this.apiService.retrieveArticle(
+		const response = await this.apiService.retrieveArticle(
 			`
 				url
 				title
@@ -28,8 +29,9 @@ export class ArticlePageComponent {
 			{ uuid }
 		)
 
-		if (result.data?.retrieveArticle != null) {
-			this.article = result.data.retrieveArticle
-		}
+		const responseData = response.data?.retrieveArticle
+		if (responseData == null) return
+
+		this.article = responseData
 	}
 }
