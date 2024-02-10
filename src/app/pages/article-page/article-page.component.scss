@@ -28,11 +28,20 @@ img {
 	line-height: 24px;
 	max-width: 500px;
 	margin-top: 20px;
-}
 
-::ng-deep .article-content a {
-	text-decoration: none;
-	color: var(--dav-color-primary);
+	h1, h2, h3, h4, h5, h6 {
+		text-align: left;
+		line-height: 38px;
+	}
+
+	a {
+		text-decoration: none;
+		color: var(--dav-color-primary);
+	}
+
+	img {
+		border-radius: 12px;
+	}
 }
 
 .link-container {
