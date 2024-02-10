@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Apollo, gql } from "apollo-angular"
 import { ApolloQueryResult, ErrorPolicy } from "@apollo/client/core"
-import { List, ArticleResource } from "../types"
+import { List, PublisherResource, ArticleResource } from "../types"
 
 const errorPolicy: ErrorPolicy = "all"
 
@@ -9,18 +9,42 @@ const errorPolicy: ErrorPolicy = "all"
 export class ApiService {
 	constructor(private apollo: Apollo) {}
 
-	async retrieveArticle(queryData: string, variables: { uuid: string }) {
+	async retrievePublisher(
+		queryData: string,
+		variables: { uuid: string }
+	): Promise<ApolloQueryResult<{ retrievePublisher: PublisherResource }>> {
+		return await this.apollo
+			.query<{
+				retrievePublisher: PublisherResource
+			}>({
+				query: gql`
+					query RetrievePublisher($uuid: String!) {
+						retrievePublisher(uuid: $uuid) {
+							${queryData}
+						}
+					}
+				`,
+				variables,
+				errorPolicy
+			})
+			.toPromise()
+	}
+
+	async retrieveArticle(
+		queryData: string,
+		variables: { uuid: string }
+	): Promise<ApolloQueryResult<{ retrieveArticle: ArticleResource }>> {
 		return await this.apollo
 			.query<{
 				retrieveArticle: ArticleResource
 			}>({
 				query: gql`
-				query RetrieveArticle($uuid: String!) {
-					retrieveArticle(uuid: $uuid) {
-						${queryData}
+					query RetrieveArticle($uuid: String!) {
+						retrieveArticle(uuid: $uuid) {
+							${queryData}
+						}
 					}
-				}
-			`,
+				`,
 				variables,
 				errorPolicy
 			})
