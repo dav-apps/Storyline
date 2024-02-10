@@ -29,6 +29,11 @@ export class PublisherPageComponent {
 				name
 				url
 				logoUrl
+				articles {
+					items {
+						title
+					}
+				}
 			`,
 			{ uuid }
 		)

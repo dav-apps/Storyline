@@ -10,6 +10,7 @@ export interface PublisherResource {
 	url: string
 	logoUrl: string
 	copyright: string
+	articles: List<ArticleResource>
 }
 
 export interface ArticleResource {

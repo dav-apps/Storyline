@@ -11,14 +11,21 @@ export class ApiService {
 
 	async retrievePublisher(
 		queryData: string,
-		variables: { uuid: string }
+		variables: { uuid: string; limit?: number; offset?: number }
 	): Promise<ApolloQueryResult<{ retrievePublisher: PublisherResource }>> {
+		let limitParam = queryData.includes("limit") ? "$limit: Int" : ""
+		let offsetParam = queryData.includes("offset") ? "$offset: Int" : ""
+
 		return await this.apollo
 			.query<{
 				retrievePublisher: PublisherResource
 			}>({
 				query: gql`
-					query RetrievePublisher($uuid: String!) {
+					query RetrievePublisher(
+						$uuid: String!
+						${limitParam}
+						${offsetParam}
+					) {
 						retrievePublisher(uuid: $uuid) {
 							${queryData}
 						}
