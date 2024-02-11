@@ -15,6 +15,7 @@ import { AppComponent } from "./app.component"
 
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
+import { UserPageComponent } from "./pages/user-page/user-page.component"
 import { ArticlePageComponent } from "./pages/article-page/article-page.component"
 import { PublisherPageComponent } from "./pages/publisher-page/publisher-page.component"
 
@@ -27,6 +28,7 @@ import { LocalizationService } from "./services/localization-service"
 	declarations: [
 		AppComponent,
 		StartPageComponent,
+		UserPageComponent,
 		ArticlePageComponent,
 		PublisherPageComponent
 	],
