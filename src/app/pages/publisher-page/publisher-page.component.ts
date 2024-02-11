@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/pro-regular-svg-icons"
 import { ApiService } from "../../services/api-service"
 import { DataService } from "../../services/data-service"
+import { LocalizationService } from "../../services/localization-service"
 import { ArticleResource, PublisherResource } from "../../types"
 
 @Component({
@@ -13,6 +14,7 @@ import { ArticleResource, PublisherResource } from "../../types"
 	styleUrl: "./publisher-page.component.scss"
 })
 export class PublisherPageComponent {
+	locale = this.localizationService.locale.publisherPage
 	publisher: PublisherResource = null
 	articles: ArticleResource[] = []
 	faArrowUpRightFromSquare = faArrowUpRightFromSquare
@@ -24,6 +26,7 @@ export class PublisherPageComponent {
 	constructor(
 		private apiService: ApiService,
 		private dataService: DataService,
+		private localizationService: LocalizationService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute
 	) {}

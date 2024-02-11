@@ -2,6 +2,10 @@
 const enDefaults = {
 	articlePage: {
 		openOriginalArticle: "Open original article"
+	},
+	publisherPage: {
+		follow: "Follow",
+		openWebsite: "Open website"
 	}
 }
 
@@ -13,6 +17,10 @@ export var enGB = enDefaults
 const deDefaults = {
 	articlePage: {
 		openOriginalArticle: "Ursprünglichen Artikel öffnen"
+	},
+	publisherPage: {
+		follow: "Folgen",
+		openWebsite: "Webseite öffnen"
 	}
 }
 
