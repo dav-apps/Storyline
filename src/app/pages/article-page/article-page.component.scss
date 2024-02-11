@@ -24,7 +24,7 @@ img {
 }
 
 .profile-card-container {
-	margin-top: 20px;
+	margin: 20px 0;
 }
 
 ::ng-deep .article-content {
@@ -44,6 +44,7 @@ img {
 	}
 
 	img {
+		max-width: 100%;
 		border-radius: 12px;
 	}
 }
