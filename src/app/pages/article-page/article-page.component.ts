@@ -2,6 +2,7 @@ import { Component } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
 import { faShareFromSquare } from "@fortawesome/pro-regular-svg-icons"
 import { ApiService } from "../../services/api-service"
+import { LocalizationService } from "../../services/localization-service"
 import { ArticleResource } from "../../types"
 
 @Component({
@@ -9,6 +10,7 @@ import { ArticleResource } from "../../types"
 	styleUrl: "./article-page.component.scss"
 })
 export class ArticlePageComponent {
+	locale = this.localizationService.locale.articlePage
 	faShareFromSquare = faShareFromSquare
 	article: ArticleResource = null
 	content: string = null
@@ -16,6 +18,7 @@ export class ArticlePageComponent {
 
 	constructor(
 		private apiService: ApiService,
+		private localizationService: LocalizationService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
 	) {
