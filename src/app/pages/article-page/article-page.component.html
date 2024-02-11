@@ -12,6 +12,12 @@
 				[href]="'/publisher/' + article.publisher.uuid"
 				(click)="navigateToPublisherPage($event)"
 			></dav-profile-card>
+
+			@if (showShareButton) {
+			<dav-icon-button size="small" (click)="share()">
+				<fa-icon [icon]="faShareFromSquare"></fa-icon>
+			</dav-icon-button>
+			}
 		</div>
 
 		<div class="article-content" [innerHTML]="article.content"></div>

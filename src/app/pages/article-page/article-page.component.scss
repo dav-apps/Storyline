@@ -24,6 +24,9 @@ img {
 }
 
 .profile-card-container {
+	display: flex;
+	align-items: center;
+	gap: 12px;
 	margin: 20px 0;
 }
 

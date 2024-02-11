@@ -1,5 +1,6 @@
 import { Component } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
+import { faShareFromSquare } from "@fortawesome/pro-regular-svg-icons"
 import { ApiService } from "../../services/api-service"
 import { ArticleResource } from "../../types"
 
@@ -8,14 +9,18 @@ import { ArticleResource } from "../../types"
 	styleUrl: "./article-page.component.scss"
 })
 export class ArticlePageComponent {
+	faShareFromSquare = faShareFromSquare
 	article: ArticleResource = null
 	content: string = null
+	showShareButton: boolean = false
 
 	constructor(
 		private apiService: ApiService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) {}
+	) {
+		this.showShareButton = navigator.share != null
+	}
 
 	async ngOnInit() {
 		const uuid = this.activatedRoute.snapshot.paramMap.get("uuid")
@@ -46,5 +51,12 @@ export class ArticlePageComponent {
 	navigateToPublisherPage(event: Event) {
 		event.preventDefault()
 		this.router.navigate(["publisher", this.article.publisher.uuid])
+	}
+
+	share() {
+		navigator.share({
+			url: this.article.url,
+			title: this.article.title
+		})
 	}
 }
