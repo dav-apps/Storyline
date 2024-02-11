@@ -6,7 +6,7 @@ const app = express()
 const http = createServer(app)
 
 function getRoot(req: Request, res: Response) {
-	res.sendFile("./storyline/browser/index.html")
+	res.sendFile(path.resolve("./storyline/browser/index.html"))
 }
 
 app.use(express.static("./storyline/browser"))
