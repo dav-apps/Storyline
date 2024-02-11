@@ -3,13 +3,21 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "ng serve --port 3004",
-    "start": "ng serve",
+    "start": "cd dist && node server.js",
+    "dev": "concurrently 'npm:ng:build:watch' 'npm:server:compile' 'npm:server:copy:watch' 'npm:server:copy2:watch' 'npm:server:watch'",
     "build": "npm run build:prod",
-    "build:prod": "ng build --configuration production",
-    "build:staging": "ng build --configuration staging",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "build:prod": "npm run clear && npm run npm:install && npm run ng:build:prod && npm run server:compile && npm run server:copy",
+    "build:staging": "npm run clear && npm run npm:install && npm run ng:build:staging && npm run server:compile && npm run server:copy",
+    "clear": "rm -rf dist && rm -rf server/dist",
+    "npm:install": "npm install && npm --prefix ./server/ install ./server/",
+    "ng:build:watch": "ng build --watch",
+    "ng:build:prod": "ng build --configuration production",
+    "ng:build:staging": "ng build --configuration staging",
+    "server:compile": "( cd server/ ; tsc )",
+    "server:copy": "cpx 'server/{package.json,package-lock.json,node_modules/**/*}' dist/ && cpx 'server/dist/**/*' dist/",
+    "server:copy:watch": "cpx 'server/{package.json,package-lock.json,node_modules/**/*}' dist/ -w",
+    "server:copy2:watch": "cpx 'server/dist/**/*' dist/ -w",
+    "server:watch": "cd dist && nodemon server.js"
   },
   "private": true,
   "dependencies": {
@@ -38,12 +46,15 @@
     "@angular/cli": "^17.1.3",
     "@angular/compiler-cli": "^17.1.3",
     "@types/jasmine": "~5.1.0",
+    "concurrently": "^8.2.2",
+    "cpx": "^1.5.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "nodemon": "^3.0.3",
     "typescript": "~5.3.2"
   }
 }
