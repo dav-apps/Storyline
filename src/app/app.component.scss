@@ -27,6 +27,17 @@
 	margin-left: 14px;
 }
 
+.navbar-spacer {
+	width: 100%;
+}
+
+.navbar-icon-buttons-container {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 16px;
+}
+
 .content-container {
 	position: fixed;
 	top: 0;

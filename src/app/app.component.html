@@ -4,6 +4,25 @@
 		<img src="/assets/icons/icon-192.png" width="48" height="48" />
 		<span>Storyline</span>
 	</a>
+
+	<div class="navbar-spacer"></div>
+
+	<div class="navbar-icon-buttons-container">
+		<dav-icon-button
+			[selected]="userButtonSelected"
+			(click)="navigateToUserPage()"
+		>
+			<fa-icon
+				[icon]="faCircleUserRegular"
+				*ngIf="!userButtonSelected"
+			></fa-icon>
+
+			<fa-icon
+				[icon]="faCircleUserSolid"
+				*ngIf="userButtonSelected"
+			></fa-icon>
+		</dav-icon-button>
+	</div>
 </div>
 
 <div #contentContainer class="content-container">
