@@ -53,6 +53,42 @@ export async function prepareArticlePage(uuid: string): Promise<string> {
 	}
 }
 
+export async function preparePublisherPage(uuid: string): Promise<string> {
+	try {
+		let response = await request<{
+			retrievePublisher: {
+				name: string
+				description: string
+				logoUrl: string
+			}
+		}>(
+			backendUrl,
+			gql`
+				query RetrievePublisher($uuid: String!) {
+					retrievePublisher(uuid: $uuid) {
+						name
+						description
+						logoUrl
+					}
+				}
+			`,
+			{ uuid }
+		)
+
+		let responseData = response.retrievePublisher
+
+		return getHtml({
+			title: responseData.name,
+			description: responseData.description,
+			imageUrl: responseData.logoUrl,
+			url: `${websiteUrl}/publisher/${uuid}`
+		})
+	} catch (error) {
+		console.error(error)
+		return getHtml()
+	}
+}
+
 function getHtml(params?: {
 	title: string
 	description: string
