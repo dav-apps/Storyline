@@ -14,4 +14,4 @@ app.use(express.static("./storyline/browser"))
 app.get("/", getRoot)
 app.get("/*", getRoot)
 
-http.listen(3004)
+http.listen(process.env.PORT || 3004)
