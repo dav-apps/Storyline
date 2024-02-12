@@ -1,9 +1,11 @@
 import { Component, ViewChild, ElementRef } from "@angular/core"
-import { Router, NavigationStart } from "@angular/router"
-import * as DavUIComponents from "dav-ui-components"
-import { DataService } from "./services/data-service"
+import { Router, ActivatedRoute, NavigationStart } from "@angular/router"
 import { faCircleUser as faCircleUserSolid } from "@fortawesome/free-solid-svg-icons"
 import { faCircleUser as faCircleUserRegular } from "@fortawesome/pro-regular-svg-icons"
+import { Dav } from "dav-js"
+import * as DavUIComponents from "dav-ui-components"
+import { DataService } from "./services/data-service"
+import { environment } from "../environments/environment"
 
 @Component({
 	selector: "app-root",
@@ -17,7 +19,11 @@ export class AppComponent {
 	contentContainer: ElementRef<HTMLDivElement>
 	userButtonSelected: boolean = false
 
-	constructor(private dataService: DataService, private router: Router) {
+	constructor(
+		private dataService: DataService,
+		private router: Router,
+		private activatedRoute: ActivatedRoute
+	) {
 		DavUIComponents.setLocale("en-EN")
 
 		this.router.events.forEach(data => {
@@ -27,10 +33,29 @@ export class AppComponent {
 				this.userButtonSelected = currentUrl == "/user"
 			}
 		})
+
+		// Check for access token in the url
+		this.activatedRoute.queryParams.subscribe(async params => {
+			if (params["accessToken"]) {
+				// Log in with the access token
+				await this.dataService.dav.Login(params["accessToken"])
+				window.location.href = this.router.url.slice(
+					0,
+					this.router.url.indexOf("?")
+				)
+			}
+		})
 	}
 
 	ngOnInit() {
 		this.dataService.contentContainer = this.contentContainer.nativeElement
+
+		new Dav({
+			environment: environment.environment,
+			appId: environment.appId,
+			tableIds: [],
+			callbacks: {}
+		})
 	}
 
 	navigateToUserPage() {

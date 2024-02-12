@@ -4,6 +4,7 @@ import {
 	faPlus as faPlusLight,
 	faGem as faGemLight
 } from "@fortawesome/pro-light-svg-icons"
+import { Dav } from "dav-js"
 import { LocalizationService } from "../../services/localization-service"
 import { environment } from "../../../environments/environment"
 
@@ -20,7 +21,11 @@ export class UserPageComponent {
 
 	constructor(private localizationService: LocalizationService) {}
 
-	navigateToLoginPage() {}
+	navigateToLoginPage() {
+		Dav.ShowLoginPage(environment.apiKey, window.location.origin)
+	}
 
-	navigateToSignupPage() {}
+	navigateToSignupPage() {
+		Dav.ShowSignupPage(environment.apiKey, window.location.origin)
+	}
 }
