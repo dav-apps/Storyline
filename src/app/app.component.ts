@@ -20,7 +20,7 @@ export class AppComponent {
 	userButtonSelected: boolean = false
 
 	constructor(
-		private dataService: DataService,
+		public dataService: DataService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute
 	) {

@@ -12,15 +12,18 @@
 			[selected]="userButtonSelected"
 			(click)="navigateToUserPage()"
 		>
-			<fa-icon
-				[icon]="faCircleUserRegular"
-				*ngIf="!userButtonSelected"
-			></fa-icon>
-
-			<fa-icon
-				[icon]="faCircleUserSolid"
-				*ngIf="userButtonSelected"
-			></fa-icon>
+			@if (!userButtonSelected && !dataService.dav.isLoggedIn) {
+			<fa-icon [icon]="faCircleUserRegular"></fa-icon>
+			} @else if (userButtonSelected && !dataService.dav.isLoggedIn) {
+			<fa-icon [icon]="faCircleUserSolid"></fa-icon>
+			} @else if (dataService.dav.isLoggedIn) {
+			<img
+				[src]="dataService.dav.user.ProfileImage"
+				class="profile-image"
+				width="28"
+				height="28"
+			/>
+			}
 		</dav-icon-button>
 	</div>
 </div>

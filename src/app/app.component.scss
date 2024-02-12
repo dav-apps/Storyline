@@ -50,3 +50,7 @@
 	);
 	padding-bottom: calc(80px + env(safe-area-inset-bottom));
 }
+
+.profile-image {
+	border-radius: 50%;
+}
