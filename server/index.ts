@@ -3,23 +3,92 @@ import * as fs from "fs"
 import { JSDOM } from "jsdom"
 import { request, gql } from "graphql-request"
 
+let sitemap: string = null
 let backendUrl = "http://localhost:4004"
 let websiteUrl = "http://localhost:3004"
 
 switch (process.env.ENV) {
 	case "production":
 		backendUrl = "https://storyline-api-staging-85btq.ondigitalocean.app/"
-		websiteUrl = "https://storyline-staging-a6ylk.ondigitalocean.app/"
+		websiteUrl = "https://storyline-staging-a6ylk.ondigitalocean.app"
 		break
 	case "staging":
 		backendUrl = "https://storyline-api-staging-85btq.ondigitalocean.app/"
-		websiteUrl = "https://storyline-staging-a6ylk.ondigitalocean.app/"
+		websiteUrl = "https://storyline-staging-a6ylk.ondigitalocean.app"
 		break
 }
 
 interface PageResult {
 	html: string
 	status: number
+}
+
+export async function generateSitemap(): Promise<string> {
+	if (sitemap != null) {
+		return sitemap
+	}
+
+	let result = ""
+
+	// Base urls
+	result += `${websiteUrl}\n`
+
+	// Publishers
+	try {
+		let response = await request<{
+			listPublishers: { items: { uuid: string }[] }
+		}>(
+			backendUrl,
+			gql`
+				query ListPublishers {
+					listPublishers(limit: 10000) {
+						items {
+							uuid
+						}
+					}
+				}
+			`,
+			{}
+		)
+
+		let publisherItems = response.listPublishers.items
+
+		for (let item of publisherItems) {
+			result += `${websiteUrl}/publisher/${item.uuid}\n`
+		}
+	} catch (error) {
+		console.error(error)
+	}
+
+	// Articles
+	try {
+		let response = await request<{
+			listArticles: { items: { uuid: string }[] }
+		}>(
+			backendUrl,
+			gql`
+				query ListArticles {
+					listArticles(limit: 10000) {
+						items {
+							uuid
+						}
+					}
+				}
+			`,
+			{}
+		)
+
+		let articleItems = response.listArticles.items
+
+		for (let item of articleItems) {
+			result += `${websiteUrl}/article/${encodeURIComponent(item.uuid)}\n`
+		}
+	} catch (error) {
+		console.error(error)
+	}
+
+	sitemap = result
+	return result
 }
 
 export async function prepareArticlePage(uuid: string): Promise<PageResult> {
