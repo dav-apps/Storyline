@@ -6,14 +6,14 @@ import { prepareArticlePage, preparePublisherPage } from "./index.js"
 const app = express()
 const http = createServer(app)
 
-app.get("/article/:uuid", (req: Request, res: Response) => {
-	let uuid = req.params.uuid
-	prepareArticlePage(uuid).then(result => res.send(result))
+app.get("/article/:uuid", async (req: Request, res: Response) => {
+	let result = await prepareArticlePage(req.params.uuid)
+	res.status(result.status).send(result.html)
 })
 
-app.get("/publisher/:uuid", (req: Request, res: Response) => {
-	let uuid = req.params.uuid
-	preparePublisherPage(uuid).then(result => res.send(result))
+app.get("/publisher/:uuid", async (req: Request, res: Response) => {
+	let result = await preparePublisherPage(req.params.uuid)
+	res.status(result.status).send(result.html)
 })
 
 function getRoot(req: Request, res: Response) {

@@ -17,7 +17,12 @@ switch (process.env.ENV) {
 		break
 }
 
-export async function prepareArticlePage(uuid: string): Promise<string> {
+interface PageResult {
+	html: string
+	status: number
+}
+
+export async function prepareArticlePage(uuid: string): Promise<PageResult> {
 	try {
 		let response = await request<{
 			retrieveArticle: {
@@ -41,19 +46,25 @@ export async function prepareArticlePage(uuid: string): Promise<string> {
 
 		let responseData = response.retrieveArticle
 
-		return getHtml({
-			title: responseData.title,
-			description: responseData.description,
-			imageUrl: responseData.imageUrl,
-			url: `${websiteUrl}/article/${uuid}`
-		})
+		return {
+			html: getHtml({
+				title: responseData.title,
+				description: responseData.description,
+				imageUrl: responseData.imageUrl,
+				url: `${websiteUrl}/article/${uuid}`
+			}),
+			status: 200
+		}
 	} catch (error) {
 		console.error(error)
-		return getHtml()
+		return {
+			html: getHtml(),
+			status: 404
+		}
 	}
 }
 
-export async function preparePublisherPage(uuid: string): Promise<string> {
+export async function preparePublisherPage(uuid: string): Promise<PageResult> {
 	try {
 		let response = await request<{
 			retrievePublisher: {
@@ -77,15 +88,21 @@ export async function preparePublisherPage(uuid: string): Promise<string> {
 
 		let responseData = response.retrievePublisher
 
-		return getHtml({
-			title: responseData.name,
-			description: responseData.description,
-			imageUrl: responseData.logoUrl,
-			url: `${websiteUrl}/publisher/${uuid}`
-		})
+		return {
+			html: getHtml({
+				title: responseData.name,
+				description: responseData.description,
+				imageUrl: responseData.logoUrl,
+				url: `${websiteUrl}/publisher/${uuid}`
+			}),
+			status: 200
+		}
 	} catch (error) {
 		console.error(error)
-		return getHtml()
+		return {
+			html: getHtml(),
+			status: 404
+		}
 	}
 }
 
