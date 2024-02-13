@@ -1,3 +1,4 @@
+@if (!dataService.dav.isLoggedIn) {
 <div class="container slide-up-in">
 	<dav-header size="large">
 		{{ locale.title }}
@@ -44,3 +45,50 @@
 		</dav-button>
 	</div>
 </div>
+} @else {
+<div class="container slide-up-in">
+	<div class="header-logged-in-container">
+		<dav-header size="large">
+			{{ locale.title }}
+		</dav-header>
+	</div>
+
+	<div class="user-profile-container">
+		<img class="profile-image" [src]="dataService.dav.user.ProfileImage" />
+
+		<div class="user-details-container">
+			<h4>
+				<a
+					class="profile-link"
+					[href]="websiteUrl + '/login?redirect=user'"
+					target="blank"
+				>
+					{{ dataService.dav.user.FirstName }}
+				</a>
+			</h4>
+
+			<p class="plan-label">
+				{{
+					dataService.dav.user.Plan == 0
+						? locale.planFree
+						: dataService.dav.user.Plan == 1
+						? locale.planPlus
+						: locale.planPro
+				}}
+			</p>
+
+			<div class="progress-bar-container">
+				<dav-progress-bar [value]="usedStoragePercent"></dav-progress-bar>
+			</div>
+
+			<p class="used-storage-label">
+				{{ usedStorageText }}
+			</p>
+
+			<dav-button color="error" outline size="small">
+				{{ locale.logout }}
+			</dav-button>
+		</div>
+	</div>
+</div>
+}

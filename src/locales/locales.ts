@@ -7,7 +7,12 @@ const enDefaults = {
 		benefit2: "More features: Get notifications, save articles & more",
 		benefit3: "Get access to exclusive content",
 		login: "Log in",
-		signup: "Sign up"
+		logout: "Log out",
+		signup: "Sign up",
+		planFree: "Free",
+		planPlus: "Plus",
+		planPro: "Pro",
+		storageUsed: "{0} GB of {1} GB used"
 	},
 	articlePage: {
 		openOriginalArticle: "Open original article"
@@ -33,7 +38,12 @@ const deDefaults = {
 			"Zusätzliche Funktionen: Benachrichtigungen, Artikel speichern & mehr",
 		benefit3: "Erhalte Zugriff auf exklusive Inhalte",
 		login: "Anmelden",
-		signup: "Registrieren"
+		logout: "Abmelden",
+		signup: "Registrieren",
+		planFree: "Free",
+		planPlus: "Plus",
+		planPro: "Pro",
+		storageUsed: "{0} GB von {1} GB verwendet"
 	},
 	articlePage: {
 		openOriginalArticle: "Ursprünglichen Artikel öffnen"
