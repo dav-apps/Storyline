@@ -54,11 +54,19 @@ export class AppComponent {
 			environment: environment.environment,
 			appId: environment.appId,
 			tableIds: [],
-			callbacks: {}
+			callbacks: {
+				UserLoaded: () => this.userLoaded()
+			}
 		})
 	}
 
 	navigateToUserPage() {
 		this.router.navigate(["user"])
 	}
+
+	//#region dav callback functions
+	userLoaded() {
+		this.dataService.userPromiseHolder.Resolve()
+	}
+	//#endregion
 }
