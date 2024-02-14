@@ -4,12 +4,13 @@ import {
 	faArrowUpRightFromSquare,
 	faPlus
 } from "@fortawesome/pro-regular-svg-icons"
-import { Dav } from "dav-js"
+import { Dav, TableObject, GetAllTableObjects } from "dav-js"
 import { ApiService } from "../../services/api-service"
 import { DataService } from "../../services/data-service"
 import { LocalizationService } from "../../services/localization-service"
 import { LoginPromptDialogComponent } from "../../dialogs/login-prompt-dialog/login-prompt-dialog.component"
-import { ArticleResource, PublisherResource } from "../../types"
+import { ArticleResource, PublisherResource } from "src/app/types"
+import { followTablePublisherKey } from "src/app/constants"
 import { environment } from "src/environments/environment"
 
 @Component({
@@ -26,6 +27,7 @@ export class PublisherPageComponent {
 	limit: number = 10
 	offset: number = 0
 	articlesLoading: boolean = false
+	followTableObject: TableObject = null
 
 	constructor(
 		private apiService: ApiService,
@@ -54,6 +56,13 @@ export class PublisherPageComponent {
 			"scroll",
 			this.onScroll
 		)
+
+		// Try to find a Follow object for the publisher
+		const follows = await GetAllTableObjects(environment.followTableId, false)
+		let i = follows.findIndex(
+			f => f.GetPropertyValue(followTablePublisherKey) == uuid
+		)
+		if (i != -1) this.followTableObject = follows[i]
 	}
 
 	ngOnDestroy() {
@@ -128,14 +137,28 @@ export class PublisherPageComponent {
 		this.router.navigate(["article", article.uuid])
 	}
 
-	follow() {
+	async follow() {
 		// Check if the user is logged in
 		if (!this.dataService.dav.isLoggedIn) {
 			this.loginPromptDialog.show()
 			return
 		}
 
-		// TODO: Follow the publisher
+		// Follow the publisher by creating a Follow object
+		let tableObject = new TableObject()
+		tableObject.TableId = environment.followTableId
+
+		await tableObject.SetPropertyValue({
+			name: followTablePublisherKey,
+			value: this.publisher.uuid
+		})
+
+		this.followTableObject = tableObject
+	}
+
+	async unfollow() {
+		await this.followTableObject.Delete()
+		this.followTableObject = null
 	}
 
 	navigateToLoginPage() {

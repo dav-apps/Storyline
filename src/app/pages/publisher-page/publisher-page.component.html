@@ -7,9 +7,18 @@
 		</div>
 
 		<div class="head-buttons-container">
-			<dav-button size="small" (click)="follow()">
-				<fa-icon [icon]="faPlus"></fa-icon>
-				{{ locale.follow }}
+			<dav-button
+				[color]="followTableObject != null ? 'error' : 'primary'"
+				size="small"
+				(click)="followTableObject != null ? unfollow() : follow()"
+			>
+				<fa-icon
+					[icon]="faPlus"
+					[style.transform]="
+						followTableObject != null ? 'rotate(45deg)' : 'rotate(0deg)'
+					"
+				></fa-icon>
+				{{ followTableObject != null ? locale.unfollow : locale.follow }}
 			</dav-button>
 
 			<dav-button outline size="small" (click)="openWebsite()">

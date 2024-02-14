@@ -19,6 +19,7 @@ const enDefaults = {
 	},
 	publisherPage: {
 		follow: "Follow",
+		unfollow: "Unfollow",
 		openWebsite: "Open website"
 	},
 	dialogs: {
@@ -59,6 +60,7 @@ const deDefaults = {
 	},
 	publisherPage: {
 		follow: "Folgen",
+		unfollow: "Entfolgen",
 		openWebsite: "Webseite öffnen"
 	},
 	dialogs: {
