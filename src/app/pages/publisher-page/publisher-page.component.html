@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="head-buttons-container">
-			<dav-button size="small">
+			<dav-button size="small" (click)="follow()">
 				<fa-icon [icon]="faPlus"></fa-icon>
 				{{ locale.follow }}
 			</dav-button>
@@ -36,3 +36,8 @@
 	</div>
 	}
 </div>
+
+<storyline-login-prompt-dialog
+	#loginPromptDialog
+	(primaryButtonClick)="navigateToLoginPage()"
+></storyline-login-prompt-dialog>

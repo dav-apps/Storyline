@@ -1,13 +1,16 @@
-import { Component } from "@angular/core"
+import { Component, ViewChild } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
 import {
 	faArrowUpRightFromSquare,
 	faPlus
 } from "@fortawesome/pro-regular-svg-icons"
+import { Dav } from "dav-js"
 import { ApiService } from "../../services/api-service"
 import { DataService } from "../../services/data-service"
 import { LocalizationService } from "../../services/localization-service"
+import { LoginPromptDialogComponent } from "../../dialogs/login-prompt-dialog/login-prompt-dialog.component"
 import { ArticleResource, PublisherResource } from "../../types"
+import { environment } from "src/environments/environment"
 
 @Component({
 	templateUrl: "./publisher-page.component.html",
@@ -15,9 +18,10 @@ import { ArticleResource, PublisherResource } from "../../types"
 })
 export class PublisherPageComponent {
 	locale = this.localizationService.locale.publisherPage
+	faArrowUpRightFromSquare = faArrowUpRightFromSquare
+	@ViewChild("loginPromptDialog") loginPromptDialog: LoginPromptDialogComponent
 	publisher: PublisherResource = null
 	articles: ArticleResource[] = []
-	faArrowUpRightFromSquare = faArrowUpRightFromSquare
 	faPlus = faPlus
 	limit: number = 10
 	offset: number = 0
@@ -122,5 +126,19 @@ export class PublisherPageComponent {
 	articleItemClick(event: Event, article: ArticleResource) {
 		event.preventDefault()
 		this.router.navigate(["article", article.uuid])
+	}
+
+	follow() {
+		// Check if the user is logged in
+		if (!this.dataService.dav.isLoggedIn) {
+			this.loginPromptDialog.show()
+			return
+		}
+
+		// TODO: Follow the publisher
+	}
+
+	navigateToLoginPage() {
+		Dav.ShowLoginPage(environment.apiKey, window.location.href)
 	}
 }
