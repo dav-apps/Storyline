@@ -12,6 +12,7 @@ import { ApolloModule } from "apollo-angular"
 
 // Components
 import { AppComponent } from "./app.component"
+import { LoadingScreenComponent } from "./components/loading-screen/loading-screen.component"
 
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
@@ -27,6 +28,7 @@ import { LocalizationService } from "./services/localization-service"
 @NgModule({
 	declarations: [
 		AppComponent,
+		LoadingScreenComponent,
 		StartPageComponent,
 		UserPageComponent,
 		ArticlePageComponent,
