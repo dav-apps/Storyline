@@ -31,3 +31,7 @@
 <div #contentContainer class="content-container">
 	<router-outlet></router-outlet>
 </div>
+
+<storyline-loading-screen
+	*ngIf="dataService.loadingScreenVisible"
+></storyline-loading-screen>

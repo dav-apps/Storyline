@@ -6,4 +6,5 @@ export class DataService {
 	dav = Dav
 	userPromiseHolder = new PromiseHolder()
 	contentContainer: HTMLDivElement = null
+	loadingScreenVisible: boolean = false
 }

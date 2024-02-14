@@ -18,10 +18,13 @@ export class StartPageComponent {
 		private apiService: ApiService,
 		private dataService: DataService,
 		private router: Router
-	) {}
+	) {
+		this.dataService.loadingScreenVisible = true
+	}
 
 	async ngOnInit() {
 		const articles = await this.loadArticles()
+		this.dataService.loadingScreenVisible = false
 
 		for (let article of articles) {
 			this.articles.push(article)
