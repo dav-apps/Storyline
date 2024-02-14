@@ -20,6 +20,15 @@ const enDefaults = {
 	publisherPage: {
 		follow: "Follow",
 		openWebsite: "Open website"
+	},
+	dialogs: {
+		loginPromptDialog: {
+			headline: "Log in",
+			description:
+				"Log in to follow publishers, customize your news feed and more.",
+			login: "Log in",
+			close: "Close"
+		}
 	}
 }
 
@@ -51,6 +60,15 @@ const deDefaults = {
 	publisherPage: {
 		follow: "Folgen",
 		openWebsite: "Webseite öffnen"
+	},
+	dialogs: {
+		loginPromptDialog: {
+			headline: "Anmelden",
+			description:
+				"Melde dich an, um Anbietern zu folgen, deinen News-Feed anzupassen und vieles mehr.",
+			login: "Anmelden",
+			close: "Schließen"
+		}
 	}
 }
 

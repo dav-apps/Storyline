@@ -14,6 +14,9 @@ import { ApolloModule } from "apollo-angular"
 import { AppComponent } from "./app.component"
 import { LoadingScreenComponent } from "./components/loading-screen/loading-screen.component"
 
+// Dialogs
+import { LoginPromptDialogComponent } from "./dialogs/login-prompt-dialog/login-prompt-dialog.component"
+
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
 import { UserPageComponent } from "./pages/user-page/user-page.component"
@@ -29,6 +32,7 @@ import { LocalizationService } from "./services/localization-service"
 	declarations: [
 		AppComponent,
 		LoadingScreenComponent,
+		LoginPromptDialogComponent,
 		StartPageComponent,
 		UserPageComponent,
 		ArticlePageComponent,
