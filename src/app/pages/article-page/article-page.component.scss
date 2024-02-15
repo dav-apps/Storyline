@@ -14,6 +14,7 @@
 h1 {
 	font-weight: 400;
 	text-align: center;
+	color: var(--dav-color-on-surface);
 }
 
 img {
@@ -35,6 +36,7 @@ img {
 	font-size: 20px;
 	line-height: 24px;
 	max-width: 500px;
+	color: var(--dav-color-on-surface);
 
 	h1, h2, h3, h4, h5, h6 {
 		text-align: left;
@@ -50,6 +52,10 @@ img {
 		max-width: 100%;
 		border-radius: 12px;
 	}
+}
+
+.copyright-container {
+	color: var(--dav-color-on-surface);
 }
 
 .link-container {
