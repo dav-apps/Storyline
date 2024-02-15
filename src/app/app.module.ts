@@ -27,6 +27,7 @@ import { PublisherPageComponent } from "./pages/publisher-page/publisher-page.co
 import { ApiService } from "./services/api-service"
 import { DataService } from "./services/data-service"
 import { LocalizationService } from "./services/localization-service"
+import { SettingsService } from "./services/settings-service"
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,7 @@ import { LocalizationService } from "./services/localization-service"
 		AppRoutingModule,
 		GraphQLModule
 	],
-	providers: [ApiService, DataService, LocalizationService],
+	providers: [ApiService, DataService, LocalizationService, SettingsService],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
