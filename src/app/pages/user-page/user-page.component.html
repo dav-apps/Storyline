@@ -29,7 +29,11 @@
 		<a [href]="websiteUrl" target="blank">
 			<img
 				class="dav-logo"
-				[src]="'/assets/images/dav-logo-text.png'"
+				[src]="
+					dataService.darkTheme
+						? '/assets/images/dav-logo-text-white.png'
+						: '/assets/images/dav-logo-text.png'
+				"
 				alt="dav Logo"
 			/>
 		</a>
