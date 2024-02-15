@@ -25,6 +25,17 @@
 			/>
 			}
 		</dav-icon-button>
+
+		<dav-icon-button
+			[selected]="settingsButtonSelected"
+			(click)="navigateToSettingsPage()"
+		>
+			@if (settingsButtonSelected) {
+			<fa-icon [icon]="faGearSolid"></fa-icon>
+			} @else {
+			<fa-icon [icon]="faGearRegular"></fa-icon>
+			}
+		</dav-icon-button>
 	</div>
 </div>
 

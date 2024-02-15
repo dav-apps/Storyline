@@ -1,7 +1,13 @@
 import { Component, ViewChild, ElementRef } from "@angular/core"
 import { Router, ActivatedRoute, NavigationStart } from "@angular/router"
-import { faCircleUser as faCircleUserSolid } from "@fortawesome/free-solid-svg-icons"
-import { faCircleUser as faCircleUserRegular } from "@fortawesome/pro-regular-svg-icons"
+import {
+	faCircleUser as faCircleUserSolid,
+	faGear as faGearSolid
+} from "@fortawesome/free-solid-svg-icons"
+import {
+	faCircleUser as faCircleUserRegular,
+	faGear as faGearRegular
+} from "@fortawesome/pro-regular-svg-icons"
 import { Dav } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
@@ -15,9 +21,12 @@ import { environment } from "../environments/environment"
 export class AppComponent {
 	faCircleUserSolid = faCircleUserSolid
 	faCircleUserRegular = faCircleUserRegular
+	faGearSolid = faGearSolid
+	faGearRegular = faGearRegular
 	@ViewChild("contentContainer", { static: true })
 	contentContainer: ElementRef<HTMLDivElement>
 	userButtonSelected: boolean = false
+	settingsButtonSelected: boolean = false
 
 	constructor(
 		public dataService: DataService,
@@ -31,6 +40,7 @@ export class AppComponent {
 				const currentUrl = data.url.split("?")[0]
 
 				this.userButtonSelected = currentUrl == "/user"
+				this.settingsButtonSelected = currentUrl == "/settings"
 			}
 		})
 
@@ -63,6 +73,10 @@ export class AppComponent {
 
 	navigateToUserPage() {
 		this.router.navigate(["user"])
+	}
+
+	navigateToSettingsPage() {
+		this.router.navigate(["settings"])
 	}
 
 	//#region dav callback functions
