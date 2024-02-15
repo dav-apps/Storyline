@@ -67,6 +67,36 @@
 	<router-outlet></router-outlet>
 </div>
 
+<div class="bottom-navbar acrylic" *ngIf="dataService.isMobile">
+	<dav-navigation-bar>
+		<dav-navigation-bar-item
+			[active]="newsFeedTabActive"
+			(click)="navigateToNewsFeedPage()"
+		>
+			@if (newsFeedTabActive) {
+			<fa-icon slot="icon" [icon]="faNewspaperSolid"></fa-icon>
+			} @else {
+			<fa-icon slot="icon" [icon]="faNewspaperRegular"></fa-icon>
+			}
+
+			<p slot="label">{{ locale.newsFeed }}</p>
+		</dav-navigation-bar-item>
+
+		<dav-navigation-bar-item
+			[active]="discoverTabActive"
+			(click)="navigateToDiscoverPage()"
+		>
+			@if (discoverTabActive) {
+			<fa-icon slot="icon" [icon]="faSparklesSolid"></fa-icon>
+			} @else {
+			<fa-icon slot="icon" [icon]="faSparklesRegular"></fa-icon>
+			}
+
+			<p slot="label">{{ locale.discover }}</p>
+		</dav-navigation-bar-item>
+	</dav-navigation-bar>
+</div>
+
 <storyline-loading-screen
 	*ngIf="dataService.loadingScreenVisible"
 ></storyline-loading-screen>

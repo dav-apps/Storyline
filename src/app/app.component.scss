@@ -25,6 +25,11 @@
 	margin-left: 14px;
 }
 
+.navbar-tab-bar-container {
+	display: flex;
+	align-items: center;
+}
+
 .navbar-spacer {
 	width: 100%;
 }
@@ -49,4 +54,17 @@
 
 .profile-image {
 	border-radius: 50%;
+}
+
+.bottom-navbar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 5;
+	padding-bottom: env(safe-area-inset-bottom);
+}
+
+dav-navigation-bar {
+	background-color: transparent;
 }

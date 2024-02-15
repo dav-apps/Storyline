@@ -1,10 +1,14 @@
 import { Component, ViewChild, ElementRef, HostListener } from "@angular/core"
 import { Router, ActivatedRoute, NavigationStart } from "@angular/router"
 import {
+	faNewspaper as faNewspaperSolid,
 	faCircleUser as faCircleUserSolid,
 	faGear as faGearSolid
 } from "@fortawesome/free-solid-svg-icons"
+import { faSparkles as faSparklesSolid } from "@fortawesome/pro-solid-svg-icons"
 import {
+	faNewspaper as faNewspaperRegular,
+	faSparkles as faSparklesRegular,
 	faCircleUser as faCircleUserRegular,
 	faGear as faGearRegular
 } from "@fortawesome/pro-regular-svg-icons"
@@ -22,6 +26,10 @@ import { environment } from "src/environments/environment"
 })
 export class AppComponent {
 	locale = this.localizationService.locale.misc
+	faNewspaperSolid = faNewspaperSolid
+	faNewspaperRegular = faNewspaperRegular
+	faSparklesSolid = faSparklesSolid
+	faSparklesRegular = faSparklesRegular
 	faCircleUserSolid = faCircleUserSolid
 	faCircleUserRegular = faCircleUserRegular
 	faGearSolid = faGearSolid
