@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from "@angular/core"
+import { Component, ViewChild, ElementRef, HostListener } from "@angular/core"
 import { Router, ActivatedRoute, NavigationStart } from "@angular/router"
 import {
 	faCircleUser as faCircleUserSolid,
@@ -11,7 +11,8 @@ import {
 import { Dav } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
-import { environment } from "../environments/environment"
+import { smallWindowMaxSize } from "src/app/constants"
+import { environment } from "src/environments/environment"
 
 @Component({
 	selector: "app-root",
@@ -69,6 +70,11 @@ export class AppComponent {
 				UserLoaded: () => this.userLoaded()
 			}
 		})
+	}
+
+	@HostListener("window:resize")
+	setSize() {
+		this.dataService.isMobile = window.innerWidth <= smallWindowMaxSize
 	}
 
 	navigateToUserPage() {

@@ -39,7 +39,11 @@
 	</div>
 </div>
 
-<div #contentContainer class="content-container">
+<div
+	#contentContainer
+	class="content-container"
+	[class.mobile]="dataService.isMobile"
+>
 	<router-outlet></router-outlet>
 </div>
 

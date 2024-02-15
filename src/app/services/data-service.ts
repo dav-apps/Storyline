@@ -13,6 +13,7 @@ export class DataService {
 	darkTheme: boolean = false
 	contentContainer: HTMLDivElement = null
 	loadingScreenVisible: boolean = false
+	isMobile: boolean = false
 
 	constructor(private settingsService: SettingsService) {}
 

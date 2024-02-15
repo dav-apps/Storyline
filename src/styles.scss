@@ -117,9 +117,6 @@
 	--dav-color-palette-error95-rgb: 255, 237, 234; /* #ffedea */
 	--dav-color-palette-error98-rgb: 255, 248, 247; /* #fff8f7 */
 	--dav-color-palette-error99-rgb: 255, 251, 255; /* #fffbff */
-
-	/* Other vars */
-	--windows-title-bar-height: 0px;
 }
 
 body {
@@ -428,6 +425,26 @@ body {
 	-webkit-touch-callout: none;
 	background-color: var(--dav-color-surface);
 	overflow: hidden;
+}
+
+::-webkit-scrollbar {
+	background-color: var(--dav-color-surface);
+	height: 4px;
+	width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--dav-color-inverse-on-surface);
+	border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+	margin-top: calc(env(safe-area-inset-top) + 76px);
+	margin-bottom: calc(env(safe-area-inset-bottom));
+}
+
+.mobile::-webkit-scrollbar-track {
+	margin-bottom: calc(80px + env(safe-area-inset-bottom));
 }
 
 // Animation classes
