@@ -3,7 +3,12 @@ import { DropdownOption, DropdownOptionType } from "dav-ui-components"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { SettingsService } from "src/app/services/settings-service"
-import { systemThemeKey, lightThemeKey, darkThemeKey } from "src/app/constants"
+import {
+	version,
+	systemThemeKey,
+	lightThemeKey,
+	darkThemeKey
+} from "src/app/constants"
 
 @Component({
 	templateUrl: "./settings-page.component.html",
@@ -11,6 +16,8 @@ import { systemThemeKey, lightThemeKey, darkThemeKey } from "src/app/constants"
 })
 export class SettingsPageComponent {
 	locale = this.localizationService.locale.settingsPage
+	version = version
+	year = new Date().getFullYear()
 	selectedTheme: string = systemThemeKey
 	themeDropdownOptions: DropdownOption[] = [
 		{

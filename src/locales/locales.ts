@@ -19,7 +19,9 @@ const enDefaults = {
 		theme: "App theme",
 		lightTheme: "Light",
 		darkTheme: "Dark",
-		systemTheme: "System default"
+		systemTheme: "System default",
+		github: "Storyline on GitHub",
+		privacy: "Privacy Policy"
 	},
 	articlePage: {
 		openOriginalArticle: "Open original article"
@@ -67,7 +69,9 @@ const deDefaults = {
 		theme: "App-Design",
 		lightTheme: "Hell",
 		darkTheme: "Dunkel",
-		systemTheme: "System-Standard"
+		systemTheme: "System-Standard",
+		github: "Storyline auf GitHub",
+		privacy: "Datenschutzerklärung"
 	},
 	articlePage: {
 		openOriginalArticle: "Ursprünglichen Artikel öffnen"
