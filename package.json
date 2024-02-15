@@ -40,6 +40,7 @@
     "dav-js": "git+https://github.com/dav-apps/dav-js.git#v2.6.7",
     "dav-ui-components": "git+https://github.com/dav-apps/dav-ui-components.git#v1.1",
     "graphql": "^16",
+    "localforage": "^1.10.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
