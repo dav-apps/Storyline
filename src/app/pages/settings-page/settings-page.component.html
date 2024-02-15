@@ -1,1 +1,18 @@
-<h1>Hello World</h1>
+<div class="container slide-up-in">
+	<dav-header size="large">
+		{{ locale.title }}
+	</dav-header>
+
+	<div class="settings-container">
+		<div class="setting">
+			<!-- Theme -->
+			<dav-setting [header]="locale.theme">
+				<dav-dropdown
+					[options]="themeDropdownOptions"
+					[selectedKey]="selectedTheme"
+					(change)="themeDropdownChange($event)"
+				></dav-dropdown>
+			</dav-setting>
+		</div>
+	</div>
+</div>

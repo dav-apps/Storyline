@@ -14,6 +14,13 @@ const enDefaults = {
 		planPro: "Pro",
 		storageUsed: "{0} GB of {1} GB used"
 	},
+	settingsPage: {
+		title: "Settings",
+		theme: "App theme",
+		lightTheme: "Light",
+		darkTheme: "Dark",
+		systemTheme: "System default"
+	},
 	articlePage: {
 		openOriginalArticle: "Open original article"
 	},
@@ -54,6 +61,13 @@ const deDefaults = {
 		planPlus: "Plus",
 		planPro: "Pro",
 		storageUsed: "{0} GB von {1} GB verwendet"
+	},
+	settingsPage: {
+		title: "Einstellungen",
+		theme: "App-Design",
+		lightTheme: "Hell",
+		darkTheme: "Dunkel",
+		systemTheme: "System-Standard"
 	},
 	articlePage: {
 		openOriginalArticle: "Ursprünglichen Artikel öffnen"
