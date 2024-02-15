@@ -5,6 +5,26 @@
 		<span>Storyline</span>
 	</a>
 
+	@if (!dataService.isMobile) {
+	<div class="navbar-tab-bar-container">
+		<dav-tab-bar>
+			<dav-tab-bar-item
+				[active]="newsFeedTabActive"
+				(click)="navigateToNewsFeedPage()"
+			>
+				{{ locale.newsFeed }}
+			</dav-tab-bar-item>
+
+			<dav-tab-bar-item
+				[active]="discoverTabActive"
+				(click)="navigateToDiscoverPage()"
+			>
+				{{ locale.discover }}
+			</dav-tab-bar-item>
+		</dav-tab-bar>
+	</div>
+	}
+
 	<div class="navbar-spacer"></div>
 
 	<div class="navbar-icon-buttons-container">

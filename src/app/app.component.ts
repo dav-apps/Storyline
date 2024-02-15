@@ -11,6 +11,7 @@ import {
 import { Dav } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
+import { LocalizationService } from "./services/localization-service"
 import { smallWindowMaxSize } from "src/app/constants"
 import { environment } from "src/environments/environment"
 
@@ -20,17 +21,21 @@ import { environment } from "src/environments/environment"
 	styleUrl: "./app.component.scss"
 })
 export class AppComponent {
+	locale = this.localizationService.locale.misc
 	faCircleUserSolid = faCircleUserSolid
 	faCircleUserRegular = faCircleUserRegular
 	faGearSolid = faGearSolid
 	faGearRegular = faGearRegular
 	@ViewChild("contentContainer", { static: true })
 	contentContainer: ElementRef<HTMLDivElement>
+	newsFeedTabActive: boolean = false
+	discoverTabActive: boolean = false
 	userButtonSelected: boolean = false
 	settingsButtonSelected: boolean = false
 
 	constructor(
 		public dataService: DataService,
+		private localizationService: LocalizationService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute
 	) {
@@ -40,6 +45,8 @@ export class AppComponent {
 			if (data instanceof NavigationStart) {
 				const currentUrl = data.url.split("?")[0]
 
+				this.newsFeedTabActive = currentUrl == "/"
+				this.discoverTabActive = currentUrl.startsWith("/discover")
 				this.userButtonSelected = currentUrl == "/user"
 				this.settingsButtonSelected = currentUrl == "/settings"
 			}
@@ -75,6 +82,14 @@ export class AppComponent {
 	@HostListener("window:resize")
 	setSize() {
 		this.dataService.isMobile = window.innerWidth <= smallWindowMaxSize
+	}
+
+	navigateToNewsFeedPage() {
+		this.router.navigate([""])
+	}
+
+	navigateToDiscoverPage() {
+		this.router.navigate(["discover"])
 	}
 
 	navigateToUserPage() {

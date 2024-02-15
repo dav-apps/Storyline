@@ -39,6 +39,10 @@ const enDefaults = {
 			login: "Log in",
 			close: "Close"
 		}
+	},
+	misc: {
+		newsFeed: "News feed",
+		discover: "Discover"
 	}
 }
 
@@ -89,6 +93,10 @@ const deDefaults = {
 			login: "Anmelden",
 			close: "Schließen"
 		}
+	},
+	misc: {
+		newsFeed: "News-Feed",
+		discover: "Entdecken"
 	}
 }
 
