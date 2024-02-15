@@ -3,6 +3,12 @@ export interface List<T> {
 	items: T[]
 }
 
+export enum Theme {
+	System,
+	Light,
+	Dark
+}
+
 //#region API types
 export interface PublisherResource {
 	uuid: string

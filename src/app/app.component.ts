@@ -48,6 +48,7 @@ export class AppComponent {
 	}
 
 	ngOnInit() {
+		this.dataService.loadTheme()
 		this.dataService.contentContainer = this.contentContainer.nativeElement
 
 		new Dav({
