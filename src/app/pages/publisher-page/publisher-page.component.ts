@@ -58,7 +58,7 @@ export class PublisherPageComponent {
 		)
 
 		// Try to find a Follow object for the publisher
-		const follows = await GetAllTableObjects(environment.followTableId, false)
+		const follows = await GetAllTableObjects(environment.followTableId)
 		let i = follows.findIndex(
 			f => f.GetPropertyValue(followTablePublisherKey) == uuid
 		)

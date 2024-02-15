@@ -1,8 +1,11 @@
-import { Component, HostListener } from "@angular/core"
+import { Component } from "@angular/core"
 import { Router } from "@angular/router"
-import { ApiService } from "../../services/api-service"
-import { DataService } from "../../services/data-service"
-import { ArticleResource } from "../../types"
+import { GetAllTableObjects } from "dav-js"
+import { ApiService } from "src/app/services/api-service"
+import { DataService } from "src/app/services/data-service"
+import { ArticleResource } from "src/app/types"
+import { followTablePublisherKey } from "src/app/constants"
+import { environment } from "src/environments/environment"
 
 @Component({
 	templateUrl: "./start-page.component.html",
@@ -10,6 +13,7 @@ import { ArticleResource } from "../../types"
 })
 export class StartPageComponent {
 	articles: ArticleResource[] = []
+	publisherUuids: string[] = []
 	limit: number = 10
 	offset: number = 0
 	articlesLoading: boolean = false
@@ -23,7 +27,17 @@ export class StartPageComponent {
 	}
 
 	async ngOnInit() {
-		const articles = await this.loadArticles()
+		// Get all Follow table objects
+		let tableObjects = await GetAllTableObjects(environment.followTableId)
+		this.publisherUuids = []
+
+		for (let tableObject of tableObjects) {
+			this.publisherUuids.push(
+				tableObject.GetPropertyValue(followTablePublisherKey) as string
+			)
+		}
+
+		const articles = await this.loadArticles(this.publisherUuids)
 		this.dataService.loadingScreenVisible = false
 
 		for (let article of articles) {
@@ -62,7 +76,11 @@ export class StartPageComponent {
 		this.router.navigate(["article", article.uuid])
 	}
 
-	async loadArticles(limit: number = 10, offset: number = 0) {
+	async loadArticles(
+		publishers: string[],
+		limit: number = 10,
+		offset: number = 0
+	) {
 		const result = await this.apiService.listArticles(
 			`
 				total
@@ -77,6 +95,7 @@ export class StartPageComponent {
 				}
 			`,
 			{
+				publishers,
 				limit,
 				offset
 			}
@@ -94,7 +113,12 @@ export class StartPageComponent {
 		this.articlesLoading = true
 
 		this.offset += this.limit
-		const articles = await this.loadArticles(this.limit, this.offset)
+
+		const articles = await this.loadArticles(
+			this.publisherUuids,
+			this.limit,
+			this.offset
+		)
 
 		for (let article of articles) {
 			this.articles.push(article)
