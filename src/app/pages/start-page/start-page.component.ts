@@ -91,6 +91,7 @@ export class StartPageComponent {
 					imageUrl
 					publisher {
 						name
+						logoUrl
 					}
 				}
 			`,

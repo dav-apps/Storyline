@@ -1,17 +1,16 @@
 <div class="container">
 	<div class="article-list-container">
-		<dav-list>
-			@for (article of articles; track article.uuid) {
-			<div class="slide-up-in">
-				<dav-list-item
+		@for (article of articles; track article.uuid) {
+			<div class="card-container">
+				<dav-card
 					[imageSrc]="article.imageUrl"
 					[headline]="article.title"
 					[subhead]="article.publisher.name"
+					[subheadImageSrc]="article.publisher.logoUrl"
 					[href]="'article/' + article.uuid"
 					(click)="articleItemClick($event, article)"
-				></dav-list-item>
+				></dav-card>
 			</div>
-			}
-		</dav-list>
+		}
 	</div>
 </div>

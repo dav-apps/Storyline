@@ -6,5 +6,20 @@
 }
 
 .article-list-container {
-	max-width: 800px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 16px;
+	max-width: 1000px;
+	padding: 0 12px;
+}
+
+.card-container {
+	max-width: 300px;
+
+	dav-card {
+		height: 100%;
+		cursor: pointer;
+	}
 }
