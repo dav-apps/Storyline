@@ -1,0 +1,14 @@
+<div class="article-list-container">
+	@for (article of articles; track article.uuid) {
+	<div class="card-container">
+		<dav-card
+			[imageSrc]="article.imageUrl"
+			[headline]="article.title"
+			[subhead]="article.publisher.name"
+			[subheadImageSrc]="article.publisher.logoUrl"
+			[href]="'article/' + uriEncode(article.uuid)"
+			(click)="itemClick.emit(article)"
+		></dav-card>
+	</div>
+	}
+</div>

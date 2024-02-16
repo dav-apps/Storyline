@@ -1,16 +1,6 @@
 <div class="container">
-	<div class="article-list-container">
-		@for (article of articles; track article.uuid) {
-			<div class="card-container">
-				<dav-card
-					[imageSrc]="article.imageUrl"
-					[headline]="article.title"
-					[subhead]="article.publisher.name"
-					[subheadImageSrc]="article.publisher.logoUrl"
-					[href]="'article/' + article.uuid"
-					(click)="articleItemClick($event, article)"
-				></dav-card>
-			</div>
-		}
-	</div>
+	<storyline-article-list
+		[articles]="articles"
+		(itemClick)="articleItemClick($event)"
+	></storyline-article-list>
 </div>

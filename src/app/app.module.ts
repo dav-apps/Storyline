@@ -12,6 +12,7 @@ import { ApolloModule } from "apollo-angular"
 
 // Components
 import { AppComponent } from "./app.component"
+import { ArticleListComponent } from "./components/article-list/article-list.component"
 import { LoadingScreenComponent } from "./components/loading-screen/loading-screen.component"
 
 // Dialogs
@@ -34,6 +35,7 @@ import { SettingsService } from "./services/settings-service"
 @NgModule({
 	declarations: [
 		AppComponent,
+		ArticleListComponent,
 		LoadingScreenComponent,
 		LoginPromptDialogComponent,
 		StartPageComponent,

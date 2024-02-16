@@ -71,8 +71,7 @@ export class StartPageComponent {
 		}
 	}
 
-	articleItemClick(event: Event, article: ArticleResource) {
-		event.preventDefault()
+	articleItemClick(article: ArticleResource) {
 		this.router.navigate(["article", article.uuid])
 	}
 
