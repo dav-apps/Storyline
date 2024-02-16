@@ -27,21 +27,10 @@
 			</dav-button>
 		</div>
 
-		<div class="article-list-container">
-			<dav-list>
-				@for (article of articles; track article.uuid) {
-				<div class="slide-up-in">
-					<dav-list-item
-						[imageSrc]="article.imageUrl"
-						[headline]="article.title"
-						[subhead]="publisher.name"
-						[href]="'article/' + article.uuid"
-						(click)="articleItemClick($event, article)"
-					></dav-list-item>
-				</div>
-				}
-			</dav-list>
-		</div>
+		<storyline-article-list
+			[articles]="articles"
+			(itemClick)="articleItemClick($event)"
+		></storyline-article-list>
 	</div>
 	}
 </div>

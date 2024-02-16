@@ -14,7 +14,7 @@ import { environment } from "src/environments/environment"
 export class StartPageComponent {
 	articles: ArticleResource[] = []
 	publisherUuids: string[] = []
-	limit: number = 10
+	limit: number = 12
 	offset: number = 0
 	articlesLoading: boolean = false
 
@@ -77,7 +77,7 @@ export class StartPageComponent {
 
 	async loadArticles(
 		publishers: string[],
-		limit: number = 10,
+		limit: number = 12,
 		offset: number = 0
 	) {
 		const result = await this.apiService.listArticles(

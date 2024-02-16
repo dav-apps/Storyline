@@ -24,7 +24,7 @@ export class PublisherPageComponent {
 	publisher: PublisherResource = null
 	articles: ArticleResource[] = []
 	faPlus = faPlus
-	limit: number = 10
+	limit: number = 12
 	offset: number = 0
 	articlesLoading: boolean = false
 	followTableObject: TableObject = null
@@ -132,8 +132,7 @@ export class PublisherPageComponent {
 		window.open(this.publisher.url, "_blank")
 	}
 
-	articleItemClick(event: Event, article: ArticleResource) {
-		event.preventDefault()
+	articleItemClick(article: ArticleResource) {
 		this.router.navigate(["article", article.uuid])
 	}
 
