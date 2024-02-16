@@ -7,7 +7,7 @@
 			[subhead]="article.publisher?.name || ''"
 			[subheadImageSrc]="article.publisher?.logoUrl || ''"
 			[href]="'article/' + uriEncode(article.uuid)"
-			(click)="itemClick.emit(article)"
+			(click)="itemClicked($event, article)"
 		></dav-card>
 	</div>
 	}
