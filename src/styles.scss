@@ -1,88 +1,88 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan&display=swap");
 
 // Theme colors
-:root {
+:root, * {
 	--black-rgb: 0, 0, 0; /* #000000 */
 	--white-rgb: 255, 255, 255; /* #ffffff */
 
 	/* primary */
-	--dav-color-palette-primary10-rgb: 0, 25, 68; /* #001944 */
-	--dav-color-palette-primary20-rgb: 0, 45, 110; /* #002d6e */
-	--dav-color-palette-primary25-rgb: 0, 55, 131; /* #003783 */
-	--dav-color-palette-primary30-rgb: 0, 66, 154; /* #00429a */
-	--dav-color-palette-primary35-rgb: 25, 78, 167; /* #194ea7 */
-	--dav-color-palette-primary40-rgb: 43, 91, 180; /* #2b5bb4 */
-	--dav-color-palette-primary50-rgb: 72, 116, 207; /* #4874cf */
-	--dav-color-palette-primary60-rgb: 100, 142, 235; /* #648eeb */
-	--dav-color-palette-primary70-rgb: 132, 170, 255; /* #84aaff */
-	--dav-color-palette-primary80-rgb: 176, 198, 255; /* #b0c6ff */
-	--dav-color-palette-primary85-rgb: 196, 212, 255; /* #c4d4ff */
-	--dav-color-palette-primary90-rgb: 217, 226, 255; /* #d9e2ff */
-	--dav-color-palette-primary95-rgb: 237, 240, 255; /* #edf0ff */
-	--dav-color-palette-primary98-rgb: 250, 248, 255; /* #faf8ff */
-	--dav-color-palette-primary99-rgb: 254, 251, 255; /* #fefbff */
+	--dav-color-palette-primary10-rgb: 47, 20, 0; /* #2f1400 */
+	--dav-color-palette-primary20-rgb: 78, 38, 0; /* #4e2600 */
+	--dav-color-palette-primary25-rgb: 95, 47, 0; /* #5f2f00 */
+	--dav-color-palette-primary30-rgb: 111, 56, 0; /* #6f3800 */
+	--dav-color-palette-primary35-rgb: 129, 66, 0; /* #814200 */
+	--dav-color-palette-primary40-rgb: 147, 75, 0; /* #934b00 */
+	--dav-color-palette-primary50-rgb: 183, 96, 0; /* #b76000 */
+	--dav-color-palette-primary60-rgb: 220, 118, 11; /* #dc760b */
+	--dav-color-palette-primary70-rgb: 253, 143, 43; /* #fd8f2b */
+	--dav-color-palette-primary80-rgb: 255, 183, 129; /* #ffb781 */
+	--dav-color-palette-primary85-rgb: 255, 202, 164; /* #ffcaa4 */
+	--dav-color-palette-primary90-rgb: 255, 220, 196; /* #ffdcc4 */
+	--dav-color-palette-primary95-rgb: 255, 237, 227; /* #ffede3 */
+	--dav-color-palette-primary98-rgb: 255, 248, 245; /* #fff8f5 */
+	--dav-color-palette-primary99-rgb: 255, 251, 255; /* #fffbff */
 
 	/* secondary */
-	--dav-color-palette-secondary10-rgb: 65, 0, 3; /* #410003 */
-	--dav-color-palette-secondary20-rgb: 104, 0, 8; /* #680008 */
-	--dav-color-palette-secondary25-rgb: 125, 0, 12; /* #7d000c */
-	--dav-color-palette-secondary30-rgb: 147, 0, 16; /* #930010 */
-	--dav-color-palette-secondary35-rgb: 168, 6, 21; /* #a80615 */
-	--dav-color-palette-secondary40-rgb: 186, 26, 32; /* #ba1a20 */
-	--dav-color-palette-secondary50-rgb: 222, 55, 53; /* #de3735 */
-	--dav-color-palette-secondary60-rgb: 255, 84, 78; /* #ff544e */
-	--dav-color-palette-secondary70-rgb: 255, 137, 128; /* #ff8980 */
-	--dav-color-palette-secondary80-rgb: 255, 179, 172; /* #ffb3ac */
-	--dav-color-palette-secondary85-rgb: 255, 199, 194; /* #ffc7c2 */
-	--dav-color-palette-secondary90-rgb: 255, 218, 214; /* #ffdad6 */
-	--dav-color-palette-secondary95-rgb: 255, 237, 235; /* #ffedeb */
-	--dav-color-palette-secondary98-rgb: 255, 248, 247; /* #fff8f7 */
-	--dav-color-palette-secondary99-rgb: 255, 251, 255; /* #fffbff */
+	--dav-color-palette-secondary10-rgb: 8, 25, 64; /* #081940 */
+	--dav-color-palette-secondary20-rgb: 32, 47, 86; /* #202f56 */
+	--dav-color-palette-secondary25-rgb: 43, 58, 97; /* #2b3a61 */
+	--dav-color-palette-secondary30-rgb: 55, 69, 110; /* #37456e */
+	--dav-color-palette-secondary35-rgb: 67, 81, 122; /* #43517a */
+	--dav-color-palette-secondary40-rgb: 79, 93, 135; /* #4f5d87 */
+	--dav-color-palette-secondary50-rgb: 103, 118, 161; /* #6776a1 */
+	--dav-color-palette-secondary60-rgb: 129, 144, 188; /* #8190bc */
+	--dav-color-palette-secondary70-rgb: 155, 170, 216; /* #9baad8 */
+	--dav-color-palette-secondary80-rgb: 183, 197, 245; /* #b7c5f5 */
+	--dav-color-palette-secondary85-rgb: 198, 211, 255; /* #c6d3ff */
+	--dav-color-palette-secondary90-rgb: 218, 226, 255; /* #dae2ff */
+	--dav-color-palette-secondary95-rgb: 238, 240, 255; /* #eef0ff */
+	--dav-color-palette-secondary98-rgb: 250, 248, 255; /* #faf8ff */
+	--dav-color-palette-secondary99-rgb: 254, 251, 255; /* #fefbff */
 
 	/* tertiary */
-	--dav-color-palette-tertiary10-rgb: 0, 31, 41; /* #001f29 */
-	--dav-color-palette-tertiary20-rgb: 0, 53, 69; /* #003545 */
-	--dav-color-palette-tertiary25-rgb: 0, 65, 84; /* #004154 */
-	--dav-color-palette-tertiary30-rgb: 0, 77, 99; /* #004d63 */
-	--dav-color-palette-tertiary35-rgb: 0, 90, 115; /* #005a73 */
-	--dav-color-palette-tertiary40-rgb: 0, 103, 131; /* #006783 */
-	--dav-color-palette-tertiary50-rgb: 47, 128, 157; /* #2f809d */
-	--dav-color-palette-tertiary60-rgb: 78, 154, 184; /* #4e9ab8 */
-	--dav-color-palette-tertiary70-rgb: 106, 181, 212; /* #6ab5d4 */
-	--dav-color-palette-tertiary80-rgb: 134, 208, 240; /* #86d0f0 */
-	--dav-color-palette-tertiary85-rgb: 148, 222, 255; /* #94deff */
-	--dav-color-palette-tertiary90-rgb: 188, 233, 255; /* #bce9ff */
-	--dav-color-palette-tertiary95-rgb: 223, 244, 255; /* #dff4ff */
-	--dav-color-palette-tertiary98-rgb: 243, 250, 255; /* #f3faff */
-	--dav-color-palette-tertiary99-rgb: 250, 252, 255; /* #fafcff */
+	--dav-color-palette-tertiary10-rgb: 0, 29, 50; /* #001d32 */
+	--dav-color-palette-tertiary20-rgb: 19, 51, 75; /* #13334b */
+	--dav-color-palette-tertiary25-rgb: 32, 62, 86; /* #203e56 */
+	--dav-color-palette-tertiary30-rgb: 44, 73, 98; /* #2c4962 */
+	--dav-color-palette-tertiary35-rgb: 56, 85, 111; /* #38556f */
+	--dav-color-palette-tertiary40-rgb: 68, 97, 123; /* #44617b */
+	--dav-color-palette-tertiary50-rgb: 93, 122, 149; /* #5d7a95 */
+	--dav-color-palette-tertiary60-rgb: 119, 148, 176; /* #7794b0 */
+	--dav-color-palette-tertiary70-rgb: 145, 174, 203; /* #91aecb */
+	--dav-color-palette-tertiary80-rgb: 172, 202, 232; /* #accae8 */
+	--dav-color-palette-tertiary85-rgb: 186, 216, 246; /* #bad8f6 */
+	--dav-color-palette-tertiary90-rgb: 205, 229, 255; /* #cde5ff */
+	--dav-color-palette-tertiary95-rgb: 231, 242, 255; /* #e7f2ff */
+	--dav-color-palette-tertiary98-rgb: 247, 249, 255; /* #f7f9ff */
+	--dav-color-palette-tertiary99-rgb: 252, 252, 255; /* #fcfcff */
 
 	/* neutral */
-	--dav-color-palette-neutral4-rgb: 13, 14, 17; /* #0d0e11 */
-	--dav-color-palette-neutral6-rgb: 18, 19, 22; /* #121316 */
-	--dav-color-palette-neutral10-rgb: 27, 27, 31; /* #1b1b1f */
-	--dav-color-palette-neutral12-rgb: 31, 31, 35; /* #1f1f23 */
-	--dav-color-palette-neutral15-rgb: 37, 38, 41; /* #252629 */
-	--dav-color-palette-neutral17-rgb: 41, 42, 45; /* #292a2d */
-	--dav-color-palette-neutral20-rgb: 48, 48, 52; /* #303034 */
-	--dav-color-palette-neutral22-rgb: 52, 52, 56; /* #343438 */
-	--dav-color-palette-neutral24-rgb: 56, 57, 60; /* #38393c */
-	--dav-color-palette-neutral25-rgb: 59, 59, 63; /* #3b3b3f */
-	--dav-color-palette-neutral30-rgb: 70, 70, 74; /* #46464a */
-	--dav-color-palette-neutral35-rgb: 82, 82, 86; /* #525256 */
-	--dav-color-palette-neutral40-rgb: 94, 94, 98; /* #5e5e62 */
-	--dav-color-palette-neutral50-rgb: 119, 119, 122; /* #77777a */
-	--dav-color-palette-neutral60-rgb: 145, 144, 148; /* #919094 */
-	--dav-color-palette-neutral70-rgb: 172, 171, 175; /* #acabaf */
-	--dav-color-palette-neutral80-rgb: 199, 198, 202; /* #c7c6ca */
-	--dav-color-palette-neutral85-rgb: 213, 212, 216; /* #d5d4d8 */
-	--dav-color-palette-neutral87-rgb: 219, 217, 221; /* #dbd9dd */
-	--dav-color-palette-neutral90-rgb: 227, 226, 230; /* #e3e2e6 */
-	--dav-color-palette-neutral92-rgb: 233, 231, 236; /* #e9e7ec */
-	--dav-color-palette-neutral94-rgb: 239, 237, 241; /* #efedf1 */
-	--dav-color-palette-neutral95-rgb: 242, 240, 244; /* #f2f0f4 */
-	--dav-color-palette-neutral96-rgb: 245, 243, 247; /* #f5f3f7 */
-	--dav-color-palette-neutral98-rgb: 251, 248, 253; /* #fbf8fd */
-	--dav-color-palette-neutral99-rgb: 254, 251, 255; /* #fefbff */
+	--dav-color-palette-neutral4-rgb: 12, 14, 15; /* #0c0e0f */
+	--dav-color-palette-neutral6-rgb: 18, 20, 21; /* #121415 */
+	--dav-color-palette-neutral10-rgb: 26, 28, 29; /* #1a1c1d */
+	--dav-color-palette-neutral12-rgb: 30, 32, 33; /* #1e2021 */
+	--dav-color-palette-neutral15-rgb: 36, 38, 39; /* #242627 */
+	--dav-color-palette-neutral17-rgb: 40, 42, 43; /* #282a2b */
+	--dav-color-palette-neutral20-rgb: 47, 49, 50; /* #2f3132 */
+	--dav-color-palette-neutral22-rgb: 51, 53, 54; /* #333536 */
+	--dav-color-palette-neutral24-rgb: 55, 57, 58; /* #37393a */
+	--dav-color-palette-neutral25-rgb: 58, 60, 61; /* #3a3c3d */
+	--dav-color-palette-neutral30-rgb: 69, 71, 72; /* #454748 */
+	--dav-color-palette-neutral35-rgb: 81, 83, 84; /* #515354 */
+	--dav-color-palette-neutral40-rgb: 93, 94, 96; /* #5d5e60 */
+	--dav-color-palette-neutral50-rgb: 118, 119, 120; /* #767778 */
+	--dav-color-palette-neutral60-rgb: 144, 145, 146; /* #909192 */
+	--dav-color-palette-neutral70-rgb: 170, 171, 172; /* #aaabac */
+	--dav-color-palette-neutral80-rgb: 198, 198, 199; /* #c6c6c7 */
+	--dav-color-palette-neutral85-rgb: 212, 212, 213; /* #d4d4d5 */
+	--dav-color-palette-neutral87-rgb: 217, 218, 219; /* #d9dadb */
+	--dav-color-palette-neutral90-rgb: 226, 226, 227; /* #e2e2e3 */
+	--dav-color-palette-neutral92-rgb: 232, 232, 233; /* #e8e8e9 */
+	--dav-color-palette-neutral94-rgb: 238, 238, 239; /* #eeeeef */
+	--dav-color-palette-neutral95-rgb: 240, 241, 242; /* #f0f1f2 */
+	--dav-color-palette-neutral96-rgb: 243, 243, 244; /* #f3f3f4 */
+	--dav-color-palette-neutral98-rgb: 249, 249, 250; /* #f9f9fa */
+	--dav-color-palette-neutral99-rgb: 252, 252, 253; /* #fcfcfd */
 
 	/* neutral-variant */
 	--dav-color-palette-neutral-variant10-rgb: 25, 27, 35; /* #191b23 */
