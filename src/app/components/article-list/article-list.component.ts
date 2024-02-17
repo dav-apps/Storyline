@@ -8,6 +8,7 @@ import { ArticleResource } from "src/app/types"
 	styleUrl: "./article-list.component.scss"
 })
 export class ArticleListComponent {
+	@Input() headline: string = ""
 	@Input() articles: ArticleResource[] = []
 
 	constructor(private router: Router) {}

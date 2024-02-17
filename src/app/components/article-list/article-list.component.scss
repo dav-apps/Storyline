@@ -1,3 +1,9 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
 .article-list-container {
 	display: flex;
 	flex-direction: row;
