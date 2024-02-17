@@ -27,7 +27,8 @@ const enDefaults = {
 		privacy: "Privacy Policy"
 	},
 	discoverPage: {
-		publishersInTheSpotlight: "Publishers in the spotlight"
+		publishersInTheSpotlight: "Publishers in the spotlight",
+		latestNews: "Latest news"
 	},
 	articlePage: {
 		openOriginalArticle: "Open original article"
@@ -87,7 +88,8 @@ const deDefaults = {
 		privacy: "Datenschutzerklärung"
 	},
 	discoverPage: {
-		publishersInTheSpotlight: "Anbieter im Rampenlicht"
+		publishersInTheSpotlight: "Anbieter im Rampenlicht",
+		latestNews: "Neueste Meldungen"
 	},
 	articlePage: {
 		openOriginalArticle: "Ursprünglichen Artikel öffnen"

@@ -1,5 +1,4 @@
 import { Component } from "@angular/core"
-import { Router } from "@angular/router"
 import { GetAllTableObjects } from "dav-js"
 import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
@@ -80,10 +79,8 @@ export class StartPageComponent {
 	) {
 		const result = await this.apiService.listArticles(
 			`
-				total
 				items {
 					uuid
-					url
 					title
 					imageUrl
 					publisher {
@@ -100,7 +97,7 @@ export class StartPageComponent {
 		)
 
 		if (result != null) {
-			return result?.data.listArticles.items
+			return result.data.listArticles.items
 		}
 
 		return []
