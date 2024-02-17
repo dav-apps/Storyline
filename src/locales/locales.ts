@@ -23,6 +23,9 @@ const enDefaults = {
 		github: "Storyline on GitHub",
 		privacy: "Privacy Policy"
 	},
+	discoverPage: {
+		publishersInTheSpotlight: "Publishers in the spotlight"
+	},
 	articlePage: {
 		openOriginalArticle: "Open original article"
 	},
@@ -76,6 +79,9 @@ const deDefaults = {
 		systemTheme: "System-Standard",
 		github: "Storyline auf GitHub",
 		privacy: "Datenschutzerklärung"
+	},
+	discoverPage: {
+		publishersInTheSpotlight: "Anbieter im Rampenlicht"
 	},
 	articlePage: {
 		openOriginalArticle: "Ursprünglichen Artikel öffnen"

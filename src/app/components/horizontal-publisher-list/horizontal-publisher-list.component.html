@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="store-list-header-container">
+		<h4 class="store-list-header">
+			{{ headline }}
+		</h4>
+	</div>
+
+	<div class="content-container">
+		@if (loading) {
+		<div class="progress-ring-container">
+			<dav-progress-ring size="32"></dav-progress-ring>
+		</div>
+		} @else {
+		<div class="list-container slide-up-in">
+			@for (publisher of publishers; track publisher.uuid) {
+			<dav-icon-card
+				[text]="publisher.name"
+				[href]="'publisher/' + publisher.uuid"
+				target="_blank"
+				(click)="navigateToPublisherPage($event, publisher)"
+			>
+				<img [src]="publisher.logoUrl" width="32" height="32" />
+			</dav-icon-card>
+			}
+		</div>
+		}
+	</div>
+</div>

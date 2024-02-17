@@ -37,6 +37,35 @@ export class ApiService {
 			.toPromise()
 	}
 
+	async listPublishers(
+		queryData: string,
+		variables: { random?: boolean; limit?: number; offset?: number }
+	): Promise<ApolloQueryResult<{ listPublishers: List<PublisherResource> }>> {
+		return await this.apollo
+			.query<{
+				listPublishers: List<PublisherResource>
+			}>({
+				query: gql`
+					query ListPublishers(
+						$random: Boolean
+						$limit: Int
+						$offset: Int
+					) {
+						listPublishers(
+							random: $random
+							limit: $limit
+							offset: $offset
+						) {
+							${queryData}
+						}
+					}
+				`,
+				variables,
+				errorPolicy
+			})
+			.toPromise()
+	}
+
 	async retrieveArticle(
 		queryData: string,
 		variables: { uuid: string }
