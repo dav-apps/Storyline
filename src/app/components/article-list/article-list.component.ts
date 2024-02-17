@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core"
+import { Router } from "@angular/router"
 import { ArticleResource } from "src/app/types"
 
 @Component({
@@ -8,11 +9,12 @@ import { ArticleResource } from "src/app/types"
 })
 export class ArticleListComponent {
 	@Input() articles: ArticleResource[] = []
-	@Output() itemClick = new EventEmitter()
+
+	constructor(private router: Router) {}
 
 	itemClicked(event: Event, article: ArticleResource) {
 		event.preventDefault()
-		this.itemClick.emit(article)
+		this.router.navigate(["article", article.uuid])
 	}
 
 	uriEncode(value: string) {

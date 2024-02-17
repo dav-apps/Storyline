@@ -23,8 +23,7 @@ export class StartPageComponent {
 	constructor(
 		private apiService: ApiService,
 		private dataService: DataService,
-		private localizationService: LocalizationService,
-		private router: Router
+		private localizationService: LocalizationService
 	) {
 		this.dataService.loadingScreenVisible = true
 	}
@@ -72,10 +71,6 @@ export class StartPageComponent {
 		if (hasReachedBottom) {
 			this.loadMoreArticles()
 		}
-	}
-
-	articleItemClick(article: ArticleResource) {
-		this.router.navigate(["article", article.uuid])
 	}
 
 	async loadArticles(

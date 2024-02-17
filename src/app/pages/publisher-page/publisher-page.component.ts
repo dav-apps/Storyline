@@ -132,10 +132,6 @@ export class PublisherPageComponent {
 		window.open(this.publisher.url, "_blank")
 	}
 
-	articleItemClick(article: ArticleResource) {
-		this.router.navigate(["article", article.uuid])
-	}
-
 	async follow() {
 		// Check if the user is logged in
 		if (!this.dataService.dav.isLoggedIn) {
