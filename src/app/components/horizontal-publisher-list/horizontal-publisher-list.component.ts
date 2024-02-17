@@ -11,13 +11,18 @@ import { PublisherResource } from "src/app/types"
 export class HorizontalPublisherListComponent {
 	@Input() headline: string = ""
 	@Input() maxItems: number = 4
+	@Input() publisherUuids: string[] = []
 	publishers: PublisherResource[] = []
 	loading: boolean = true
 
 	constructor(private apiService: ApiService, private router: Router) {}
 
 	async ngOnInit() {
-		await this.loadPublishers()
+		if (this.publisherUuids.length > 0) {
+			await this.loadPublishersFromUuids()
+		} else {
+			await this.loadPublishers()
+		}
 	}
 
 	async loadPublishers() {
@@ -35,6 +40,26 @@ export class HorizontalPublisherListComponent {
 		if (responseData == null) return
 
 		this.publishers = responseData.items
+		this.loading = false
+	}
+
+	async loadPublishersFromUuids() {
+		for (let uuid of this.publisherUuids) {
+			let response = await this.apiService.retrievePublisher(
+				`
+					uuid
+					name
+					logoUrl
+				`,
+				{ uuid }
+			)
+			let responseData = response.data.retrievePublisher
+
+			if (responseData != null) {
+				this.publishers.push(responseData)
+			}
+		}
+
 		this.loading = false
 	}
 

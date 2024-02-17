@@ -1,5 +1,8 @@
 //#region en
 const enDefaults = {
+	startPage: {
+		youFollow: "You follow"
+	},
 	userPage: {
 		title: "Your account",
 		headline: "Save your data and get access to advanced features",
@@ -55,6 +58,9 @@ export var enGB = enDefaults
 
 //#region de
 const deDefaults = {
+	startPage: {
+		youFollow: "Du folgst"
+	},
 	userPage: {
 		title: "Dein Account",
 		headline:

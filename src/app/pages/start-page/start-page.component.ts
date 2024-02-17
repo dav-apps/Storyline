@@ -3,6 +3,7 @@ import { Router } from "@angular/router"
 import { GetAllTableObjects } from "dav-js"
 import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
+import { LocalizationService } from "src/app/services/localization-service"
 import { ArticleResource } from "src/app/types"
 import { followTablePublisherKey } from "src/app/constants"
 import { environment } from "src/environments/environment"
@@ -12,6 +13,7 @@ import { environment } from "src/environments/environment"
 	styleUrl: "./start-page.component.scss"
 })
 export class StartPageComponent {
+	locale = this.localizationService.locale.startPage
 	articles: ArticleResource[] = []
 	publisherUuids: string[] = []
 	limit: number = 12
@@ -21,6 +23,7 @@ export class StartPageComponent {
 	constructor(
 		private apiService: ApiService,
 		private dataService: DataService,
+		private localizationService: LocalizationService,
 		private router: Router
 	) {
 		this.dataService.loadingScreenVisible = true

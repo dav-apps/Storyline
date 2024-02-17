@@ -1,4 +1,11 @@
 <div class="container">
+	@if (publisherUuids.length > 0) {
+	<storyline-horizontal-publisher-list
+		[headline]="locale.youFollow"
+		[publisherUuids]="publisherUuids"
+	></storyline-horizontal-publisher-list>
+	}
+
 	<storyline-article-list
 		[articles]="articles"
 		(itemClick)="articleItemClick($event)"
