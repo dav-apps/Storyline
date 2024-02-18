@@ -42,7 +42,7 @@ const enDefaults = {
 		loginPromptDialog: {
 			headline: "Log in",
 			description:
-				"Log in to follow publishers, customize your news feed and more.",
+				"Log in to follow more publishers, receive notifications and more.",
 			login: "Log in",
 			close: "Close"
 		}
@@ -103,7 +103,7 @@ const deDefaults = {
 		loginPromptDialog: {
 			headline: "Anmelden",
 			description:
-				"Melde dich an, um Anbietern zu folgen, deinen News-Feed anzupassen und vieles mehr.",
+				"Melde dich an, um weiteren Anbietern zu folgen, Benachrichtigungen zu erhalten und vieles mehr.",
 			login: "Anmelden",
 			close: "Schließen"
 		}

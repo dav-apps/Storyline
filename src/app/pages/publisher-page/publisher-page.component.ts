@@ -135,8 +135,13 @@ export class PublisherPageComponent {
 	async follow() {
 		// Check if the user is logged in
 		if (!this.dataService.dav.isLoggedIn) {
-			this.loginPromptDialog.show()
-			return
+			// Show login prompt if user follows >= 3 publishers
+			let tableObjects = await GetAllTableObjects(environment.followTableId)
+
+			if (tableObjects.length >= 3) {
+				this.loginPromptDialog.show()
+				return
+			}
 		}
 
 		// Follow the publisher by creating a Follow object
