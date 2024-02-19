@@ -15,7 +15,6 @@ export interface PublisherResource {
 	name: string
 	url: string
 	logoUrl: string
-	copyright: string
 	articles: List<ArticleResource>
 }
 

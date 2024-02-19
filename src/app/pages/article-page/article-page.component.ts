@@ -42,7 +42,6 @@ export class ArticlePageComponent {
 					name
 					url
 					logoUrl
-					copyright
 				}
 			`,
 			{ uuid }

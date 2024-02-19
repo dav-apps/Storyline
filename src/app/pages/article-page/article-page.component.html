@@ -22,10 +22,6 @@
 
 		<div class="article-content" [innerHTML]="article.content"></div>
 
-		<div class="copyright-container">
-			<p [innerHTML]="'Copyright: ' + article.publisher.copyright"></p>
-		</div>
-
 		<div class="link-container">
 			<dav-link-button [url]="article.url" target="blank">
 				{{ locale.openOriginalArticle }}
