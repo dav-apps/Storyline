@@ -1,0 +1,30 @@
+.container,
+.container > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 16px;
+}
+
+.head-container {
+	display: flex;
+	gap: 24px;
+
+	h1 {
+		font-weight: 400;
+		text-align: center;
+		color: var(--dav-color-on-surface);
+	}
+
+	img {
+		border-radius: 12px;
+		box-shadow: 0px 8px 16px 0px rgb(var(--dav-color-shadow-rgb), 0.2);
+	}
+}
+
+.head-buttons-container {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin: 24px 0;
+}

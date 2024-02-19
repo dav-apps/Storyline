@@ -6,6 +6,9 @@ const enDefaults = {
 	adminPage: {
 		publishers: "Publishers"
 	},
+	adminPublisherPage: {
+		edit: "Edit"
+	},
 	userPage: {
 		title: "Your account",
 		headline: "Save your data and get access to advanced features",
@@ -70,6 +73,9 @@ const deDefaults = {
 	},
 	adminPage: {
 		publishers: "Anbieter"
+	},
+	adminPublisherPage: {
+		edit: "Bearbeiten"
 	},
 	userPage: {
 		title: "Dein Account",

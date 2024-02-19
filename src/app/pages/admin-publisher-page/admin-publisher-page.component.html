@@ -1,1 +1,16 @@
-<h1>Hello World</h1>
+<div class="container">
+	@if (publisher != null) {
+		<div class="slide-up-in">
+			<div class="head-container">
+				<img [src]="publisher.logoUrl" width="72" height="72" />
+				<h1>{{ publisher.name }}</h1>
+			</div>
+
+			<div class="head-buttons-container">
+				<dav-button outline size="small">
+					{{ locale.edit }}
+				</dav-button>
+			</div>
+		</div>
+	}
+</div>
