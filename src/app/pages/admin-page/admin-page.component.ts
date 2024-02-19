@@ -1,4 +1,5 @@
 import { Component } from "@angular/core"
+import { Router } from "@angular/router"
 import { ApiService } from "src/app/services/api-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { PublisherResource } from "src/app/types"
@@ -15,7 +16,8 @@ export class AdminPageComponent {
 
 	constructor(
 		private apiService: ApiService,
-		private localizationService: LocalizationService
+		private localizationService: LocalizationService,
+		private router: Router
 	) {}
 
 	async ngOnInit() {
@@ -46,5 +48,9 @@ export class AdminPageComponent {
 				this.publishers.push(item)
 			}
 		}
+	}
+
+	navigateToAdminPublisherPage(publisher: PublisherResource) {
+		this.router.navigate(["admin", "publisher", publisher.uuid])
 	}
 }
