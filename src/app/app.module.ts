@@ -21,6 +21,7 @@ import { LoginPromptDialogComponent } from "./dialogs/login-prompt-dialog/login-
 
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
+import { AdminPageComponent } from "./pages/admin-page/admin-page.component"
 import { UserPageComponent } from "./pages/user-page/user-page.component"
 import { SettingsPageComponent } from "./pages/settings-page/settings-page.component"
 import { DiscoverPageComponent } from "./pages/discover-page/discover-page.component"
@@ -41,6 +42,7 @@ import { SettingsService } from "./services/settings-service"
 		LoadingScreenComponent,
 		LoginPromptDialogComponent,
 		StartPageComponent,
+		AdminPageComponent,
 		UserPageComponent,
 		SettingsPageComponent,
 		DiscoverPageComponent,
