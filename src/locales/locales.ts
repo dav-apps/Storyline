@@ -31,7 +31,10 @@ const enDefaults = {
 		latestNews: "Latest news"
 	},
 	articlePage: {
-		openArticle: "Open article"
+		openArticle: "Open article",
+		upgradeCardHeadline: "Too lazy to read the whole article?",
+		upgradeCardSubhead: "Get article summaries with Storyline Plus.",
+		learnMore: "Learn more"
 	},
 	publisherPage: {
 		follow: "Follow",
@@ -92,7 +95,11 @@ const deDefaults = {
 		latestNews: "Neueste Meldungen"
 	},
 	articlePage: {
-		openArticle: "Artikel öffnen"
+		openArticle: "Artikel öffnen",
+		upgradeCardHeadline: "Zu faul, den kompletten Artikel zu lesen?",
+		upgradeCardSubhead:
+			"Erhalte Artikel-Zusammenfassungen mit Storyline Plus.",
+		learnMore: "Mehr erfahren"
 	},
 	publisherPage: {
 		follow: "Folgen",

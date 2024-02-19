@@ -30,6 +30,19 @@
 				{{ locale.openArticle }}
 			</dav-link-button>
 		</div>
+
+		@if (dataService.dav.user.Plan == 0) {
+		<div class="upgrade-card-container">
+			<dav-card
+				[headline]="locale.upgradeCardHeadline"
+				[subhead]="locale.upgradeCardSubhead"
+			>
+				<div>
+					<dav-button size="small">{{ locale.learnMore }}</dav-button>
+				</div>
+			</dav-card>
+		</div>
+		}
 	</div>
 	}
 </div>

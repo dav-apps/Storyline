@@ -19,7 +19,7 @@ export class ArticlePageComponent {
 
 	constructor(
 		private apiService: ApiService,
-		private dataService: DataService,
+		public dataService: DataService,
 		private localizationService: LocalizationService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
