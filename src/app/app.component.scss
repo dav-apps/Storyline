@@ -49,6 +49,9 @@
 	right: 0;
 	overflow-x: hidden;
 	padding-top: calc(env(safe-area-inset-top) + 64px);
+}
+
+.content-container.mobile {
 	padding-bottom: calc(80px + env(safe-area-inset-bottom));
 }
 
