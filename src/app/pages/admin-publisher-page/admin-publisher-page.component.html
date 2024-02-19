@@ -1,16 +1,31 @@
 <div class="container">
 	@if (publisher != null) {
-		<div class="slide-up-in">
-			<div class="head-container">
-				<img [src]="publisher.logoUrl" width="72" height="72" />
-				<h1>{{ publisher.name }}</h1>
-			</div>
-
-			<div class="head-buttons-container">
-				<dav-button outline size="small">
-					{{ locale.edit }}
-				</dav-button>
-			</div>
+	<div class="slide-up-in">
+		<div class="head-container">
+			<img [src]="publisher.logoUrl" width="72" height="72" />
+			<h1>{{ publisher.name }}</h1>
 		</div>
+
+		<div class="head-buttons-container">
+			<dav-button outline size="small">
+				{{ locale.edit }}
+			</dav-button>
+		</div>
+
+		<dav-header addButtonVisible>
+			Feeds
+		</dav-header>
+
+		<div class="list-container">
+			<dav-list>
+				@for (feed of feeds; track feed.uuid) {
+				<dav-list-item
+					[headline]="feed.name"
+					size="small"
+				></dav-list-item>
+				}
+			</dav-list>
+		</div>
+	</div>
 	}
 </div>

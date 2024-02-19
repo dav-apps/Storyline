@@ -6,13 +6,13 @@
 	<div class="list-container">
 		<dav-list>
 			@for (publisher of publishers; track publisher.uuid) {
-				<dav-list-item
-					[headline]="publisher.name"
-					size="small"
-					[imageSrc]="publisher.logoUrl"
-					imageRounded
-					(click)="navigateToAdminPublisherPage(publisher)"
-				></dav-list-item>
+			<dav-list-item
+				[headline]="publisher.name"
+				size="small"
+				[imageSrc]="publisher.logoUrl"
+				imageRounded
+				(click)="navigateToAdminPublisherPage(publisher)"
+			></dav-list-item>
 			}
 		</dav-list>
 	</div>

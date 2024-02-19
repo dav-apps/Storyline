@@ -26,5 +26,19 @@
 	display: flex;
 	justify-content: center;
 	gap: 12px;
-	margin: 24px 0;
+	margin: 24px 0 56px;
+}
+
+dav-header {
+	margin-bottom: 16px;
+}
+
+.list-container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 16px;
+}
+
+.list-container > dav-list {
+	max-width: 300px;
 }

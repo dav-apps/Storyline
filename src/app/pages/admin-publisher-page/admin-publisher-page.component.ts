@@ -2,7 +2,7 @@ import { Component } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
 import { ApiService } from "src/app/services/api-service"
 import { LocalizationService } from "src/app/services/localization-service"
-import { PublisherResource } from "src/app/types"
+import { PublisherResource, FeedResource } from "src/app/types"
 
 @Component({
 	templateUrl: "./admin-publisher-page.component.html",
@@ -11,6 +11,7 @@ import { PublisherResource } from "src/app/types"
 export class AdminPublisherPageComponent {
 	locale = this.localizationService.locale.adminPublisherPage
 	publisher: PublisherResource = null
+	feeds: FeedResource[] = []
 
 	constructor(
 		private apiService: ApiService,
@@ -29,6 +30,10 @@ export class AdminPublisherPageComponent {
 		}
 
 		this.publisher = publisher
+
+		for (let feed of publisher.feeds.items) {
+			this.feeds.push(feed)
+		}
 	}
 
 	async loadPublisher(uuid: string) {
@@ -37,6 +42,15 @@ export class AdminPublisherPageComponent {
 				uuid
 				name
 				logoUrl
+				feeds {
+					total
+					items {
+						uuid
+						url
+						name
+						description
+					}
+				}
 			`,
 			{ uuid }
 		)

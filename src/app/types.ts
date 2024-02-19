@@ -15,7 +15,16 @@ export interface PublisherResource {
 	name: string
 	url: string
 	logoUrl: string
+	feeds: List<FeedResource>
 	articles: List<ArticleResource>
+}
+
+export interface FeedResource {
+	uuid: string
+	url: string
+	name: string
+	description: string
+	language: string
 }
 
 export interface ArticleResource {
