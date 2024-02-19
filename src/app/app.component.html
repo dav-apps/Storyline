@@ -28,6 +28,19 @@
 	<div class="navbar-spacer"></div>
 
 	<div class="navbar-icon-buttons-container">
+		@if (dataService.userIsAdmin) {
+		<dav-icon-button
+			[selected]="adminButtonSelected"
+			(click)="navigateToAdminPage()"
+		>
+			@if (adminButtonSelected) {
+			<fa-icon [icon]="faHammerSolid"></fa-icon>
+			} @else {
+			<fa-icon [icon]="faHammerRegular"></fa-icon>
+			}
+		</dav-icon-button>
+		}
+
 		<dav-icon-button
 			[selected]="userButtonSelected"
 			(click)="navigateToUserPage()"

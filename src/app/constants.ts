@@ -5,6 +5,7 @@ export const lightThemeKey = "light"
 export const darkThemeKey = "dark"
 export const systemThemeKey = "system"
 export const smallWindowMaxSize = 576
+export const admins = [1]
 //#endregion
 
 //#region table keys

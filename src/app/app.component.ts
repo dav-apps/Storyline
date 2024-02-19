@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, HostListener } from "@angular/core"
 import { Router, ActivatedRoute, NavigationStart } from "@angular/router"
 import {
 	faNewspaper as faNewspaperSolid,
+	faHammer as faHammerSolid,
 	faCircleUser as faCircleUserSolid,
 	faGear as faGearSolid
 } from "@fortawesome/free-solid-svg-icons"
@@ -9,6 +10,7 @@ import { faSparkles as faSparklesSolid } from "@fortawesome/pro-solid-svg-icons"
 import {
 	faNewspaper as faNewspaperRegular,
 	faSparkles as faSparklesRegular,
+	faHammer as faHammerRegular,
 	faCircleUser as faCircleUserRegular,
 	faGear as faGearRegular
 } from "@fortawesome/pro-regular-svg-icons"
@@ -16,7 +18,7 @@ import { Dav } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
 import { LocalizationService } from "./services/localization-service"
-import { smallWindowMaxSize } from "src/app/constants"
+import { smallWindowMaxSize, admins } from "src/app/constants"
 import { environment } from "src/environments/environment"
 
 @Component({
@@ -30,6 +32,8 @@ export class AppComponent {
 	faNewspaperRegular = faNewspaperRegular
 	faSparklesSolid = faSparklesSolid
 	faSparklesRegular = faSparklesRegular
+	faHammerSolid = faHammerSolid
+	faHammerRegular = faHammerRegular
 	faCircleUserSolid = faCircleUserSolid
 	faCircleUserRegular = faCircleUserRegular
 	faGearSolid = faGearSolid
@@ -38,6 +42,7 @@ export class AppComponent {
 	contentContainer: ElementRef<HTMLDivElement>
 	newsFeedTabActive: boolean = false
 	discoverTabActive: boolean = false
+	adminButtonSelected: boolean = false
 	userButtonSelected: boolean = false
 	settingsButtonSelected: boolean = false
 
@@ -55,6 +60,7 @@ export class AppComponent {
 
 				this.newsFeedTabActive = currentUrl == "/"
 				this.discoverTabActive = currentUrl.startsWith("/discover")
+				this.adminButtonSelected = currentUrl.startsWith("/admin")
 				this.userButtonSelected = currentUrl == "/user"
 				this.settingsButtonSelected = currentUrl == "/settings"
 			}
@@ -100,6 +106,10 @@ export class AppComponent {
 		this.router.navigate(["discover"])
 	}
 
+	navigateToAdminPage() {
+		this.router.navigate(["admin"])
+	}
+
 	navigateToUserPage() {
 		this.router.navigate(["user"])
 	}
@@ -110,6 +120,9 @@ export class AppComponent {
 
 	//#region dav callback functions
 	userLoaded() {
+		this.dataService.userIsAdmin = admins.includes(
+			this.dataService.dav.user.Id
+		)
 		this.dataService.userPromiseHolder.Resolve()
 	}
 	//#endregion

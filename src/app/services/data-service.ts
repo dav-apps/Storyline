@@ -10,6 +10,7 @@ import { darkThemeKey, lightThemeKey, themeKey } from "../constants"
 export class DataService {
 	dav = Dav
 	userPromiseHolder = new PromiseHolder()
+	userIsAdmin: boolean = false
 	darkTheme: boolean = false
 	contentContainer: HTMLDivElement = null
 	loadingScreenVisible: boolean = false
