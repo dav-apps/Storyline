@@ -31,7 +31,7 @@ const enDefaults = {
 		latestNews: "Latest news"
 	},
 	articlePage: {
-		openOriginalArticle: "Open original article"
+		openArticle: "Open article"
 	},
 	publisherPage: {
 		follow: "Follow",
@@ -92,7 +92,7 @@ const deDefaults = {
 		latestNews: "Neueste Meldungen"
 	},
 	articlePage: {
-		openOriginalArticle: "Ursprünglichen Artikel öffnen"
+		openArticle: "Artikel öffnen"
 	},
 	publisherPage: {
 		follow: "Folgen",

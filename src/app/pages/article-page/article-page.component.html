@@ -20,11 +20,14 @@
 			}
 		</div>
 
-		<div class="article-content" [innerHTML]="article.content"></div>
+		<div
+			class="article-content"
+			[innerHTML]="article.summary ?? article.content"
+		></div>
 
 		<div class="link-container">
 			<dav-link-button [url]="article.url" target="blank">
-				{{ locale.openOriginalArticle }}
+				{{ locale.openArticle }}
 			</dav-link-button>
 		</div>
 	</div>

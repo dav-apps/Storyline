@@ -27,5 +27,6 @@ export interface ArticleResource {
 	date: string
 	imageUrl: string
 	content: string
+	summary: string
 }
 //#endregion

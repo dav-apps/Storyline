@@ -29,6 +29,8 @@ export class ArticlePageComponent {
 	}
 
 	async ngOnInit() {
+		await this.dataService.userPromiseHolder.AwaitResult()
+		const isUserOnPlus = this.dataService.dav.user.Plan > 0
 		const uuid = this.activatedRoute.snapshot.paramMap.get("uuid")
 
 		const response = await this.apiService.retrieveArticle(
@@ -36,7 +38,7 @@ export class ArticlePageComponent {
 				url
 				title
 				imageUrl
-				content
+				${isUserOnPlus ? "summary" : "content"}
 				publisher {
 					uuid
 					name
