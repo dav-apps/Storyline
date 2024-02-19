@@ -3,6 +3,9 @@ const enDefaults = {
 	startPage: {
 		youFollow: "You follow"
 	},
+	adminPage: {
+		publishers: "Publishers"
+	},
 	userPage: {
 		title: "Your account",
 		headline: "Save your data and get access to advanced features",
@@ -64,6 +67,9 @@ export var enGB = enDefaults
 const deDefaults = {
 	startPage: {
 		youFollow: "Du folgst"
+	},
+	adminPage: {
+		publishers: "Anbieter"
 	},
 	userPage: {
 		title: "Dein Account",

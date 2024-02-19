@@ -1,1 +1,18 @@
-<h1>Hello World</h1>
+<div class="container slide-up-in">
+	<dav-header addButtonVisible>
+		{{ locale.publishers }}
+	</dav-header>
+
+	<div class="list-container">
+		<dav-list>
+			@for (publisher of publishers; track publisher.uuid) {
+				<dav-list-item
+					[headline]="publisher.name"
+					size="small"
+					[imageSrc]="publisher.logoUrl"
+					imageRounded
+				></dav-list-item>
+			}
+		</dav-list>
+	</div>
+</div>
