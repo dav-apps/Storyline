@@ -80,6 +80,7 @@ export class AppComponent {
 	}
 
 	ngOnInit() {
+		this.setSize()
 		this.dataService.loadTheme()
 		this.dataService.contentContainer = this.contentContainer.nativeElement
 
