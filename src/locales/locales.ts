@@ -54,6 +54,15 @@ const enDefaults = {
 				"Log in to follow more publishers, receive notifications and more.",
 			login: "Log in",
 			close: "Close"
+		},
+		createPublisherDialog: {
+			headline: "Create publisher",
+			nameTextfieldLabel: "Name",
+			descriptionTextareaLabel: "Description",
+			urlTextfieldLabel: "URL",
+			logoUrlTextfieldLabel: "Logo URL",
+			create: "Create",
+			cancel: "Cancel"
 		}
 	},
 	misc: {
@@ -125,6 +134,15 @@ const deDefaults = {
 				"Melde dich an, um weiteren Anbietern zu folgen, Benachrichtigungen zu erhalten und vieles mehr.",
 			login: "Anmelden",
 			close: "Schließen"
+		},
+		createPublisherDialog: {
+			headline: "Anbieter erstellen",
+			nameTextfieldLabel: "Name",
+			descriptionTextareaLabel: "Beschreibung",
+			urlTextfieldLabel: "URL",
+			logoUrlTextfieldLabel: "Logo-URL",
+			create: "Erstellen",
+			cancel: "Abbrechen"
 		}
 	},
 	misc: {

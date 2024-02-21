@@ -1,0 +1,58 @@
+<dav-dialog
+	#dialog
+	[headline]="locale.headline"
+	[primaryButtonText]="locale.create"
+	[defaultButtonText]="locale.cancel"
+	[visible]="visible"
+	[loading]="loading"
+	maxWidth="340"
+	(dismiss)="visible = false"
+	(primaryButtonClick)="submit()"
+	(defaultButtonClick)="visible = false"
+>
+	<form>
+		<!-- Name -->
+		<div class="dialog-formfield-container">
+			<dav-textfield
+				[value]="name"
+				[label]="locale.nameTextfieldLabel"
+				[disabled]="loading"
+				[errorMessage]="nameError"
+				(change)="nameTextfieldChange($event)"
+			></dav-textfield>
+		</div>
+
+		<!-- Description -->
+		<div class="dialog-formfield-container">
+			<dav-textarea
+				[value]="description"
+				[label]="locale.descriptionTextareaLabel"
+				[disabled]="loading"
+				[errorMessage]="descriptionError"
+				(change)="descriptionTextareaChange($event)"
+			></dav-textarea>
+		</div>
+
+		<!-- URL -->
+		<div class="dialog-formfield-container">
+			<dav-textfield
+				[value]="url"
+				[label]="locale.urlTextfieldLabel"
+				[disabled]="loading"
+				[errorMessage]="urlError"
+				(change)="urlTextfieldChange($event)"
+			></dav-textfield>
+		</div>
+
+		<!-- Logo URL -->
+		<div class="dialog-formfield-container">
+			<dav-textfield
+				[value]="logoUrl"
+				[label]="locale.logoUrlTextfieldLabel"
+				[disabled]="loading"
+				[errorMessage]="logoUrlError"
+				(change)="logoUrlTextfieldChange($event)"
+			></dav-textfield>
+		</div>
+	</form>
+</dav-dialog>

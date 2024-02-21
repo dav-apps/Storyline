@@ -18,6 +18,7 @@ import { LoadingScreenComponent } from "./components/loading-screen/loading-scre
 
 // Dialogs
 import { LoginPromptDialogComponent } from "./dialogs/login-prompt-dialog/login-prompt-dialog.component"
+import { CreatePublisherDialogComponent } from "./dialogs/create-publisher-dialog/create-publisher-dialog.component"
 
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
@@ -42,6 +43,7 @@ import { SettingsService } from "./services/settings-service"
 		HorizontalPublisherListComponent,
 		LoadingScreenComponent,
 		LoginPromptDialogComponent,
+		CreatePublisherDialogComponent,
 		StartPageComponent,
 		AdminPageComponent,
 		AdminPublisherPageComponent,
