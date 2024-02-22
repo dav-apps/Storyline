@@ -4,7 +4,21 @@ const enDefaults = {
 		youFollow: "You follow"
 	},
 	adminPage: {
-		publishers: "Publishers"
+		publishers: "Publishers",
+		errors: {
+			nameMissing: "Please enter a name",
+			nameTooShort: "The name is too short",
+			nameTooLong: "The name is too long",
+			descriptionMissing: "Please enter a description",
+			descriptionTooShort: "The description is too short",
+			descriptionTooLong: "The description is too long",
+			urlMissing: "Please enter a URL",
+			urlInvalid: "The URL is invalid",
+			logoUrlMissing: "Please enter a logo URL",
+			logoUrlInvalid: "The logo URL is invalid",
+			unexpectedError:
+				"An unexpected error occured. Please try it again later."
+		}
 	},
 	adminPublisherPage: {
 		edit: "Edit"
@@ -81,7 +95,21 @@ const deDefaults = {
 		youFollow: "Du folgst"
 	},
 	adminPage: {
-		publishers: "Anbieter"
+		publishers: "Anbieter",
+		errors: {
+			nameMissing: "Bitte gib einen Namen ein",
+			nameTooShort: "Der Name ist zu kurz",
+			nameTooLong: "Der Name ist zu lang",
+			descriptionMissing: "Bitte gib eine Beschreibung ein",
+			descriptionTooShort: "Die Beschreibung ist zu kurz",
+			descriptionTooLong: "Die Beschreibung ist zu lang",
+			urlMissing: "Bitte gib eine URL ein",
+			urlInvalid: "Die URL ist ungültig",
+			logoUrlMissing: "Bitte gib eine Logo-URL ein",
+			logoUrlInvalid: "Die Logo-URL ist ungültig",
+			unexpectedError:
+				"Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es später nochmal."
+		}
 	},
 	adminPublisherPage: {
 		edit: "Bearbeiten"

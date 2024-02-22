@@ -20,6 +20,56 @@ export class ApiService {
 		this.apollo = this.apolloProvider.use(storylineApiClientName)
 	}
 
+	//#region Publisher
+	async createPublisher(
+		queryData: string,
+		variables: {
+			name: string
+			description: string
+			url: string
+			logoUrl: string
+		}
+	): Promise<MutationResult<{ createPublisher: PublisherResource }>> {
+		let result = await this.apollo
+			.mutate<{
+				createPublisher: PublisherResource
+			}>({
+				mutation: gql`
+					mutation CreatePublisher(
+						$name: String!
+						$description: String!
+						$url: String!
+						$logoUrl: String!
+					) {
+						createPublisher(
+							name: $name
+							description: $description
+							url: $url
+							logoUrl: $logoUrl
+						) {
+							${queryData}
+						}
+					}
+				`,
+				variables,
+				errorPolicy
+			})
+			.toPromise()
+
+		if (
+			result.errors != null &&
+			result.errors.length > 0 &&
+			result.errors[0].extensions["code"] == ErrorCodes.sessionEnded
+		) {
+			// Renew the access token and run the query again
+			await renewSession()
+
+			return await this.createPublisher(queryData, variables)
+		}
+
+		return result
+	}
+
 	async retrievePublisher(
 		queryData: string,
 		variables: { uuid: string; limit?: number; offset?: number }
