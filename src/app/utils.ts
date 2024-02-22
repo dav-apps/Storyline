@@ -1,3 +1,4 @@
+import { defaultDataIdFromObject } from "@apollo/client/core"
 import { Theme } from "./types"
 import { lightThemeKey, darkThemeKey } from "./constants"
 
@@ -17,4 +18,12 @@ export function bytesToGigabytesText(bytes: number, rounding: number): string {
 
 	let gb = Math.round(bytes / 1000000000).toFixed(rounding)
 	return gb == "0.0" ? "0" : gb
+}
+
+export function dataIdFromObject(responseObject: any) {
+	if (responseObject.uuid != null) {
+		return `${responseObject.__typename}:${responseObject.uuid}`
+	}
+
+	return defaultDataIdFromObject(responseObject)
 }

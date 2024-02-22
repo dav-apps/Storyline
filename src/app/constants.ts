@@ -6,6 +6,8 @@ export const darkThemeKey = "dark"
 export const systemThemeKey = "system"
 export const smallWindowMaxSize = 576
 export const admins = [1]
+export const davApiClientName = "davClient"
+export const storylineApiClientName = "storylineClient"
 //#endregion
 
 //#region table keys

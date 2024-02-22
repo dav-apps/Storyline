@@ -1,13 +1,24 @@
 import { Injectable } from "@angular/core"
-import { Apollo, gql } from "apollo-angular"
+import { Apollo, ApolloBase, MutationResult, gql } from "apollo-angular"
 import { ApolloQueryResult, ErrorPolicy } from "@apollo/client/core"
+import { renewSession } from "dav-js"
 import { List, PublisherResource, ArticleResource } from "../types"
+import * as ErrorCodes from "../errorCodes"
+import { storylineApiClientName } from "../constants"
 
 const errorPolicy: ErrorPolicy = "all"
 
 @Injectable()
 export class ApiService {
-	constructor(private apollo: Apollo) {}
+	private apollo: ApolloBase
+
+	constructor(private apolloProvider: Apollo) {
+		this.loadApolloClient()
+	}
+
+	loadApolloClient() {
+		this.apollo = this.apolloProvider.use(storylineApiClientName)
+	}
 
 	async retrievePublisher(
 		queryData: string,
@@ -65,7 +76,9 @@ export class ApiService {
 			})
 			.toPromise()
 	}
+	//#endregion
 
+	//#region Article
 	async retrieveArticle(
 		queryData: string,
 		variables: { uuid: string }
@@ -117,4 +130,5 @@ export class ApiService {
 			})
 			.toPromise()
 	}
+	//#endregion
 }

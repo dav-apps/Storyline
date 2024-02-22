@@ -1,13 +1,25 @@
-import { APOLLO_OPTIONS, ApolloModule } from "apollo-angular"
+import { APOLLO_NAMED_OPTIONS, ApolloModule } from "apollo-angular"
 import { HttpLink } from "apollo-angular/http"
 import { NgModule } from "@angular/core"
-import { ApolloClientOptions, InMemoryCache } from "@apollo/client/core"
+import { InMemoryCache } from "@apollo/client/core"
+import { davApiClientName, storylineApiClientName } from "./constants"
+import { dataIdFromObject } from "./utils"
 import { environment } from "../environments/environment"
 
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+export function createApollo(httpLink: HttpLink) {
 	return {
-		link: httpLink.create({ uri: environment.storylineApiUrl }),
-		cache: new InMemoryCache()
+		[davApiClientName]: {
+			cache: new InMemoryCache({ dataIdFromObject }),
+			link: httpLink.create({
+				uri: environment.davApiUrl
+			})
+		},
+		[storylineApiClientName]: {
+			cache: new InMemoryCache({ dataIdFromObject }),
+			link: httpLink.create({
+				uri: environment.storylineApiUrl
+			})
+		}
 	}
 }
 
@@ -15,7 +27,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 	exports: [ApolloModule],
 	providers: [
 		{
-			provide: APOLLO_OPTIONS,
+			provide: APOLLO_NAMED_OPTIONS,
 			useFactory: createApollo,
 			deps: [HttpLink]
 		}

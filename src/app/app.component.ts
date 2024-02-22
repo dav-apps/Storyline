@@ -1,5 +1,9 @@
 import { Component, ViewChild, ElementRef, HostListener } from "@angular/core"
 import { Router, ActivatedRoute, NavigationStart } from "@angular/router"
+import { HttpHeaders } from "@angular/common/http"
+import { Apollo } from "apollo-angular"
+import { HttpLink } from "apollo-angular/http"
+import { InMemoryCache } from "@apollo/client/core"
 import {
 	faNewspaper as faNewspaperSolid,
 	faHammer as faHammerSolid,
@@ -17,8 +21,15 @@ import {
 import { Dav } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
+import { ApiService } from "./services/api-service"
 import { LocalizationService } from "./services/localization-service"
-import { smallWindowMaxSize, admins } from "src/app/constants"
+import { dataIdFromObject } from "src/app/utils"
+import {
+	smallWindowMaxSize,
+	admins,
+	davApiClientName,
+	storylineApiClientName
+} from "src/app/constants"
 import { environment } from "src/environments/environment"
 
 @Component({
@@ -48,9 +59,12 @@ export class AppComponent {
 
 	constructor(
 		public dataService: DataService,
+		private apiService: ApiService,
 		private localizationService: LocalizationService,
 		private router: Router,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private apollo: Apollo,
+		private httpLink: HttpLink
 	) {
 		DavUIComponents.setLocale("en-EN")
 
@@ -89,7 +103,9 @@ export class AppComponent {
 			appId: environment.appId,
 			tableIds: [],
 			callbacks: {
-				UserLoaded: () => this.userLoaded()
+				UserLoaded: () => this.userLoaded(),
+				AccessTokenRenewed: (accessToken: string) =>
+					this.accessTokenRenewed(accessToken)
 			}
 		})
 	}
@@ -119,12 +135,52 @@ export class AppComponent {
 		this.router.navigate(["settings"])
 	}
 
+	setupApollo(accessToken: string) {
+		this.apollo.removeClient(davApiClientName)
+		this.apollo.removeClient(storylineApiClientName)
+
+		this.apollo.create(
+			{
+				cache: new InMemoryCache({ dataIdFromObject }),
+				link: this.httpLink.create({
+					uri: environment.davApiUrl,
+					headers: new HttpHeaders().set("Authorization", accessToken)
+				})
+			},
+			davApiClientName
+		)
+
+		this.apollo.create(
+			{
+				cache: new InMemoryCache({ dataIdFromObject }),
+				link: this.httpLink.create({
+					uri: environment.storylineApiUrl,
+					headers: new HttpHeaders().set("Authorization", accessToken)
+				})
+			},
+			storylineApiClientName
+		)
+
+		//this.davApiService.loadApolloClient()
+		this.apiService.loadApolloClient()
+	}
+
 	//#region dav callback functions
 	userLoaded() {
 		this.dataService.userIsAdmin = admins.includes(
 			this.dataService.dav.user.Id
 		)
+
+		if (this.dataService.dav.isLoggedIn) {
+			// Setup the apollo client with the access token
+			this.setupApollo(this.dataService.dav.accessToken)
+		}
+
 		this.dataService.userPromiseHolder.Resolve()
+	}
+
+	accessTokenRenewed(accessToken: string) {
+		this.setupApollo(accessToken)
 	}
 	//#endregion
 }
