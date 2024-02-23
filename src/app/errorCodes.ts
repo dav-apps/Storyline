@@ -15,4 +15,5 @@ export const descriptionTooLong = "DESCRIPTION_TOO_LONG"
 //#region Invalid fields
 export const urlInvalid = "URL_INVALID"
 export const logoUrlInvalid = "LOGO_URL_INVALID"
+export const languageInvalid = "LANGUAGE_INVALID"
 //#endregion

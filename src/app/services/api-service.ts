@@ -2,7 +2,12 @@ import { Injectable } from "@angular/core"
 import { Apollo, ApolloBase, MutationResult, gql } from "apollo-angular"
 import { ApolloQueryResult, ErrorPolicy } from "@apollo/client/core"
 import { renewSession } from "dav-js"
-import { List, PublisherResource, ArticleResource } from "../types"
+import {
+	List,
+	PublisherResource,
+	FeedResource,
+	ArticleResource
+} from "../types"
 import * as ErrorCodes from "../errorCodes"
 import { storylineApiClientName } from "../constants"
 
@@ -125,6 +130,46 @@ export class ApiService {
 				errorPolicy
 			})
 			.toPromise()
+	}
+	//#endregion
+
+	//#region Feed
+	async createFeed(
+		queryData: string,
+		variables: { publisherUuid: string; url: string }
+	): Promise<MutationResult<{ createFeed: FeedResource }>> {
+		let result = await this.apollo
+			.mutate<{ createFeed: FeedResource }>({
+				mutation: gql`
+					mutation CreateFeed(
+						$publisherUuid: String!
+						$url: String!
+					) {
+						createFeed(
+							publisherUuid: $publisherUuid
+							url: $url
+						) {
+							${queryData}
+						}
+					}
+				`,
+				variables,
+				errorPolicy
+			})
+			.toPromise()
+
+		if (
+			result.errors != null &&
+			result.errors.length > 0 &&
+			result.errors[0].extensions["code"] == ErrorCodes.sessionEnded
+		) {
+			// Renew the access token and run the query again
+			await renewSession()
+
+			return await this.createFeed(queryData, variables)
+		}
+
+		return result
 	}
 	//#endregion
 

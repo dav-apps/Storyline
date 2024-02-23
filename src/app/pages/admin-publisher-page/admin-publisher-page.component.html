@@ -12,7 +12,7 @@
 			</dav-button>
 		</div>
 
-		<dav-header addButtonVisible>
+		<dav-header addButtonVisible (addButtonClick)="showCreateFeedDialog()">
 			Feeds
 		</dav-header>
 
@@ -29,3 +29,10 @@
 	</div>
 	}
 </div>
+
+<storyline-create-feed-dialog
+	#createFeedDialog
+	[loading]="createFeedDialogLoading"
+	[urlError]="createFeedDialogUrlError"
+	(primaryButtonClick)="createFeed($event)"
+></storyline-create-feed-dialog>

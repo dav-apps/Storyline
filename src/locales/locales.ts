@@ -21,7 +21,16 @@ const enDefaults = {
 		}
 	},
 	adminPublisherPage: {
-		edit: "Edit"
+		edit: "Edit",
+		errors: {
+			nameTooShort: "The name is too short",
+			nameTooLong: "The name is too long",
+			descriptionTooShort: "The description is too short",
+			descriptionTooLong: "The description is too long",
+			languageInvalid: "The language is invalid",
+			unexpectedError:
+				"An unexpected error occured. Please try it again later."
+		}
 	},
 	userPage: {
 		title: "Your account",
@@ -118,7 +127,16 @@ const deDefaults = {
 		}
 	},
 	adminPublisherPage: {
-		edit: "Bearbeiten"
+		edit: "Bearbeiten",
+		errors: {
+			nameTooShort: "Der Name ist zu kurz",
+			nameTooLong: "Der Name ist zu lang",
+			descriptionTooShort: "Die Beschreibung ist zu kurz",
+			descriptionTooLong: "Die Beschreibung ist zu lang",
+			languageInvalid: "Die Sprache ist ungültig",
+			unexpectedError:
+				"Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es später nochmal."
+		}
 	},
 	userPage: {
 		title: "Dein Account",

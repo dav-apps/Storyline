@@ -97,7 +97,6 @@ export class AdminPageComponent {
 			this.publishers.push(responseData)
 			this.navigateToAdminPublisherPage(responseData)
 		} else {
-			console.log(response.errors)
 			let errors = response.errors[0].extensions["errors"] as string[]
 
 			for (let errorCode of errors) {
