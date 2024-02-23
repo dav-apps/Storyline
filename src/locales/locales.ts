@@ -77,6 +77,12 @@ const enDefaults = {
 			logoUrlTextfieldLabel: "Logo URL",
 			create: "Create",
 			cancel: "Cancel"
+		},
+		createFeedDialog: {
+			headline: "Create feed",
+			urlTextfieldLabel: "URL",
+			create: "Create",
+			cancel: "Cancel"
 		}
 	},
 	misc: {
@@ -169,6 +175,12 @@ const deDefaults = {
 			descriptionTextareaLabel: "Beschreibung",
 			urlTextfieldLabel: "URL",
 			logoUrlTextfieldLabel: "Logo-URL",
+			create: "Erstellen",
+			cancel: "Abbrechen"
+		},
+		createFeedDialog: {
+			headline: "Feed erstellen",
+			urlTextfieldLabel: "URL",
 			create: "Erstellen",
 			cancel: "Abbrechen"
 		}

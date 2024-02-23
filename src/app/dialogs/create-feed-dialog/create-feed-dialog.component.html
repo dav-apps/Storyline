@@ -1,0 +1,25 @@
+<dav-dialog
+	#dialog
+	[headline]="locale.headline"
+	[primaryButtonText]="locale.create"
+	[defaultButtonText]="locale.cancel"
+	[visible]="visible"
+	[loading]="loading"
+	maxWidth="340"
+	(dismiss)="visible = false"
+	(primaryButtonClick)="submit()"
+	(defaultButtonClick)="visible = false"
+>
+	<form>
+		<!-- URL -->
+		<div class="dialog-formfield-container">
+			<dav-textfield
+				[value]="url"
+				[label]="locale.urlTextfieldLabel"
+				[disabled]="loading"
+				[errorMessage]="urlError"
+				(change)="urlTextfieldChange($event)"
+			></dav-textfield>
+		</div>
+	</form>
+</dav-dialog>
