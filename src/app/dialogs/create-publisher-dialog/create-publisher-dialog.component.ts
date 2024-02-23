@@ -16,17 +16,17 @@ import { LocalizationService } from "src/app/services/localization-service"
 export class CreatePublisherDialogComponent {
 	locale = this.localizationService.locale.dialogs.createPublisherDialog
 	@Input() loading: boolean = false
+	@Input() name: string = ""
 	@Input() nameError: string = ""
+	@Input() description: string = ""
 	@Input() descriptionError: string = ""
+	@Input() url: string = ""
 	@Input() urlError: string = ""
+	@Input() logoUrl: string = ""
 	@Input() logoUrlError: string = ""
 	@Output() primaryButtonClick = new EventEmitter()
 	@ViewChild("dialog") dialog: ElementRef<Dialog>
 	visible: boolean = false
-	name: string = ""
-	description: string = ""
-	url: string = ""
-	logoUrl: string = ""
 
 	constructor(private localizationService: LocalizationService) {}
 

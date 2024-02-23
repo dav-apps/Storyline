@@ -75,6 +75,58 @@ export class ApiService {
 		return result
 	}
 
+	async updatePublisher(
+		queryData: string,
+		variables: {
+			uuid: string
+			name?: string
+			description?: string
+			url?: string
+			logo?: string
+		}
+	): Promise<MutationResult<{ updatePublisher: PublisherResource }>> {
+		let result = await this.apollo
+			.mutate<{
+				updatePublisher: PublisherResource
+			}>({
+				mutation: gql`
+					mutation UpdatePublisher(
+						$uuid: String!
+						$name: String
+						$description: String
+						$url: String
+						$logoUrl: String
+					) {
+						updatePublisher(
+							uuid: $uuid
+							name: $name
+							description: $description
+							url: $url
+							logoUrl: $logoUrl
+						) {
+							${queryData}
+						}
+					}
+				`,
+				variables,
+				errorPolicy
+			})
+			.toPromise()
+
+		if (
+			result.errors != null &&
+			result.errors.length > 0 &&
+			result.errors[0].extensions["code"] == ErrorCodes.sessionEnded
+		) {
+			// Renew the access token and run the query again
+			await renewSession()
+
+			return await this.updatePublisher(queryData, variables)
+		}
+
+		return result
+	}
+
 	async retrievePublisher(
 		queryData: string,
 		variables: { uuid: string; limit?: number; offset?: number }

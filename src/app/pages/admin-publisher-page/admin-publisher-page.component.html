@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="head-buttons-container">
-			<dav-button outline size="small">
+			<dav-button outline size="small" (click)="showPublisherDialog()">
 				{{ locale.edit }}
 			</dav-button>
 		</div>
@@ -19,16 +19,27 @@
 		<div class="list-container">
 			<dav-list>
 				@for (feed of feeds; track feed.uuid) {
-				<dav-list-item
-					[headline]="feed.name"
-					size="small"
-				></dav-list-item>
+				<dav-list-item [headline]="feed.name" size="small"></dav-list-item>
 				}
 			</dav-list>
 		</div>
 	</div>
 	}
 </div>
+
+<storyline-create-publisher-dialog
+	#publisherDialog
+	[loading]="publisherDialogLoading"
+	[name]="publisherDialogName"
+	[nameError]="publisherDialogNameError"
+	[description]="publisherDialogDescription"
+	[descriptionError]="publisherDialogDescriptionError"
+	[url]="publisherDialogUrl"
+	[urlError]="publisherDialogUrlError"
+	[logoUrl]="publisherDialogLogoUrl"
+	[logoUrlError]="publisherDialogLogoUrlError"
+	(primaryButtonClick)="updatePublisher($event)"
+></storyline-create-publisher-dialog>
 
 <storyline-create-feed-dialog
 	#createFeedDialog

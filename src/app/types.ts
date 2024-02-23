@@ -13,6 +13,7 @@ export enum Theme {
 export interface PublisherResource {
 	uuid: string
 	name: string
+	description: string
 	url: string
 	logoUrl: string
 	feeds: List<FeedResource>

@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
+import { CreatePublisherDialogComponent } from "src/app/dialogs/create-publisher-dialog/create-publisher-dialog.component"
 import { CreateFeedDialogComponent } from "src/app/dialogs/create-feed-dialog/create-feed-dialog.component"
 import { ApiService } from "src/app/services/api-service"
 import { LocalizationService } from "src/app/services/localization-service"
@@ -14,6 +15,20 @@ export class AdminPublisherPageComponent {
 	locale = this.localizationService.locale.adminPublisherPage
 	publisher: PublisherResource = null
 	feeds: FeedResource[] = []
+
+	//#region PublisherDialog
+	@ViewChild("publisherDialog")
+	publisherDialog: CreatePublisherDialogComponent
+	publisherDialogLoading: boolean = false
+	publisherDialogName: string = ""
+	publisherDialogNameError: string = ""
+	publisherDialogDescription: string = ""
+	publisherDialogDescriptionError: string = ""
+	publisherDialogUrl: string = ""
+	publisherDialogUrlError: string = ""
+	publisherDialogLogoUrl: string = ""
+	publisherDialogLogoUrlError: string = ""
+	//#endregion
 
 	//#region CreateFeedDialog
 	@ViewChild("createFeedDialog")
@@ -50,6 +65,8 @@ export class AdminPublisherPageComponent {
 			`
 				uuid
 				name
+				description
+				url
 				logoUrl
 				feeds {
 					total
@@ -70,8 +87,106 @@ export class AdminPublisherPageComponent {
 		return responseData
 	}
 
+	showPublisherDialog() {
+		this.publisherDialogName = this.publisher.name
+		this.publisherDialogDescription = this.publisher.description
+		this.publisherDialogUrl = this.publisher.url
+		this.publisherDialogLogoUrl = this.publisher.logoUrl
+		this.publisherDialog.show()
+	}
+
 	showCreateFeedDialog() {
 		this.createFeedDialog.show()
+	}
+
+	async updatePublisher(data: {
+		name: string
+		description: string
+		url: string
+		logoUrl: string
+	}) {
+		this.publisherDialogNameError = ""
+		this.publisherDialogDescriptionError = ""
+		this.publisherDialogUrlError = ""
+		this.publisherDialogLogoUrlError = ""
+		this.publisherDialogLoading = true
+
+		let response = await this.apiService.updatePublisher(
+			`
+				uuid
+				name
+				description
+				url
+				logoUrl
+			`,
+			{
+				uuid: this.publisher.uuid,
+				...data
+			}
+		)
+
+		this.publisherDialogLoading = false
+
+		if (response.errors == null) {
+			let responseData = response.data.updatePublisher
+
+			this.publisher = responseData
+			this.publisherDialog.hide()
+		} else {
+			let errors = response.errors[0].extensions["errors"] as string[]
+
+			for (let errorCode of errors) {
+				switch (errorCode) {
+					case ErrorCodes.nameTooShort:
+						if (data.name.length == 0) {
+							this.publisherDialogNameError =
+								this.locale.errors.nameMissing
+						} else {
+							this.publisherDialogNameError =
+								this.locale.errors.nameTooShort
+						}
+						break
+					case ErrorCodes.nameTooLong:
+						this.publisherDialogNameError = this.locale.errors.nameTooLong
+						break
+					case ErrorCodes.descriptionTooShort:
+						if (data.description.length == 0) {
+							this.publisherDialogDescriptionError =
+								this.locale.errors.descriptionMissing
+						} else {
+							this.publisherDialogDescriptionError =
+								this.locale.errors.descriptionTooShort
+						}
+						break
+					case ErrorCodes.descriptionTooLong:
+						this.publisherDialogDescriptionError =
+							this.locale.errors.descriptionTooLong
+						break
+					case ErrorCodes.urlInvalid:
+						if (data.url.length == 0) {
+							this.publisherDialogUrlError =
+								this.locale.errors.urlMissing
+						} else {
+							this.publisherDialogUrlError =
+								this.locale.errors.urlInvalid
+						}
+						break
+					case ErrorCodes.logoUrlInvalid:
+						if (data.logoUrl.length == 0) {
+							this.publisherDialogLogoUrlError =
+								this.locale.errors.logoUrlMissing
+						} else {
+							this.publisherDialogLogoUrlError =
+								this.locale.errors.logoUrlInvalid
+						}
+						break
+					default:
+						this.publisherDialogNameError =
+							this.locale.errors.unexpectedError
+						break
+				}
+			}
+		}
 	}
 
 	async createFeed(data: { url: string }) {
