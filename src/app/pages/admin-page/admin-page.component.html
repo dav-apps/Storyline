@@ -1,5 +1,5 @@
 <div class="container slide-up-in">
-	<dav-header addButtonVisible (addButtonClick)="showCreatePublisherDialog()">
+	<dav-header addButtonVisible (addButtonClick)="showPublisherDialog()">
 		{{ locale.publishers }}
 	</dav-header>
 
@@ -18,12 +18,12 @@
 	</div>
 </div>
 
-<storyline-create-publisher-dialog
-	#createPublisherDialog
-	[loading]="createPublisherDialogLoading"
-	[nameError]="createPublisherDialogNameError"
-	[descriptionError]="createPublisherDialogDescriptionError"
-	[urlError]="createPublisherDialogUrlError"
-	[logoUrlError]="createPublisherDialogLogoUrlError"
+<storyline-publisher-dialog
+	#publisherDialog
+	[loading]="publisherDialogLoading"
+	[nameError]="publisherDialogNameError"
+	[descriptionError]="publisherDialogDescriptionError"
+	[urlError]="publisherDialogUrlError"
+	[logoUrlError]="publisherDialogLogoUrlError"
 	(primaryButtonClick)="createPublisher($event)"
-></storyline-create-publisher-dialog>
+></storyline-publisher-dialog>

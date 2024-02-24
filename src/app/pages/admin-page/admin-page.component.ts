@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core"
 import { Router } from "@angular/router"
-import { CreatePublisherDialogComponent } from "src/app/dialogs/create-publisher-dialog/create-publisher-dialog.component"
+import { PublisherDialogComponent } from "src/app/dialogs/publisher-dialog/publisher-dialog.component"
 import { ApiService } from "src/app/services/api-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { PublisherResource } from "src/app/types"
@@ -17,13 +17,13 @@ export class AdminPageComponent {
 	offset: number = 0
 
 	//#region CreatePublisherDialog
-	@ViewChild("createPublisherDialog")
-	createPublisherDialog: CreatePublisherDialogComponent
-	createPublisherDialogLoading: boolean = false
-	createPublisherDialogNameError: string = ""
-	createPublisherDialogDescriptionError: string = ""
-	createPublisherDialogUrlError: string = ""
-	createPublisherDialogLogoUrlError: string = ""
+	@ViewChild("publisherDialog")
+	publisherDialog: PublisherDialogComponent
+	publisherDialogLoading: boolean = false
+	publisherDialogNameError: string = ""
+	publisherDialogDescriptionError: string = ""
+	publisherDialogUrlError: string = ""
+	publisherDialogLogoUrlError: string = ""
 	//#endregion
 
 	constructor(
@@ -62,8 +62,8 @@ export class AdminPageComponent {
 		}
 	}
 
-	showCreatePublisherDialog() {
-		this.createPublisherDialog.show()
+	showPublisherDialog() {
+		this.publisherDialog.show()
 	}
 
 	async createPublisher(data: {
@@ -72,11 +72,11 @@ export class AdminPageComponent {
 		url: string
 		logoUrl: string
 	}) {
-		this.createPublisherDialogNameError = ""
-		this.createPublisherDialogDescriptionError = ""
-		this.createPublisherDialogUrlError = ""
-		this.createPublisherDialogLogoUrlError = ""
-		this.createPublisherDialogLoading = true
+		this.publisherDialogNameError = ""
+		this.publisherDialogDescriptionError = ""
+		this.publisherDialogUrlError = ""
+		this.publisherDialogLogoUrlError = ""
+		this.publisherDialogLoading = true
 
 		let response = await this.apiService.createPublisher(
 			`
@@ -89,7 +89,7 @@ export class AdminPageComponent {
 			{ ...data }
 		)
 
-		this.createPublisherDialogLoading = false
+		this.publisherDialogLoading = false
 
 		if (response.errors == null) {
 			let responseData = response.data.createPublisher
@@ -103,50 +103,49 @@ export class AdminPageComponent {
 				switch (errorCode) {
 					case ErrorCodes.nameTooShort:
 						if (data.name.length == 0) {
-							this.createPublisherDialogNameError =
+							this.publisherDialogNameError =
 								this.locale.errors.nameMissing
 						} else {
-							this.createPublisherDialogNameError =
+							this.publisherDialogNameError =
 								this.locale.errors.nameTooShort
 						}
 						break
 					case ErrorCodes.nameTooLong:
-						this.createPublisherDialogNameError =
-							this.locale.errors.nameTooLong
+						this.publisherDialogNameError = this.locale.errors.nameTooLong
 						break
 					case ErrorCodes.descriptionTooShort:
 						if (data.description.length == 0) {
-							this.createPublisherDialogDescriptionError =
+							this.publisherDialogDescriptionError =
 								this.locale.errors.descriptionMissing
 						} else {
-							this.createPublisherDialogDescriptionError =
+							this.publisherDialogDescriptionError =
 								this.locale.errors.descriptionTooShort
 						}
 						break
 					case ErrorCodes.descriptionTooLong:
-						this.createPublisherDialogDescriptionError =
+						this.publisherDialogDescriptionError =
 							this.locale.errors.descriptionTooLong
 						break
 					case ErrorCodes.urlInvalid:
 						if (data.url.length == 0) {
-							this.createPublisherDialogUrlError =
+							this.publisherDialogUrlError =
 								this.locale.errors.urlMissing
 						} else {
-							this.createPublisherDialogUrlError =
+							this.publisherDialogUrlError =
 								this.locale.errors.urlInvalid
 						}
 						break
 					case ErrorCodes.logoUrlInvalid:
 						if (data.logoUrl.length == 0) {
-							this.createPublisherDialogLogoUrlError =
+							this.publisherDialogLogoUrlError =
 								this.locale.errors.logoUrlMissing
 						} else {
-							this.createPublisherDialogLogoUrlError =
+							this.publisherDialogLogoUrlError =
 								this.locale.errors.logoUrlInvalid
 						}
 						break
 					default:
-						this.createPublisherDialogNameError =
+						this.publisherDialogNameError =
 							this.locale.errors.unexpectedError
 						break
 				}

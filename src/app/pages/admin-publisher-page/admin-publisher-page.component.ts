@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
-import { CreatePublisherDialogComponent } from "src/app/dialogs/create-publisher-dialog/create-publisher-dialog.component"
+import { PublisherDialogComponent } from "src/app/dialogs/publisher-dialog/publisher-dialog.component"
 import { CreateFeedDialogComponent } from "src/app/dialogs/create-feed-dialog/create-feed-dialog.component"
 import { ApiService } from "src/app/services/api-service"
 import { LocalizationService } from "src/app/services/localization-service"
@@ -18,7 +18,7 @@ export class AdminPublisherPageComponent {
 
 	//#region PublisherDialog
 	@ViewChild("publisherDialog")
-	publisherDialog: CreatePublisherDialogComponent
+	publisherDialog: PublisherDialogComponent
 	publisherDialogLoading: boolean = false
 	publisherDialogName: string = ""
 	publisherDialogNameError: string = ""

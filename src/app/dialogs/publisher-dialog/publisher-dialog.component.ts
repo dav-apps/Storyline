@@ -10,11 +10,11 @@ import { Dialog } from "dav-ui-components"
 import { LocalizationService } from "src/app/services/localization-service"
 
 @Component({
-	selector: "storyline-create-publisher-dialog",
-	templateUrl: "./create-publisher-dialog.component.html"
+	selector: "storyline-publisher-dialog",
+	templateUrl: "./publisher-dialog.component.html"
 })
-export class CreatePublisherDialogComponent {
-	locale = this.localizationService.locale.dialogs.createPublisherDialog
+export class PublisherDialogComponent {
+	locale = this.localizationService.locale.dialogs.publisherDialog
 	@Input() loading: boolean = false
 	@Input() name: string = ""
 	@Input() nameError: string = ""

@@ -84,7 +84,7 @@ const enDefaults = {
 			login: "Log in",
 			close: "Close"
 		},
-		createPublisherDialog: {
+		publisherDialog: {
 			headline: "Create publisher",
 			nameTextfieldLabel: "Name",
 			descriptionTextareaLabel: "Description",
@@ -199,7 +199,7 @@ const deDefaults = {
 			login: "Anmelden",
 			close: "Schließen"
 		},
-		createPublisherDialog: {
+		publisherDialog: {
 			headline: "Anbieter erstellen",
 			nameTextfieldLabel: "Name",
 			descriptionTextareaLabel: "Beschreibung",
