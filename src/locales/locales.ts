@@ -85,12 +85,16 @@ const enDefaults = {
 			close: "Close"
 		},
 		publisherDialog: {
-			headline: "Create publisher",
+			headline: {
+				create: "Create publisher",
+				update: "Update publisher"
+			},
 			nameTextfieldLabel: "Name",
 			descriptionTextareaLabel: "Description",
 			urlTextfieldLabel: "URL",
 			logoUrlTextfieldLabel: "Logo URL",
 			create: "Create",
+			save: "Save",
 			cancel: "Cancel"
 		},
 		createFeedDialog: {
@@ -200,12 +204,16 @@ const deDefaults = {
 			close: "Schließen"
 		},
 		publisherDialog: {
-			headline: "Anbieter erstellen",
+			headline: {
+				create: "Anbieter erstellen",
+				update: "Anbieter bearbeiten"
+			},
 			nameTextfieldLabel: "Name",
 			descriptionTextareaLabel: "Beschreibung",
 			urlTextfieldLabel: "URL",
 			logoUrlTextfieldLabel: "Logo-URL",
 			create: "Erstellen",
+			save: "Speichern",
 			cancel: "Abbrechen"
 		},
 		createFeedDialog: {

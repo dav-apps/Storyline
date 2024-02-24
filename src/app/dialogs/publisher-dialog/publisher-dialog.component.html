@@ -1,7 +1,9 @@
 <dav-dialog
 	#dialog
-	[headline]="locale.headline"
-	[primaryButtonText]="locale.create"
+	[headline]="
+		mode == 'create' ? locale.headline.create : locale.headline.update
+	"
+	[primaryButtonText]="mode == 'create' ? locale.create : locale.save"
 	[defaultButtonText]="locale.cancel"
 	[visible]="visible"
 	[loading]="loading"
