@@ -14,6 +14,7 @@ import { LocalizationService } from "src/app/services/localization-service"
 })
 export class LoginPromptDialogComponent {
 	locale = this.localizationService.locale.dialogs.loginPromptDialog
+	actionsLocale = this.localizationService.locale.actions
 	@Output() primaryButtonClick = new EventEmitter()
 	@ViewChild("dialog") dialog: ElementRef<Dialog>
 	visible: boolean = false

@@ -15,6 +15,7 @@ import { LocalizationService } from "src/app/services/localization-service"
 })
 export class CreateFeedDialogComponent {
 	locale = this.localizationService.locale.dialogs.createFeedDialog
+	actionsLocale = this.localizationService.locale.actions
 	@Input() loading: boolean = false
 	@Input() urlError: string = ""
 	@Output() primaryButtonClick = new EventEmitter()

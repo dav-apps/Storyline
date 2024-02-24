@@ -15,6 +15,7 @@ import { LocalizationService } from "src/app/services/localization-service"
 })
 export class PublisherDialogComponent {
 	locale = this.localizationService.locale.dialogs.publisherDialog
+	actionsLocale = this.localizationService.locale.actions
 	@Input() mode: "create" | "update" = "create"
 	@Input() loading: boolean = false
 	@Input() name: string = ""

@@ -80,9 +80,7 @@ const enDefaults = {
 		loginPromptDialog: {
 			headline: "Log in",
 			description:
-				"Log in to follow more publishers, receive notifications and more.",
-			login: "Log in",
-			close: "Close"
+				"Log in to follow more publishers, receive notifications and more."
 		},
 		publisherDialog: {
 			headline: {
@@ -92,17 +90,19 @@ const enDefaults = {
 			nameTextfieldLabel: "Name",
 			descriptionTextareaLabel: "Description",
 			urlTextfieldLabel: "URL",
-			logoUrlTextfieldLabel: "Logo URL",
-			create: "Create",
-			save: "Save",
-			cancel: "Cancel"
+			logoUrlTextfieldLabel: "Logo URL"
 		},
 		createFeedDialog: {
 			headline: "Create feed",
-			urlTextfieldLabel: "URL",
-			create: "Create",
-			cancel: "Cancel"
+			urlTextfieldLabel: "URL"
 		}
+	},
+	actions: {
+		login: "Log in",
+		create: "Create",
+		save: "Save",
+		cancel: "Cancel",
+		close: "Close"
 	},
 	misc: {
 		newsFeed: "News feed",
@@ -199,9 +199,7 @@ const deDefaults = {
 		loginPromptDialog: {
 			headline: "Anmelden",
 			description:
-				"Melde dich an, um weiteren Anbietern zu folgen, Benachrichtigungen zu erhalten und vieles mehr.",
-			login: "Anmelden",
-			close: "Schließen"
+				"Melde dich an, um weiteren Anbietern zu folgen, Benachrichtigungen zu erhalten und vieles mehr."
 		},
 		publisherDialog: {
 			headline: {
@@ -211,17 +209,19 @@ const deDefaults = {
 			nameTextfieldLabel: "Name",
 			descriptionTextareaLabel: "Beschreibung",
 			urlTextfieldLabel: "URL",
-			logoUrlTextfieldLabel: "Logo-URL",
-			create: "Erstellen",
-			save: "Speichern",
-			cancel: "Abbrechen"
+			logoUrlTextfieldLabel: "Logo-URL"
 		},
 		createFeedDialog: {
 			headline: "Feed erstellen",
-			urlTextfieldLabel: "URL",
-			create: "Erstellen",
-			cancel: "Abbrechen"
+			urlTextfieldLabel: "URL"
 		}
+	},
+	actions: {
+		login: "Anmelden",
+		create: "Erstellen",
+		save: "Speichern",
+		cancel: "Abbrechen",
+		close: "Schließen"
 	},
 	misc: {
 		newsFeed: "News-Feed",
