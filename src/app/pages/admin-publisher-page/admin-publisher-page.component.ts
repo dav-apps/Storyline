@@ -13,6 +13,7 @@ import * as ErrorCodes from "src/app/errorCodes"
 })
 export class AdminPublisherPageComponent {
 	locale = this.localizationService.locale.adminPublisherPage
+	errorsLocale = this.localizationService.locale.errors
 	publisher: PublisherResource = null
 	feeds: FeedResource[] = []
 
@@ -140,49 +141,47 @@ export class AdminPublisherPageComponent {
 					case ErrorCodes.nameTooShort:
 						if (data.name.length == 0) {
 							this.publisherDialogNameError =
-								this.locale.errors.nameMissing
+								this.errorsLocale.nameMissing
 						} else {
 							this.publisherDialogNameError =
-								this.locale.errors.nameTooShort
+								this.errorsLocale.nameTooShort
 						}
 						break
 					case ErrorCodes.nameTooLong:
-						this.publisherDialogNameError = this.locale.errors.nameTooLong
+						this.publisherDialogNameError = this.errorsLocale.nameTooLong
 						break
 					case ErrorCodes.descriptionTooShort:
 						if (data.description.length == 0) {
 							this.publisherDialogDescriptionError =
-								this.locale.errors.descriptionMissing
+								this.errorsLocale.descriptionMissing
 						} else {
 							this.publisherDialogDescriptionError =
-								this.locale.errors.descriptionTooShort
+								this.errorsLocale.descriptionTooShort
 						}
 						break
 					case ErrorCodes.descriptionTooLong:
 						this.publisherDialogDescriptionError =
-							this.locale.errors.descriptionTooLong
+							this.errorsLocale.descriptionTooLong
 						break
 					case ErrorCodes.urlInvalid:
 						if (data.url.length == 0) {
-							this.publisherDialogUrlError =
-								this.locale.errors.urlMissing
+							this.publisherDialogUrlError = this.errorsLocale.urlMissing
 						} else {
-							this.publisherDialogUrlError =
-								this.locale.errors.urlInvalid
+							this.publisherDialogUrlError = this.errorsLocale.urlInvalid
 						}
 						break
 					case ErrorCodes.logoUrlInvalid:
 						if (data.logoUrl.length == 0) {
 							this.publisherDialogLogoUrlError =
-								this.locale.errors.logoUrlMissing
+								this.errorsLocale.logoUrlMissing
 						} else {
 							this.publisherDialogLogoUrlError =
-								this.locale.errors.logoUrlInvalid
+								this.errorsLocale.logoUrlInvalid
 						}
 						break
 					default:
 						this.publisherDialogNameError =
-							this.locale.errors.unexpectedError
+							this.errorsLocale.unexpectedError
 						break
 				}
 			}
@@ -218,26 +217,26 @@ export class AdminPublisherPageComponent {
 				switch (errorCode) {
 					case ErrorCodes.nameTooShort:
 						this.createFeedDialogUrlError =
-							this.locale.errors.nameTooShort
+							this.errorsLocale.nameTooShort
 						break
 					case ErrorCodes.nameTooLong:
-						this.createFeedDialogUrlError = this.locale.errors.nameTooLong
+						this.createFeedDialogUrlError = this.errorsLocale.nameTooLong
 						break
 					case ErrorCodes.descriptionTooShort:
 						this.createFeedDialogUrlError =
-							this.locale.errors.descriptionTooShort
+							this.errorsLocale.descriptionTooShort
 						break
 					case ErrorCodes.descriptionTooLong:
 						this.createFeedDialogUrlError =
-							this.locale.errors.descriptionTooLong
+							this.errorsLocale.descriptionTooLong
 						break
 					case ErrorCodes.languageInvalid:
 						this.createFeedDialogUrlError =
-							this.locale.errors.languageInvalid
+							this.errorsLocale.languageInvalid
 						break
 					default:
 						this.createFeedDialogUrlError =
-							this.locale.errors.unexpectedError
+							this.errorsLocale.unexpectedError
 						break
 				}
 			}
