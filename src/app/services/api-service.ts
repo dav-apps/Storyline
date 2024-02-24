@@ -226,8 +226,14 @@ export class ApiService {
 
 	async retrieveFeed(
 		queryData: string,
-		variables: { uuid: string; limit?: number; offset?: number }
+		variables: {
+			uuid: string
+			exclude?: string
+			limit?: number
+			offset?: number
+		}
 	): Promise<ApolloQueryResult<{ retrieveFeed: FeedResource }>> {
+		let excludeParam = queryData.includes("exclude") ? "$exclude: String" : ""
 		let limitParam = queryData.includes("limit") ? "$limit: Int" : ""
 		let offsetParam = queryData.includes("offset") ? "$offset: Int" : ""
 
@@ -236,6 +242,7 @@ export class ApiService {
 				query: gql`
 					query RetrieveFeed(
 						$uuid: String!
+						${excludeParam}
 						${limitParam}
 						${offsetParam}
 					) {

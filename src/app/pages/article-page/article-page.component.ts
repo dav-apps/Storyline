@@ -123,7 +123,11 @@ export class ArticlePageComponent {
 		let feedResponse = await this.apiService.retrieveFeed(
 			`
 				name
-				articles(limit: $limit, offset: $offset) {
+				articles(
+					exclude: $exclude
+					limit: $limit
+					offset: $offset
+				) {
 					items {
 						uuid
 						title
@@ -133,6 +137,7 @@ export class ArticlePageComponent {
 			`,
 			{
 				uuid: this.article.feeds.items[0].uuid,
+				exclude: this.article.uuid,
 				limit,
 				offset
 			}
@@ -142,9 +147,7 @@ export class ArticlePageComponent {
 
 		if (feedResponseData != null) {
 			for (let article of feedResponseData.articles.items) {
-				if (article.uuid != this.article.uuid) {
-					this.articleRecommendations.push(article)
-				}
+				this.articleRecommendations.push(article)
 			}
 
 			if (feedResponseData.name != null) {
