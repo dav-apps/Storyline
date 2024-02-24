@@ -42,14 +42,14 @@
 				</div>
 			</dav-card>
 		</div>
-		}
-
-		<div class="more-articles-container">
+		} @if (articleRecommendations.length > 0) {
+		<div class="article-recommendations-container">
 			<storyline-article-list
-				headline="Weitere Artikel"
+				[headline]="articleRecommendationsHeadline"
 				[articles]="articleRecommendations"
 			></storyline-article-list>
 		</div>
+		}
 	</div>
 	}
 </div>

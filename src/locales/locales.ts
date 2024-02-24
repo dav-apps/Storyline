@@ -38,6 +38,10 @@ const enDefaults = {
 	},
 	articlePage: {
 		openArticle: "Open article",
+		articleRecommendationsHeadline: {
+			byPublisher: "More articles by {0}",
+			inFeed: "More articles in the category {0}"
+		},
 		upgradeCardHeadline: "Too lazy to read the whole article?",
 		upgradeCardSubhead: "Get article summaries with Storyline Plus.",
 		learnMore: "Learn more"
@@ -141,6 +145,10 @@ const deDefaults = {
 	},
 	articlePage: {
 		openArticle: "Artikel öffnen",
+		articleRecommendationsHeadline: {
+			byPublisher: "Weitere Artikel von {0}",
+			inFeed: "Weitere Artikel in der Rubrik {0}"
+		},
 		upgradeCardHeadline: "Zu faul, den kompletten Artikel zu lesen?",
 		upgradeCardSubhead:
 			"Erhalte Artikel-Zusammenfassungen mit Storyline Plus.",

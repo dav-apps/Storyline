@@ -17,6 +17,7 @@ export class ArticlePageComponent {
 	content: string = null
 	showShareButton: boolean = false
 	articleRecommendations: ArticleResource[] = []
+	articleRecommendationsHeadline: string = ""
 
 	constructor(
 		private apiService: ApiService,
@@ -90,6 +91,20 @@ export class ArticlePageComponent {
 				if (article.uuid != this.article.uuid) {
 					this.articleRecommendations.push(article)
 				}
+			}
+
+			if (feedResponseData.name != null) {
+				this.articleRecommendationsHeadline =
+					this.locale.articleRecommendationsHeadline.inFeed.replace(
+						"{0}",
+						feedResponseData.name
+					)
+			} else {
+				this.articleRecommendationsHeadline =
+					this.locale.articleRecommendationsHeadline.byPublisher.replace(
+						"{0}",
+						this.article.publisher.name
+					)
 			}
 		}
 	}
