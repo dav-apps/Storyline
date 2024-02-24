@@ -41,10 +41,13 @@ export class PublisherDialogComponent {
 	}
 
 	show() {
-		this.name = ""
-		this.description = ""
-		this.url = ""
-		this.logoUrl = ""
+		if (this.mode == "create") {
+			this.name = ""
+			this.description = ""
+			this.url = ""
+			this.logoUrl = ""
+		}
+
 		this.visible = true
 	}
 
