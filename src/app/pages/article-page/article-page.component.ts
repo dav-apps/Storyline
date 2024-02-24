@@ -1,5 +1,5 @@
 import { Component } from "@angular/core"
-import { Router, ActivatedRoute } from "@angular/router"
+import { Router, ActivatedRoute, ParamMap } from "@angular/router"
 import { faShareFromSquare } from "@fortawesome/pro-regular-svg-icons"
 import { ApiService } from "../../services/api-service"
 import { DataService } from "../../services/data-service"
@@ -13,6 +13,7 @@ import { ArticleResource } from "../../types"
 export class ArticlePageComponent {
 	locale = this.localizationService.locale.articlePage
 	faShareFromSquare = faShareFromSquare
+	uuid: string = ""
 	article: ArticleResource = null
 	content: string = null
 	showShareButton: boolean = false
@@ -32,6 +33,24 @@ export class ArticlePageComponent {
 
 	async ngOnInit() {
 		await this.dataService.userPromiseHolder.AwaitResult()
+
+		this.activatedRoute.paramMap.subscribe(async (paramMap: ParamMap) => {
+			let uuid = paramMap.get("uuid")
+
+			if (this.uuid != uuid) {
+				this.uuid = uuid
+
+				// Show loading screen & clear article recommendations
+				this.dataService.loadingScreenVisible = true
+				this.articleRecommendations = []
+				this.dataService.contentContainer.scrollTo(0, 0)
+
+				await this.loadData()
+			}
+		})
+	}
+
+	async loadData() {
 		const isUserOnPlus = this.dataService.dav.user.Plan > 0
 		const uuid = this.activatedRoute.snapshot.paramMap.get("uuid")
 
