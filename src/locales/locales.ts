@@ -147,7 +147,7 @@ const deDefaults = {
 		openArticle: "Artikel öffnen",
 		articleRecommendationsHeadline: {
 			byPublisher: "Weitere Artikel von {0}",
-			inFeed: "Weitere Artikel in der Rubrik {0}"
+			inFeed: "Weitere Artikel aus der Rubrik {0}"
 		},
 		upgradeCardHeadline: "Zu faul, den kompletten Artikel zu lesen?",
 		upgradeCardSubhead:

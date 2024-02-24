@@ -19,6 +19,9 @@ export class ArticlePageComponent {
 	showShareButton: boolean = false
 	articleRecommendations: ArticleResource[] = []
 	articleRecommendationsHeadline: string = ""
+	limit: number = 12
+	offset: number = 0
+	articleRecommendationsLoading: boolean = false
 
 	constructor(
 		private apiService: ApiService,
@@ -48,6 +51,32 @@ export class ArticlePageComponent {
 				await this.loadData()
 			}
 		})
+
+		this.dataService.contentContainer.addEventListener(
+			"scroll",
+			this.onScroll
+		)
+	}
+
+	ngOnDestroy() {
+		this.dataService.contentContainer.removeEventListener(
+			"scroll",
+			this.onScroll
+		)
+	}
+
+	onScroll = () => {
+		const contentContainer = this.dataService.contentContainer
+		const hasReachedBottom =
+			Math.abs(
+				contentContainer.scrollHeight -
+					contentContainer.scrollTop -
+					contentContainer.clientHeight
+			) < 1
+
+		if (hasReachedBottom) {
+			this.loadMoreArticleRecommendations()
+		}
 	}
 
 	async loadData() {
@@ -87,6 +116,10 @@ export class ArticlePageComponent {
 		this.article = responseData
 
 		// Load article recommendations
+		await this.loadArticleRecommendations()
+	}
+
+	async loadArticleRecommendations(limit: number = 12, offset: number = 0) {
 		let feedResponse = await this.apiService.retrieveFeed(
 			`
 				name
@@ -99,7 +132,9 @@ export class ArticlePageComponent {
 				}
 			`,
 			{
-				uuid: this.article.feeds.items[0].uuid
+				uuid: this.article.feeds.items[0].uuid,
+				limit,
+				offset
 			}
 		)
 
@@ -126,6 +161,17 @@ export class ArticlePageComponent {
 					)
 			}
 		}
+	}
+
+	async loadMoreArticleRecommendations() {
+		if (this.articleRecommendationsLoading) return
+		this.articleRecommendationsLoading = true
+
+		this.offset += this.limit
+
+		await this.loadArticleRecommendations(this.limit, this.offset)
+
+		this.articleRecommendationsLoading = false
 	}
 
 	navigateToPublisherPage(event: Event) {
