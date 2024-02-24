@@ -223,6 +223,32 @@ export class ApiService {
 
 		return result
 	}
+
+	async retrieveFeed(
+		queryData: string,
+		variables: { uuid: string; limit?: number; offset?: number }
+	): Promise<ApolloQueryResult<{ retrieveFeed: FeedResource }>> {
+		let limitParam = queryData.includes("limit") ? "$limit: Int" : ""
+		let offsetParam = queryData.includes("offset") ? "$offset: Int" : ""
+
+		return await this.apollo
+			.query<{ retrieveFeed: FeedResource }>({
+				query: gql`
+					query RetrieveFeed(
+						$uuid: String!
+						${limitParam}
+						${offsetParam}
+					) {
+						retrieveFeed(uuid: $uuid) {
+							${queryData}
+						}
+					}
+				`,
+				variables,
+				errorPolicy
+			})
+			.toPromise()
+	}
 	//#endregion
 
 	//#region Article

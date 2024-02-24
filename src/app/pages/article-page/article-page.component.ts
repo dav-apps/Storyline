@@ -16,6 +16,7 @@ export class ArticlePageComponent {
 	article: ArticleResource = null
 	content: string = null
 	showShareButton: boolean = false
+	articleRecommendations: ArticleResource[] = []
 
 	constructor(
 		private apiService: ApiService,
@@ -35,6 +36,7 @@ export class ArticlePageComponent {
 
 		const response = await this.apiService.retrieveArticle(
 			`
+				uuid
 				url
 				title
 				imageUrl
@@ -44,6 +46,11 @@ export class ArticlePageComponent {
 					name
 					url
 					logoUrl
+				}
+				feeds {
+					items {
+						uuid
+					}
 				}
 			`,
 			{ uuid }
@@ -58,6 +65,33 @@ export class ArticlePageComponent {
 		}
 
 		this.article = responseData
+
+		// Load article recommendations
+		let feedResponse = await this.apiService.retrieveFeed(
+			`
+				name
+				articles(limit: $limit, offset: $offset) {
+					items {
+						uuid
+						title
+						imageUrl
+					}
+				}
+			`,
+			{
+				uuid: this.article.feeds.items[0].uuid
+			}
+		)
+
+		let feedResponseData = feedResponse.data.retrieveFeed
+
+		if (feedResponseData != null) {
+			for (let article of feedResponseData.articles.items) {
+				if (article.uuid != this.article.uuid) {
+					this.articleRecommendations.push(article)
+				}
+			}
+		}
 	}
 
 	navigateToPublisherPage(event: Event) {
