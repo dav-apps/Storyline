@@ -26,6 +26,7 @@ export interface FeedResource {
 	name: string
 	description: string
 	language: string
+	articles: List<ArticleResource>
 }
 
 export interface ArticleResource {
@@ -38,5 +39,6 @@ export interface ArticleResource {
 	imageUrl: string
 	content: string
 	summary: string
+	feeds: List<FeedResource>
 }
 //#endregion

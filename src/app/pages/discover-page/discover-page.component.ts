@@ -13,7 +13,8 @@ export class DiscoverPageComponent {
 	articles: ArticleResource[] = []
 	limit: number = 12
 	offset: number = 0
-	articlesLoading: boolean = false
+	articlesLoading: boolean = true
+	moreArticlesLoading: boolean = false
 
 	constructor(
 		private apiService: ApiService,
@@ -27,6 +28,8 @@ export class DiscoverPageComponent {
 		for (let article of articles) {
 			this.articles.push(article)
 		}
+
+		this.articlesLoading = false
 
 		this.dataService.contentContainer.addEventListener(
 			"scroll",
@@ -82,8 +85,8 @@ export class DiscoverPageComponent {
 	}
 
 	async loadMoreArticles() {
-		if (this.articlesLoading) return
-		this.articlesLoading = true
+		if (this.moreArticlesLoading) return
+		this.moreArticlesLoading = true
 
 		this.offset += this.limit
 
@@ -93,6 +96,6 @@ export class DiscoverPageComponent {
 			this.articles.push(article)
 		}
 
-		this.articlesLoading = false
+		this.moreArticlesLoading = false
 	}
 }

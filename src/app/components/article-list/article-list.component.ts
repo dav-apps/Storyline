@@ -9,6 +9,7 @@ import { ArticleResource } from "src/app/types"
 })
 export class ArticleListComponent {
 	@Input() headline: string = ""
+	@Input() loading: boolean = false
 	@Input() articles: ArticleResource[] = []
 
 	constructor(private router: Router) {}

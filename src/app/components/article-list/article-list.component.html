@@ -7,17 +7,25 @@
 	</div>
 	}
 
-	<div class="article-list-container">
-		@for (article of articles; track article.uuid) {
-		<div class="card-container">
-			<dav-card
-				[imageSrc]="article.imageUrl"
-				[headline]="article.title"
-				[subhead]="article.publisher?.name || ''"
-				[subheadImageSrc]="article.publisher?.logoUrl || ''"
-				[href]="'article/' + uriEncode(article.uuid)"
-				(click)="itemClicked($event, article)"
-			></dav-card>
+	<div class="content-container">
+		@if (loading) {
+		<div class="progress-ring-container">
+			<dav-progress-ring size="32"></dav-progress-ring>
+		</div>
+		} @else {
+		<div class="list-container slide-up-in">
+			@for (article of articles; track article.uuid) {
+			<div class="card-container">
+				<dav-card
+					[imageSrc]="article.imageUrl"
+					[headline]="article.title"
+					[subhead]="article.publisher?.name || ''"
+					[subheadImageSrc]="article.publisher?.logoUrl || ''"
+					[href]="'article/' + uriEncode(article.uuid)"
+					(click)="itemClicked($event, article)"
+				></dav-card>
+			</div>
+			}
 		</div>
 		}
 	</div>

@@ -4,7 +4,14 @@
 	gap: 2rem;
 }
 
-.article-list-container {
+.progress-ring-container {
+	display: flex;
+	align-items: center;
+	margin-left: 48px;
+	padding: 32px;
+}
+
+.list-container {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
