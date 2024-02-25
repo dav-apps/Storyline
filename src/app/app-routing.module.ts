@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router"
 import { StartPageComponent } from "./pages/start-page/start-page.component"
+import { BookmarksPageComponent } from "./pages/bookmarks-page/bookmarks-page.component"
 import { AdminPageComponent } from "./pages/admin-page/admin-page.component"
 import { AdminPublisherPageComponent } from "./pages/admin-publisher-page/admin-publisher-page.component"
 import { UserPageComponent } from "./pages/user-page/user-page.component"
@@ -13,6 +14,10 @@ const routes: Routes = [
 	{
 		path: "",
 		component: StartPageComponent
+	},
+	{
+		path: "bookmarks",
+		component: BookmarksPageComponent
 	},
 	{
 		path: "admin",

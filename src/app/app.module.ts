@@ -24,6 +24,7 @@ import { LogoutDialogComponent } from "./dialogs/logout-dialog/logout-dialog.com
 
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
+import { BookmarksPageComponent } from "./pages/bookmarks-page/bookmarks-page.component"
 import { AdminPageComponent } from "./pages/admin-page/admin-page.component"
 import { AdminPublisherPageComponent } from "./pages/admin-publisher-page/admin-publisher-page.component"
 import { UserPageComponent } from "./pages/user-page/user-page.component"
@@ -49,6 +50,7 @@ import { SettingsService } from "./services/settings-service"
 		CreateFeedDialogComponent,
 		LogoutDialogComponent,
 		StartPageComponent,
+		BookmarksPageComponent,
 		AdminPageComponent,
 		AdminPublisherPageComponent,
 		UserPageComponent,
