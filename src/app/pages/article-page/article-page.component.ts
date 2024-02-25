@@ -147,7 +147,18 @@ export class ArticlePageComponent {
 
 		if (feedResponseData != null) {
 			for (let article of feedResponseData.articles.items) {
-				this.articleRecommendations.push(article)
+				this.articleRecommendations.push({
+					...article,
+					publisher: {
+						uuid: null,
+						url: null,
+						name: null,
+						description: null,
+						logoUrl: this.article.publisher.logoUrl,
+						feeds: null,
+						articles: null
+					}
+				})
 			}
 
 			if (feedResponseData.name != null) {
