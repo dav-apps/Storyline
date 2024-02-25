@@ -89,10 +89,20 @@
 				{{ usedStorageText }}
 			</p>
 
-			<dav-button color="error" outline size="small">
+			<dav-button
+				color="error"
+				outline
+				size="small"
+				(click)="showLogoutDialog()"
+			>
 				{{ locale.logout }}
 			</dav-button>
 		</div>
 	</div>
 </div>
 }
+
+<storyline-logout-dialog
+	#logoutDialog
+	(primaryButtonClick)="logout()"
+></storyline-logout-dialog>

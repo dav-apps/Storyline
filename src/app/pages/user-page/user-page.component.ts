@@ -1,10 +1,11 @@
-import { Component } from "@angular/core"
+import { Component, ViewChild } from "@angular/core"
 import {
 	faRotate as faRotateLight,
 	faPlus as faPlusLight,
 	faGem as faGemLight
 } from "@fortawesome/pro-light-svg-icons"
 import { Dav } from "dav-js"
+import { LogoutDialogComponent } from "src/app/dialogs/logout-dialog/logout-dialog.component"
 import { DataService } from "../../services/data-service"
 import { LocalizationService } from "../../services/localization-service"
 import { bytesToGigabytesText } from "../../utils"
@@ -19,6 +20,8 @@ export class UserPageComponent {
 	faRotateLight = faRotateLight
 	faPlusLight = faPlusLight
 	faGemLight = faGemLight
+	@ViewChild("logoutDialog")
+	logoutDialog: LogoutDialogComponent
 	websiteUrl = environment.websiteUrl
 	usedStoragePercent: number = 0
 	usedStorageText: string = ""
@@ -53,5 +56,16 @@ export class UserPageComponent {
 
 	navigateToSignupPage() {
 		Dav.ShowSignupPage(environment.apiKey, window.location.origin)
+	}
+
+	showLogoutDialog() {
+		this.logoutDialog.show()
+	}
+
+	async logout() {
+		this.logoutDialog.hide()
+
+		await this.dataService.dav.Logout()
+		window.location.href = "/user"
 	}
 }

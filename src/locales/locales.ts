@@ -70,6 +70,12 @@ const enDefaults = {
 		createFeedDialog: {
 			headline: "Create feed",
 			urlTextfieldLabel: "URL"
+		},
+		logoutDialog: {
+			headline: "Log out",
+			description: "Are you sure you want to log out?",
+			logout: "Log out",
+			cancel: "Cancel"
 		}
 	},
 	actions: {
@@ -178,6 +184,12 @@ const deDefaults = {
 		createFeedDialog: {
 			headline: "Feed erstellen",
 			urlTextfieldLabel: "URL"
+		},
+		logoutDialog: {
+			headline: "Abmelden",
+			description: "Bist du dir sicher, dass du dich abmelden möchtest?",
+			logout: "Abmelden",
+			cancel: "Abbrechen"
 		}
 	},
 	actions: {
