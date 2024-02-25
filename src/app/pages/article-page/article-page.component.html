@@ -3,7 +3,9 @@
 	<div class="slide-up-in">
 		<h1>{{ article.title }}</h1>
 
+		@if (article.imageUrl != null) {
 		<img [src]="article.imageUrl" />
+		}
 
 		<div class="profile-card-container">
 			<dav-profile-card
