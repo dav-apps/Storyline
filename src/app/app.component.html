@@ -28,6 +28,17 @@
 	<div class="navbar-spacer"></div>
 
 	<div class="navbar-icon-buttons-container">
+		<dav-icon-button
+			[selected]="bookmarksButtonSelected"
+			(click)="navigateToBookmarksPage()"
+		>
+			@if (bookmarksButtonSelected) {
+			<fa-icon [icon]="faBookBookmarkSolid"></fa-icon>
+			} @else {
+			<fa-icon [icon]="faBookBookmarkRegular"></fa-icon>
+			}
+		</dav-icon-button>
+
 		@if (dataService.userIsAdmin) {
 		<dav-icon-button
 			[selected]="adminButtonSelected"

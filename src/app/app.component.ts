@@ -8,12 +8,14 @@ import {
 	faNewspaper as faNewspaperSolid,
 	faHammer as faHammerSolid,
 	faCircleUser as faCircleUserSolid,
-	faGear as faGearSolid
+	faGear as faGearSolid,
+	faBookBookmark as faBookBookmarkSolid
 } from "@fortawesome/free-solid-svg-icons"
 import { faSparkles as faSparklesSolid } from "@fortawesome/pro-solid-svg-icons"
 import {
 	faNewspaper as faNewspaperRegular,
 	faSparkles as faSparklesRegular,
+	faBookBookmark as faBookBookmarkRegular,
 	faHammer as faHammerRegular,
 	faCircleUser as faCircleUserRegular,
 	faGear as faGearRegular
@@ -43,6 +45,8 @@ export class AppComponent {
 	faNewspaperRegular = faNewspaperRegular
 	faSparklesSolid = faSparklesSolid
 	faSparklesRegular = faSparklesRegular
+	faBookBookmarkSolid = faBookBookmarkSolid
+	faBookBookmarkRegular = faBookBookmarkRegular
 	faHammerSolid = faHammerSolid
 	faHammerRegular = faHammerRegular
 	faCircleUserSolid = faCircleUserSolid
@@ -53,6 +57,7 @@ export class AppComponent {
 	contentContainer: ElementRef<HTMLDivElement>
 	newsFeedTabActive: boolean = false
 	discoverTabActive: boolean = false
+	bookmarksButtonSelected: boolean = false
 	adminButtonSelected: boolean = false
 	userButtonSelected: boolean = false
 	settingsButtonSelected: boolean = false
@@ -74,6 +79,7 @@ export class AppComponent {
 
 				this.newsFeedTabActive = currentUrl == "/"
 				this.discoverTabActive = currentUrl.startsWith("/discover")
+				this.bookmarksButtonSelected = currentUrl == "/bookmarks"
 				this.adminButtonSelected = currentUrl.startsWith("/admin")
 				this.userButtonSelected = currentUrl == "/user"
 				this.settingsButtonSelected = currentUrl == "/settings"
@@ -121,6 +127,10 @@ export class AppComponent {
 
 	navigateToDiscoverPage() {
 		this.router.navigate(["discover"])
+	}
+
+	navigateToBookmarksPage() {
+		this.router.navigate(["bookmarks"])
 	}
 
 	navigateToAdminPage() {
