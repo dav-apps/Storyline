@@ -8,7 +8,8 @@ const enDefaults = {
 		latestNews: "Latest news"
 	},
 	bookmarksPage: {
-		title: "Your bookmarks"
+		title: "Your bookmarks",
+		noArticles: "You have no saved articles"
 	},
 	adminPage: {
 		publishers: "Publishers"
@@ -124,7 +125,8 @@ const deDefaults = {
 		latestNews: "Neueste Meldungen"
 	},
 	bookmarksPage: {
-		title: "Deine Lesezeichen"
+		title: "Deine Lesezeichen",
+		noArticles: "Du hast keine gespeicherten Artikel"
 	},
 	adminPage: {
 		publishers: "Anbieter"

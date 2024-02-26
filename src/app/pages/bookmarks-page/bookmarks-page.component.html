@@ -7,6 +7,10 @@
 	<div class="progress-ring-container">
 		<dav-progress-ring size="32"></dav-progress-ring>
 	</div>
+	} @else if (articles.length == 0) {
+		<div class="no-articles-container">
+			<p>{{ locale.noArticles }}</p>
+		</div>
 	} @else {
 	<storyline-article-list [articles]="articles"></storyline-article-list>
 	}
