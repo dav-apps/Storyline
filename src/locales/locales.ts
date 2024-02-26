@@ -3,6 +3,13 @@ const enDefaults = {
 	startPage: {
 		youFollow: "You follow"
 	},
+	discoverPage: {
+		publishersInTheSpotlight: "Publishers in the spotlight",
+		latestNews: "Latest news"
+	},
+	bookmarksPage: {
+		title: "Your bookmarks"
+	},
 	adminPage: {
 		publishers: "Publishers"
 	},
@@ -31,10 +38,6 @@ const enDefaults = {
 		systemTheme: "System default",
 		github: "Storyline on GitHub",
 		privacy: "Privacy Policy"
-	},
-	discoverPage: {
-		publishersInTheSpotlight: "Publishers in the spotlight",
-		latestNews: "Latest news"
 	},
 	articlePage: {
 		openArticle: "Open article",
@@ -116,6 +119,13 @@ const deDefaults = {
 	startPage: {
 		youFollow: "Du folgst"
 	},
+	discoverPage: {
+		publishersInTheSpotlight: "Anbieter im Rampenlicht",
+		latestNews: "Neueste Meldungen"
+	},
+	bookmarksPage: {
+		title: "Deine Lesezeichen"
+	},
 	adminPage: {
 		publishers: "Anbieter"
 	},
@@ -146,10 +156,6 @@ const deDefaults = {
 		systemTheme: "System-Standard",
 		github: "Storyline auf GitHub",
 		privacy: "Datenschutzerklärung"
-	},
-	discoverPage: {
-		publishersInTheSpotlight: "Anbieter im Rampenlicht",
-		latestNews: "Neueste Meldungen"
 	},
 	articlePage: {
 		openArticle: "Artikel öffnen",
