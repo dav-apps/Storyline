@@ -20,7 +20,7 @@ import {
 	faCircleUser as faCircleUserRegular,
 	faGear as faGearRegular
 } from "@fortawesome/pro-regular-svg-icons"
-import { Dav } from "dav-js"
+import { Dav, GetAllTableObjects } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
 import { ApiService } from "./services/api-service"
@@ -99,7 +99,7 @@ export class AppComponent {
 		})
 	}
 
-	ngOnInit() {
+	async ngOnInit() {
 		this.setSize()
 		this.dataService.loadTheme()
 		this.dataService.contentContainer = this.contentContainer.nativeElement
@@ -114,6 +114,10 @@ export class AppComponent {
 					this.accessTokenRenewed(accessToken)
 			}
 		})
+
+		// Get number of bookmark table objects
+		let tableObjects = await GetAllTableObjects(environment.bookmarkTableId)
+		this.dataService.bookmarksCount = tableObjects.length
 	}
 
 	@HostListener("window:resize")

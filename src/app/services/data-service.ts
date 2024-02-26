@@ -15,6 +15,7 @@ export class DataService {
 	contentContainer: HTMLDivElement = null
 	loadingScreenVisible: boolean = false
 	isMobile: boolean = false
+	bookmarksCount: number = 0
 
 	constructor(private settingsService: SettingsService) {}
 

@@ -59,8 +59,6 @@ export class ArticlePageComponent {
 				this.articleRecommendations = []
 				this.dataService.contentContainer.scrollTo(0, 0)
 
-				await this.loadData()
-
 				// Try to find a bookmark table object for the article
 				const bookmarks = await GetAllTableObjects(
 					environment.bookmarkTableId
@@ -69,6 +67,8 @@ export class ArticlePageComponent {
 					b => b.GetPropertyValue(bookmarkTableArticleKey) == uuid
 				)
 				if (i != -1) this.bookmarkTableObject = bookmarks[i]
+
+				await this.loadData()
 			}
 		})
 
@@ -231,6 +231,7 @@ export class ArticlePageComponent {
 		})
 
 		this.bookmarkTableObject = tableObject
+		this.dataService.bookmarksCount++
 
 		// Send success toast
 		let toast = document.createElement("dav-toast")
@@ -243,6 +244,7 @@ export class ArticlePageComponent {
 	async removeFromBookmarks() {
 		await this.bookmarkTableObject.Delete()
 		this.bookmarkTableObject = null
+		this.dataService.bookmarksCount--
 
 		// Send success toast
 		let toast = document.createElement("dav-toast")
