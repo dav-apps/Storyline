@@ -7,5 +7,6 @@ export const environment = {
 	storylineApiUrl: "https://storyline-api-staging-85btq.ondigitalocean.app",
 	websiteUrl: "https://dav-apps.tech",
 	appId: 7,
-	followTableId: 43
+	followTableId: 43,
+	bookmarkTableId: 44
 }

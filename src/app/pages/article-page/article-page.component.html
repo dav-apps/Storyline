@@ -19,6 +19,14 @@
 			<dav-icon-button size="small" (click)="share()">
 				<fa-icon [icon]="faShareFromSquare"></fa-icon>
 			</dav-icon-button>
+			} @if (bookmarkTableObject == null) {
+			<dav-icon-button size="small" (click)="addToBookmarks()">
+				<fa-icon [icon]="faBookmarkRegular"></fa-icon>
+			</dav-icon-button>
+			} @else {
+			<dav-icon-button size="small" (click)="removeFromBookmarks()">
+				<fa-icon [icon]="faBookmarkSolid"></fa-icon>
+			</dav-icon-button>
 			}
 		</div>
 

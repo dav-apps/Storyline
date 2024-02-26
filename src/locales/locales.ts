@@ -44,7 +44,9 @@ const enDefaults = {
 		},
 		upgradeCardHeadline: "Too lazy to read the whole article?",
 		upgradeCardSubhead: "Get article summaries with Storyline Plus.",
-		learnMore: "Learn more"
+		learnMore: "Learn more",
+		addedToBookmarks: "Article was added to bookmarks",
+		removedFromBookmarks: "Article was removed from bookmarks"
 	},
 	publisherPage: {
 		follow: "Follow",
@@ -158,7 +160,9 @@ const deDefaults = {
 		upgradeCardHeadline: "Zu faul, den kompletten Artikel zu lesen?",
 		upgradeCardSubhead:
 			"Erhalte Artikel-Zusammenfassungen mit Storyline Plus.",
-		learnMore: "Mehr erfahren"
+		learnMore: "Mehr erfahren",
+		addedToBookmarks: "Artikel wurde in Lesezeichen gespeichert",
+		removedFromBookmarks: "Artikel wurde von Lesezeichen entfernt"
 	},
 	publisherPage: {
 		follow: "Folgen",

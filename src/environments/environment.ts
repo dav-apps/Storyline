@@ -7,5 +7,6 @@ export const environment = {
 	storylineApiUrl: "http://localhost:4004",
 	websiteUrl: "http://localhost:3000",
 	appId: 7,
-	followTableId: 43
+	followTableId: 43,
+	bookmarkTableId: 44
 }

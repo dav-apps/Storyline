@@ -1,10 +1,18 @@
 import { Component } from "@angular/core"
 import { Router, ActivatedRoute, ParamMap } from "@angular/router"
-import { faShareFromSquare } from "@fortawesome/pro-regular-svg-icons"
-import { ApiService } from "../../services/api-service"
-import { DataService } from "../../services/data-service"
-import { LocalizationService } from "../../services/localization-service"
-import { ArticleResource } from "../../types"
+import { faBookmark as faBookmarkSolid } from "@fortawesome/pro-solid-svg-icons"
+import {
+	faShareFromSquare,
+	faBookmark as faBookmarkRegular
+} from "@fortawesome/pro-regular-svg-icons"
+import { GetAllTableObjects, TableObject } from "dav-js"
+import { Toast } from "dav-ui-components"
+import { ApiService } from "src/app/services/api-service"
+import { DataService } from "src/app/services/data-service"
+import { LocalizationService } from "src/app/services/localization-service"
+import { ArticleResource } from "src/app/types"
+import { bookmarkTableArticleKey } from "src/app/constants"
+import { environment } from "src/environments/environment"
 
 @Component({
 	templateUrl: "./article-page.component.html",
@@ -13,6 +21,8 @@ import { ArticleResource } from "../../types"
 export class ArticlePageComponent {
 	locale = this.localizationService.locale.articlePage
 	faShareFromSquare = faShareFromSquare
+	faBookmarkSolid = faBookmarkSolid
+	faBookmarkRegular = faBookmarkRegular
 	uuid: string = ""
 	article: ArticleResource = null
 	content: string = null
@@ -22,6 +32,7 @@ export class ArticlePageComponent {
 	limit: number = 12
 	offset: number = 0
 	articleRecommendationsLoading: boolean = false
+	bookmarkTableObject: TableObject = null
 
 	constructor(
 		private apiService: ApiService,
@@ -49,6 +60,15 @@ export class ArticlePageComponent {
 				this.dataService.contentContainer.scrollTo(0, 0)
 
 				await this.loadData()
+
+				// Try to find a bookmark table object for the article
+				const bookmarks = await GetAllTableObjects(
+					environment.bookmarkTableId
+				)
+				let i = bookmarks.findIndex(
+					b => b.GetPropertyValue(bookmarkTableArticleKey) == uuid
+				)
+				if (i != -1) this.bookmarkTableObject = bookmarks[i]
 			}
 		})
 
@@ -198,5 +218,37 @@ export class ArticlePageComponent {
 			url: this.article.url,
 			title: this.article.title
 		})
+	}
+
+	async addToBookmarks() {
+		// Create a bookmark table object
+		let tableObject = new TableObject()
+		tableObject.TableId = environment.bookmarkTableId
+
+		await tableObject.SetPropertyValue({
+			name: bookmarkTableArticleKey,
+			value: this.article.uuid
+		})
+
+		this.bookmarkTableObject = tableObject
+
+		// Send success toast
+		let toast = document.createElement("dav-toast")
+		toast.text = this.locale.addedToBookmarks
+		toast.paddingBottom = this.dataService.isMobile ? 80 : 0
+
+		Toast.show(toast)
+	}
+
+	async removeFromBookmarks() {
+		await this.bookmarkTableObject.Delete()
+		this.bookmarkTableObject = null
+
+		// Send success toast
+		let toast = document.createElement("dav-toast")
+		toast.text = this.locale.removedFromBookmarks
+		toast.paddingBottom = this.dataService.isMobile ? 80 : 0
+
+		Toast.show(toast)
 	}
 }
