@@ -12,6 +12,7 @@ import { environment } from "src/environments/environment"
 })
 export class BookmarksPageComponent {
 	locale = this.localizationService.locale.bookmarksPage
+	loading: boolean = true
 	articles: ArticleResource[] = []
 
 	constructor(
@@ -46,5 +47,7 @@ export class BookmarksPageComponent {
 				this.articles.push(responseData)
 			}
 		}
+
+		this.loading = false
 	}
 }
