@@ -14,6 +14,7 @@ import { LocalizationService } from "src/app/services/localization-service"
 })
 export class LogoutDialogComponent {
 	locale = this.localizationService.locale.dialogs.logoutDialog
+	actionsLocale = this.localizationService.locale.actions
 	@ViewChild("dialog") dialog: ElementRef<Dialog>
 	@Output() primaryButtonClick = new EventEmitter()
 	visible: boolean = false

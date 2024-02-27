@@ -63,6 +63,10 @@ const enDefaults = {
 			description:
 				"Log in to follow more publishers, receive notifications and more."
 		},
+		logoutDialog: {
+			headline: "Log out",
+			description: "Are you sure you want to log out?"
+		},
 		publisherDialog: {
 			headline: {
 				create: "Create publisher",
@@ -76,16 +80,11 @@ const enDefaults = {
 		createFeedDialog: {
 			headline: "Create feed",
 			urlTextfieldLabel: "URL"
-		},
-		logoutDialog: {
-			headline: "Log out",
-			description: "Are you sure you want to log out?",
-			logout: "Log out",
-			cancel: "Cancel"
 		}
 	},
 	actions: {
 		login: "Log in",
+		logout: "Log out",
 		create: "Create",
 		save: "Save",
 		cancel: "Cancel",
@@ -183,6 +182,10 @@ const deDefaults = {
 			description:
 				"Melde dich an, um weiteren Anbietern zu folgen, Benachrichtigungen zu erhalten und vieles mehr."
 		},
+		logoutDialog: {
+			headline: "Abmelden",
+			description: "Bist du dir sicher, dass du dich abmelden möchtest?"
+		},
 		publisherDialog: {
 			headline: {
 				create: "Anbieter erstellen",
@@ -196,16 +199,11 @@ const deDefaults = {
 		createFeedDialog: {
 			headline: "Feed erstellen",
 			urlTextfieldLabel: "URL"
-		},
-		logoutDialog: {
-			headline: "Abmelden",
-			description: "Bist du dir sicher, dass du dich abmelden möchtest?",
-			logout: "Abmelden",
-			cancel: "Abbrechen"
 		}
 	},
 	actions: {
 		login: "Anmelden",
+		logout: "Abmelden",
 		create: "Erstellen",
 		save: "Speichern",
 		cancel: "Abbrechen",
