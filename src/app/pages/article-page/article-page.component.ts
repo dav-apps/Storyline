@@ -1,4 +1,4 @@
-import { Component } from "@angular/core"
+import { Component, ViewChild } from "@angular/core"
 import { Router, ActivatedRoute, ParamMap } from "@angular/router"
 import { faBookmark as faBookmarkSolid } from "@fortawesome/pro-solid-svg-icons"
 import {
@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/pro-regular-svg-icons"
 import { GetAllTableObjects, TableObject } from "dav-js"
 import { Toast } from "dav-ui-components"
+import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
@@ -23,6 +24,8 @@ export class ArticlePageComponent {
 	faShareFromSquare = faShareFromSquare
 	faBookmarkSolid = faBookmarkSolid
 	faBookmarkRegular = faBookmarkRegular
+	@ViewChild("upgradePlusDialog")
+	upgradePlusDialog: UpgradePlusDialogComponent
 	uuid: string = ""
 	article: ArticleResource = null
 	content: string = null
@@ -252,5 +255,9 @@ export class ArticlePageComponent {
 		toast.paddingBottom = this.dataService.isMobile ? 80 : 0
 
 		Toast.show(toast)
+	}
+
+	showUpgradePlusDialog() {
+		this.upgradePlusDialog.show()
 	}
 }

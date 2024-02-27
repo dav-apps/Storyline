@@ -48,7 +48,9 @@
 				[subhead]="locale.upgradeCardSubhead"
 			>
 				<div>
-					<dav-button size="small">{{ locale.learnMore }}</dav-button>
+					<dav-button size="small" (click)="showUpgradePlusDialog()">
+						{{ locale.learnMore }}
+					</dav-button>
 				</div>
 			</dav-card>
 		</div>
@@ -63,3 +65,7 @@
 	</div>
 	}
 </div>
+
+<storyline-upgrade-plus-dialog
+	#upgradePlusDialog
+></storyline-upgrade-plus-dialog>

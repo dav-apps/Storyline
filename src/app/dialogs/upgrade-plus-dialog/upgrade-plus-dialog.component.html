@@ -1,0 +1,19 @@
+<dav-dialog
+	#dialog
+	[headline]="locale.headline"
+	[primaryButtonText]="locale.getStarted"
+	[defaultButtonText]="actionsLocale.close"
+	[visible]="visible"
+	maxWidth="400"
+	(dismiss)="visible = false"
+	(primaryButtonClick)="upgrade()"
+	(defaultButtonClick)="visible = false"
+>
+	<p>{{ locale.intro }}</p>
+
+	<ul>
+		<li [innerHTML]="locale.articleSummaries"></li>
+		<li [innerHTML]="locale.realTimeUpdates"></li>
+		<li [innerHTML]="locale.feedCustomization"></li>
+	</ul>
+</dav-dialog>

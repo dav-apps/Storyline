@@ -67,6 +67,17 @@ const enDefaults = {
 			headline: "Log out",
 			description: "Are you sure you want to log out?"
 		},
+		upgradePlusDialog: {
+			headline: "Storyline Plus",
+			intro: "For just 3 € per month, elevate your news-reading experience with exclusive benefits that keep you ahead of the curve!",
+			articleSummaries:
+				"📄 <strong>Smart Article Summaries</strong>: Effortlessly grasp the essence of each article with concise summaries, saving you valuable time and ensuring you stay informed efficiently.",
+			realTimeUpdates:
+				"⏳ <strong>Real-time Updates</strong>: Stay on the pulse of the latest news as it happens, ensuring that you are always informed and up-to-date with the latest developments.",
+			feedCustomization:
+				"🎯 <strong>Enhanced Feed Personalization</strong>: Take control of your content by customizing your feed based on your unique interests. Fine-tune preferences for each publisher, enabling you to filter out articles that don't align with your specific interests.",
+			getStarted: "Get started now"
+		},
 		publisherDialog: {
 			headline: {
 				create: "Create publisher",
@@ -185,6 +196,17 @@ const deDefaults = {
 		logoutDialog: {
 			headline: "Abmelden",
 			description: "Bist du dir sicher, dass du dich abmelden möchtest?"
+		},
+		upgradePlusDialog: {
+			headline: "Storyline Plus",
+			intro: "Exklusive Vorteile, um dich immer auf dem Laufen zu halten, für nur 3 € pro Monat!",
+			articleSummaries:
+				"📄 <strong>Prägnante Artikelzusammenfassungen</strong>: Leicht verständliche Zusammenfassungen ermöglichen es dir spielend, die Essenz eines jeden Artikels zu erfassen. Das spart wertvolle Zeit und stellt sicher, dass du effizient auf dem Laufenden bleibst.",
+			realTimeUpdates:
+				"⏳ <strong>Echtzeit-Updates</strong>: Sei immer am Puls der neuesten Ereignisse und bleibe so stets informiert über die aktuellen Entwicklungen.",
+			feedCustomization:
+				"🎯 <strong>Optimierte Personalisierung deines Feeds</strong>: Gestalte deine Inhalte nach deinen individuellen Interessen, indem du deinen Feed anpasst. Feinjustiere deine Vorlieben für jeden Anbieter, um Artikel auszusortieren, die nicht mit deinen spezifischen Interessen übereinstimmen.",
+			getStarted: "Jetzt loslegen"
 		},
 		publisherDialog: {
 			headline: {

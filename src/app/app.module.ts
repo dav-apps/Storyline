@@ -19,6 +19,7 @@ import { LoadingScreenComponent } from "./components/loading-screen/loading-scre
 // Dialogs
 import { LoginPromptDialogComponent } from "./dialogs/login-prompt-dialog/login-prompt-dialog.component"
 import { LogoutDialogComponent } from "./dialogs/logout-dialog/logout-dialog.component"
+import { UpgradePlusDialogComponent } from "./dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { PublisherDialogComponent } from "./dialogs/publisher-dialog/publisher-dialog.component"
 import { CreateFeedDialogComponent } from "./dialogs/create-feed-dialog/create-feed-dialog.component"
 
@@ -47,6 +48,7 @@ import { SettingsService } from "./services/settings-service"
 		LoadingScreenComponent,
 		LoginPromptDialogComponent,
 		LogoutDialogComponent,
+		UpgradePlusDialogComponent,
 		PublisherDialogComponent,
 		CreateFeedDialogComponent,
 		StartPageComponent,
