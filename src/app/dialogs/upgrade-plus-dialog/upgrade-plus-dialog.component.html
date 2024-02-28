@@ -4,9 +4,10 @@
 	[primaryButtonText]="locale.getStarted"
 	[defaultButtonText]="actionsLocale.close"
 	[visible]="visible"
+	[loading]="loading"
 	maxWidth="400"
 	(dismiss)="visible = false"
-	(primaryButtonClick)="upgrade()"
+	(primaryButtonClick)="primaryButtonClick.emit()"
 	(defaultButtonClick)="visible = false"
 >
 	<p>{{ locale.intro }}</p>

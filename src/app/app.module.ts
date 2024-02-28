@@ -36,6 +36,7 @@ import { PublisherPageComponent } from "./pages/publisher-page/publisher-page.co
 
 // Services
 import { ApiService } from "./services/api-service"
+import { DavApiService } from "./services/dav-api-service"
 import { DataService } from "./services/data-service"
 import { LocalizationService } from "./services/localization-service"
 import { SettingsService } from "./services/settings-service"
@@ -69,7 +70,13 @@ import { SettingsService } from "./services/settings-service"
 		AppRoutingModule,
 		GraphQLModule
 	],
-	providers: [ApiService, DataService, LocalizationService, SettingsService],
+	providers: [
+		ApiService,
+		DavApiService,
+		DataService,
+		LocalizationService,
+		SettingsService
+	],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

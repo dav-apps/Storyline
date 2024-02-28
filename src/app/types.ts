@@ -42,3 +42,11 @@ export interface ArticleResource {
 	feeds: List<FeedResource>
 }
 //#endregion
+
+//#region dav API types
+export interface CheckoutSession {
+	url: string
+}
+
+export type Plan = "FREE" | "PLUS" | "PRO"
+//#endregion

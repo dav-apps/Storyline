@@ -9,6 +9,7 @@ import { GetAllTableObjects, TableObject } from "dav-js"
 import { Toast } from "dav-ui-components"
 import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { ApiService } from "src/app/services/api-service"
+import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { ArticleResource } from "src/app/types"
@@ -24,8 +25,6 @@ export class ArticlePageComponent {
 	faShareFromSquare = faShareFromSquare
 	faBookmarkSolid = faBookmarkSolid
 	faBookmarkRegular = faBookmarkRegular
-	@ViewChild("upgradePlusDialog")
-	upgradePlusDialog: UpgradePlusDialogComponent
 	uuid: string = ""
 	article: ArticleResource = null
 	content: string = null
@@ -37,8 +36,15 @@ export class ArticlePageComponent {
 	articleRecommendationsLoading: boolean = false
 	bookmarkTableObject: TableObject = null
 
+	//#region UpgradePlusDialog
+	@ViewChild("upgradePlusDialog")
+	upgradePlusDialog: UpgradePlusDialogComponent
+	upgradePlusDialogLoading: boolean = false
+	//#endregion
+
 	constructor(
 		private apiService: ApiService,
+		private davApiService: DavApiService,
 		public dataService: DataService,
 		private localizationService: LocalizationService,
 		private activatedRoute: ActivatedRoute,
@@ -259,5 +265,26 @@ export class ArticlePageComponent {
 
 	showUpgradePlusDialog() {
 		this.upgradePlusDialog.show()
+	}
+
+	async navigateToCheckoutPage() {
+		this.upgradePlusDialogLoading = true
+
+		let response = await this.davApiService.createSubscriptionCheckoutSession(
+			`url`,
+			{
+				plan: "PLUS",
+				successUrl: window.location.href,
+				cancelUrl: window.location.href
+			}
+		)
+
+		const url = response.data?.createSubscriptionCheckoutSession?.url
+
+		if (url != null) {
+			window.location.href = url
+		} else {
+			this.upgradePlusDialogLoading = false
+		}
 	}
 }

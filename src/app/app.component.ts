@@ -24,6 +24,7 @@ import { Dav, GetAllTableObjects } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
 import { ApiService } from "./services/api-service"
+import { DavApiService } from "./services/dav-api-service"
 import { LocalizationService } from "./services/localization-service"
 import { dataIdFromObject } from "src/app/utils"
 import {
@@ -65,6 +66,7 @@ export class AppComponent {
 	constructor(
 		public dataService: DataService,
 		private apiService: ApiService,
+		private davApiService: DavApiService,
 		private localizationService: LocalizationService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
@@ -175,7 +177,7 @@ export class AppComponent {
 			storylineApiClientName
 		)
 
-		//this.davApiService.loadApolloClient()
+		this.davApiService.loadApolloClient()
 		this.apiService.loadApolloClient()
 	}
 

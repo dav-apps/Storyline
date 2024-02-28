@@ -1,4 +1,11 @@
-import { Component, ViewChild, ElementRef } from "@angular/core"
+import {
+	Component,
+	Input,
+	Output,
+	ViewChild,
+	ElementRef,
+	EventEmitter
+} from "@angular/core"
 import { Dialog } from "dav-ui-components"
 import { LocalizationService } from "src/app/services/localization-service"
 
@@ -10,6 +17,8 @@ import { LocalizationService } from "src/app/services/localization-service"
 export class UpgradePlusDialogComponent {
 	locale = this.localizationService.locale.dialogs.upgradePlusDialog
 	actionsLocale = this.localizationService.locale.actions
+	@Input() loading: boolean = false
+	@Output() primaryButtonClick = new EventEmitter()
 	@ViewChild("dialog") dialog: ElementRef<Dialog>
 	visible: boolean = false
 
@@ -30,6 +39,4 @@ export class UpgradePlusDialogComponent {
 	hide() {
 		this.visible = false
 	}
-
-	upgrade() {}
 }
