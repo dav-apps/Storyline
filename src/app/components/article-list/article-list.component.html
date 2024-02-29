@@ -20,7 +20,7 @@
 					[headline]="article.title"
 					[subhead]="article.publisher?.name || ''"
 					[imageSrc]="article.imageUrl"
-					[altImageSrc]="article.publisher?.logoUrl"
+					altImageSrc="/assets/icons/icon-700x350.png"
 					[subheadImageSrc]="article.publisher?.logoUrl || ''"
 					[href]="'article/' + uriEncode(article.uuid)"
 					(click)="itemClicked($event, article)"
