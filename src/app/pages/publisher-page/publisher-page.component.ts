@@ -154,11 +154,21 @@ export class PublisherPageComponent {
 		})
 
 		this.followTableObject = tableObject
+
+		// Clear the articles cache on the start page
+		this.dataService.startPageArticles = []
+		this.dataService.startPageOffset = 0
+		this.dataService.startPagePosition = 0
 	}
 
 	async unfollow() {
 		await this.followTableObject.Delete()
 		this.followTableObject = null
+
+		// Clear the articles cache on the start page
+		this.dataService.startPageArticles = []
+		this.dataService.startPageOffset = 0
+		this.dataService.startPagePosition = 0
 	}
 
 	navigateToLoginPage() {

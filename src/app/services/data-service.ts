@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { Dav, PromiseHolder } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { SettingsService } from "./settings-service"
-import { Theme } from "../types"
+import { ArticleResource, Theme } from "../types"
 import { convertStringToTheme } from "../utils"
 import { darkThemeKey, lightThemeKey, themeKey } from "../constants"
 
@@ -16,6 +16,9 @@ export class DataService {
 	loadingScreenVisible: boolean = false
 	isMobile: boolean = false
 	bookmarksCount: number = 0
+	startPagePosition: number = 0
+	startPageOffset: number = 0
+	startPageArticles: ArticleResource[] = []
 
 	constructor(private settingsService: SettingsService) {}
 

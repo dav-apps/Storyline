@@ -18,6 +18,7 @@ export class StartPageComponent {
 	limit: number = 12
 	offset: number = 0
 	articlesLoading: boolean = false
+	initialized: boolean = false
 
 	constructor(
 		private apiService: ApiService,
@@ -38,7 +39,15 @@ export class StartPageComponent {
 			)
 		}
 
-		const articles = await this.loadArticles(this.publisherUuids)
+		let articles: ArticleResource[] = []
+
+		if (this.dataService.startPageArticles.length > 0) {
+			articles = this.dataService.startPageArticles
+			this.offset = this.dataService.startPageOffset
+		} else {
+			articles = await this.loadArticles(this.publisherUuids)
+		}
+
 		this.dataService.loadingScreenVisible = false
 
 		for (let article of articles) {
@@ -51,14 +60,34 @@ export class StartPageComponent {
 		)
 	}
 
+	ngAfterViewInit() {
+		setTimeout(() => {
+			this.dataService.contentContainer.scrollTo(
+				0,
+				this.dataService.startPagePosition
+			)
+
+			this.initialized = true
+		}, 50)
+	}
+
 	ngOnDestroy() {
 		this.dataService.contentContainer.removeEventListener(
 			"scroll",
 			this.onScroll
 		)
+
+		this.dataService.startPageArticles = this.articles
+		this.dataService.startPageOffset = this.offset
 	}
 
 	onScroll = () => {
+		if (this.initialized) {
+			// Save the new position
+			this.dataService.startPagePosition =
+				this.dataService.contentContainer.scrollTop
+		}
+
 		const contentContainer = this.dataService.contentContainer
 		const hasReachedBottom =
 			Math.abs(
