@@ -4,7 +4,10 @@ import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { ArticleResource } from "src/app/types"
-import { followTablePublisherKey } from "src/app/constants"
+import {
+	followTablePublisherKey,
+	bottomArticleThreshold
+} from "src/app/constants"
 import { environment } from "src/environments/environment"
 
 @Component({
@@ -89,12 +92,13 @@ export class StartPageComponent {
 		}
 
 		const contentContainer = this.dataService.contentContainer
+
 		const hasReachedBottom =
-			Math.abs(
-				contentContainer.scrollHeight -
-					contentContainer.scrollTop -
-					contentContainer.clientHeight
-			) < 1
+			contentContainer.scrollHeight -
+				contentContainer.scrollTop -
+				contentContainer.clientHeight -
+				bottomArticleThreshold <
+			0
 
 		if (hasReachedBottom) {
 			this.loadMoreArticles()

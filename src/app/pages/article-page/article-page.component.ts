@@ -13,7 +13,10 @@ import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { ArticleResource } from "src/app/types"
-import { bookmarkTableArticleKey } from "src/app/constants"
+import {
+	bookmarkTableArticleKey,
+	bottomArticleThreshold
+} from "src/app/constants"
 import { environment } from "src/environments/environment"
 
 @Component({
@@ -96,12 +99,13 @@ export class ArticlePageComponent {
 
 	onScroll = () => {
 		const contentContainer = this.dataService.contentContainer
+
 		const hasReachedBottom =
-			Math.abs(
-				contentContainer.scrollHeight -
-					contentContainer.scrollTop -
-					contentContainer.clientHeight
-			) < 1
+			contentContainer.scrollHeight -
+				contentContainer.scrollTop -
+				contentContainer.clientHeight -
+				bottomArticleThreshold <
+			0
 
 		if (hasReachedBottom) {
 			this.loadMoreArticleRecommendations()

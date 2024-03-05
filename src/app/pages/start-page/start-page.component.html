@@ -6,5 +6,8 @@
 	></storyline-horizontal-publisher-list>
 	}
 
-	<storyline-article-list [articles]="articles"></storyline-article-list>
+	<storyline-article-list
+		[loadingMore]="articlesLoading"
+		[articles]="articles"
+	></storyline-article-list>
 </div>
