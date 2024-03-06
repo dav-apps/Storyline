@@ -12,6 +12,7 @@ export class ArticleListComponent {
 	@Input() loading: boolean = false
 	@Input() loadingMore: boolean = false
 	@Input() articles: ArticleResource[] = []
+	@Input() orientation: "horizontal" | "vertical" = "vertical"
 
 	constructor(private router: Router) {}
 

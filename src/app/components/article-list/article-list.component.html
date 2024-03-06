@@ -13,9 +13,15 @@
 			<dav-progress-ring size="32"></dav-progress-ring>
 		</div>
 		} @else {
-		<div class="list-container slide-up-in">
+		<div
+			class="list-container slide-up-in"
+			[class.horizontal]="orientation == 'horizontal'"
+		>
 			@for (article of articles; track article.uuid) {
-			<div class="card-container">
+			<div
+				class="card-container"
+				[class.horizontal]="orientation == 'horizontal'"
+			>
 				<dav-card
 					[headline]="article.title"
 					[subhead]="article.publisher?.name || ''"

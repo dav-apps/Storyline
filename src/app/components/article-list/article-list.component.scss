@@ -1,13 +1,13 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
 }
 
 .progress-ring-container {
 	display: flex;
 	align-items: center;
 	margin-left: 48px;
+	margin-top: 32px;
 	padding: 32px;
 }
 
@@ -18,7 +18,16 @@
 	justify-content: center;
 	gap: 16px;
 	max-width: 1000px;
-	padding: 0 12px;
+	padding: 32px 0 12px;
+}
+
+.list-container.horizontal {
+	flex-wrap: nowrap;
+	justify-content: normal;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 2rem;
+	max-width: 100vw;
 }
 
 .card-container {
@@ -28,6 +37,10 @@
 		height: 100%;
 		cursor: pointer;
 	}
+}
+
+.card-container.horizontal {
+	min-width: 300px;
 }
 
 .bottom-progress-ring-container {
