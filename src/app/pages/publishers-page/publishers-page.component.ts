@@ -1,5 +1,6 @@
 import { Component } from "@angular/core"
 import { ApiService } from "src/app/services/api-service"
+import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { PublisherResource } from "src/app/types"
 
@@ -13,10 +14,13 @@ export class PublishersPageComponent {
 
 	constructor(
 		private apiService: ApiService,
+		private dataService: DataService,
 		private localizationService: LocalizationService
 	) {}
 
 	async ngOnInit() {
+		this.dataService.loadingScreenVisible = true
+
 		let response = await this.apiService.listPublishers(
 			`
 				items {
@@ -38,5 +42,7 @@ export class PublishersPageComponent {
 				this.publishers.push(publisher)
 			}
 		}
+
+		this.dataService.loadingScreenVisible = false
 	}
 }
