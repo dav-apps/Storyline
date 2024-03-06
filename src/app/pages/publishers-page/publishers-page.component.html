@@ -7,6 +7,7 @@
 		@for (publisher of publishers; track publisher.uuid) {
 			<storyline-article-list
 				[headline]="publisher.name"
+				[headlineImageUrl]="publisher.logoUrl"
 				[articles]="publisher.articles.items"
 				orientation="horizontal"
 				[moreButtonLink]="'publisher/' + publisher.uuid"

@@ -26,6 +26,7 @@ export class PublishersPageComponent {
 				items {
 					uuid
 					name
+					logoUrl
 					articles {
 						items {
 							uuid

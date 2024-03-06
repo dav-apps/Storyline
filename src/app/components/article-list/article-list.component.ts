@@ -11,6 +11,7 @@ import { ArticleResource } from "src/app/types"
 })
 export class ArticleListComponent {
 	@Input() headline: string = ""
+	@Input() headlineImageUrl: string = ""
 	@Input() loading: boolean = false
 	@Input() loadingMore: boolean = false
 	@Input() articles: ArticleResource[] = []

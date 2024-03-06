@@ -1,6 +1,14 @@
 <div class="container">
 	@if (headline.length > 0) {
 	<div class="store-list-header-container">
+		@if (headlineImageUrl) {
+		<img
+			[src]="headlineImageUrl"
+			width="28"
+			height="28"
+		/>
+		}
+
 		<h4 class="store-list-header">
 			{{ headline }}
 		</h4>
