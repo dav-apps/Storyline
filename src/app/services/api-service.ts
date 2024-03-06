@@ -157,7 +157,7 @@ export class ApiService {
 
 	async listPublishers(
 		queryData: string,
-		variables: { random?: boolean; limit?: number; offset?: number }
+		variables?: { random?: boolean; limit?: number; offset?: number }
 	): Promise<ApolloQueryResult<{ listPublishers: List<PublisherResource> }>> {
 		return await this.apollo
 			.query<{

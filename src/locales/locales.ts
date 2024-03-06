@@ -7,6 +7,9 @@ const enDefaults = {
 		publishersInTheSpotlight: "Publishers in the spotlight",
 		latestNews: "Latest news"
 	},
+	publishersPage: {
+		title: "All publishers"
+	},
 	bookmarksPage: {
 		title: "Your bookmarks",
 		noArticles: "You have no saved articles"
@@ -133,6 +136,9 @@ const deDefaults = {
 	discoverPage: {
 		publishersInTheSpotlight: "Anbieter im Rampenlicht",
 		latestNews: "Neueste Meldungen"
+	},
+	publishersPage: {
+		title: "Alle Anbieter"
 	},
 	bookmarksPage: {
 		title: "Deine Lesezeichen",
