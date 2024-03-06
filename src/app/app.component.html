@@ -1,6 +1,6 @@
 <div class="navbar acrylic">
 	<!-- Logo + name -->
-	<a class="navbar-header" routerLink="/">
+	<a class="navbar-header" routerLink="/" (click)="scrollToTop('/')">
 		<img src="/assets/icons/icon-192.png" width="48" height="48" />
 		<span>Storyline</span>
 	</a>
@@ -10,14 +10,14 @@
 		<dav-tab-bar>
 			<dav-tab-bar-item
 				[active]="newsFeedTabActive"
-				(click)="navigateToNewsFeedPage()"
+				(click)="navigateToPage('/')"
 			>
 				{{ locale.newsFeed }}
 			</dav-tab-bar-item>
 
 			<dav-tab-bar-item
 				[active]="discoverTabActive"
-				(click)="navigateToDiscoverPage()"
+				(click)="navigateToPage('/discover')"
 			>
 				{{ locale.discover }}
 			</dav-tab-bar-item>
@@ -31,7 +31,7 @@
 		@if (dataService.bookmarksCount > 0) {
 		<dav-icon-button
 			[selected]="bookmarksButtonSelected"
-			(click)="navigateToBookmarksPage()"
+			(click)="navigateToPage('/bookmarks')"
 		>
 			@if (bookmarksButtonSelected) {
 			<fa-icon [icon]="faBookBookmarkSolid"></fa-icon>
@@ -42,7 +42,7 @@
 		} @if (dataService.userIsAdmin) {
 		<dav-icon-button
 			[selected]="adminButtonSelected"
-			(click)="navigateToAdminPage()"
+			(click)="navigateToPage('/admin')"
 		>
 			@if (adminButtonSelected) {
 			<fa-icon [icon]="faHammerSolid"></fa-icon>
@@ -54,7 +54,7 @@
 
 		<dav-icon-button
 			[selected]="userButtonSelected"
-			(click)="navigateToUserPage()"
+			(click)="navigateToPage('/user')"
 		>
 			@if (!userButtonSelected && !dataService.dav.isLoggedIn) {
 			<fa-icon [icon]="faCircleUserRegular"></fa-icon>
@@ -72,7 +72,7 @@
 
 		<dav-icon-button
 			[selected]="settingsButtonSelected"
-			(click)="navigateToSettingsPage()"
+			(click)="navigateToPage('/settings')"
 		>
 			@if (settingsButtonSelected) {
 			<fa-icon [icon]="faGearSolid"></fa-icon>
@@ -95,7 +95,7 @@
 	<dav-navigation-bar>
 		<dav-navigation-bar-item
 			[active]="newsFeedTabActive"
-			(click)="navigateToNewsFeedPage()"
+			(click)="navigateToPage('/')"
 		>
 			@if (newsFeedTabActive) {
 			<fa-icon slot="icon" [icon]="faNewspaperSolid"></fa-icon>
@@ -108,7 +108,7 @@
 
 		<dav-navigation-bar-item
 			[active]="discoverTabActive"
-			(click)="navigateToDiscoverPage()"
+			(click)="navigateToPage('/discover')"
 		>
 			@if (discoverTabActive) {
 			<fa-icon slot="icon" [icon]="faSparklesSolid"></fa-icon>

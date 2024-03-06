@@ -62,6 +62,7 @@ export class AppComponent {
 	adminButtonSelected: boolean = false
 	userButtonSelected: boolean = false
 	settingsButtonSelected: boolean = false
+	currentUrl: string = ""
 
 	constructor(
 		public dataService: DataService,
@@ -85,6 +86,10 @@ export class AppComponent {
 				this.adminButtonSelected = currentUrl.startsWith("/admin")
 				this.userButtonSelected = currentUrl == "/user"
 				this.settingsButtonSelected = currentUrl == "/settings"
+
+				setTimeout(() => {
+					this.currentUrl = currentUrl
+				}, 100)
 			}
 		})
 
@@ -127,28 +132,21 @@ export class AppComponent {
 		this.dataService.isMobile = window.innerWidth <= smallWindowMaxSize
 	}
 
-	navigateToNewsFeedPage() {
-		this.router.navigate([""])
+	navigateToPage(path: string) {
+		if (this.currentUrl == path) {
+			this.scrollToTop(path)
+		} else {
+			this.router.navigate([path])
+		}
 	}
 
-	navigateToDiscoverPage() {
-		this.router.navigate(["discover"])
-	}
-
-	navigateToBookmarksPage() {
-		this.router.navigate(["bookmarks"])
-	}
-
-	navigateToAdminPage() {
-		this.router.navigate(["admin"])
-	}
-
-	navigateToUserPage() {
-		this.router.navigate(["user"])
-	}
-
-	navigateToSettingsPage() {
-		this.router.navigate(["settings"])
+	scrollToTop(path: string) {
+		if (path == this.currentUrl) {
+			this.dataService.contentContainer.scroll({
+				top: 0,
+				behavior: "smooth"
+			})
+		}
 	}
 
 	setupApollo(accessToken: string) {
