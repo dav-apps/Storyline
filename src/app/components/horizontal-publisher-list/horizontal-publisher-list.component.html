@@ -4,14 +4,15 @@
 			{{ headline }}
 		</h4>
 
+		@if (headline && showMoreButton) {
 		<dav-icon-button
 			size="small"
 			href="publishers"
 			(click)="moreButtonClick($event)"
-			*ngIf="headline && showMoreButton"
 		>
 			<fa-icon [icon]="faArrowRightLight"></fa-icon>
 		</dav-icon-button>
+		}
 	</div>
 
 	<div class="content-container">

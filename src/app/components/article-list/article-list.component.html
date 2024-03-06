@@ -4,6 +4,16 @@
 		<h4 class="store-list-header">
 			{{ headline }}
 		</h4>
+
+		@if (headline && moreButtonLink) {
+		<dav-icon-button
+			size="small"
+			[href]="moreButtonLink"
+			(click)="moreButtonClick($event)"
+		>
+			<fa-icon [icon]="faArrowRightLight"></fa-icon>
+		</dav-icon-button>
+		}
 	</div>
 	}
 

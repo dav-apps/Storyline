@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core"
+import { Component, Input } from "@angular/core"
 import { Router } from "@angular/router"
+import { faArrowRight as faArrowRightLight } from "@fortawesome/pro-light-svg-icons"
+import { DataService } from "src/app/services/data-service"
 import { ArticleResource } from "src/app/types"
 
 @Component({
@@ -13,8 +15,10 @@ export class ArticleListComponent {
 	@Input() loadingMore: boolean = false
 	@Input() articles: ArticleResource[] = []
 	@Input() orientation: "horizontal" | "vertical" = "vertical"
+	@Input() moreButtonLink: string = ""
+	faArrowRightLight = faArrowRightLight
 
-	constructor(private router: Router) {}
+	constructor(private dataService: DataService, private router: Router) {}
 
 	itemClicked(event: Event, article: ArticleResource) {
 		event.preventDefault()
@@ -23,5 +27,11 @@ export class ArticleListComponent {
 
 	uriEncode(value: string) {
 		return encodeURIComponent(value)
+	}
+
+	moreButtonClick(event: MouseEvent) {
+		event.preventDefault()
+		this.dataService.contentContainer.scrollTo(0, 0)
+		this.router.navigate([this.moreButtonLink])
 	}
 }
