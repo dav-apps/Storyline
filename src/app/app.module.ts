@@ -31,6 +31,7 @@ import { AdminPublisherPageComponent } from "./pages/admin-publisher-page/admin-
 import { UserPageComponent } from "./pages/user-page/user-page.component"
 import { SettingsPageComponent } from "./pages/settings-page/settings-page.component"
 import { DiscoverPageComponent } from "./pages/discover-page/discover-page.component"
+import { PublishersPageComponent } from "./pages/publishers-page/publishers-page.component"
 import { ArticlePageComponent } from "./pages/article-page/article-page.component"
 import { PublisherPageComponent } from "./pages/publisher-page/publisher-page.component"
 
@@ -59,6 +60,7 @@ import { SettingsService } from "./services/settings-service"
 		UserPageComponent,
 		SettingsPageComponent,
 		DiscoverPageComponent,
+		PublishersPageComponent,
 		ArticlePageComponent,
 		PublisherPageComponent
 	],
