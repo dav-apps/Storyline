@@ -25,7 +25,7 @@ const routes: Routes = [
 		component: AdminPageComponent
 	},
 	{
-		path: "admin/publisher/:uuid",
+		path: "admin/publisher/:slug",
 		component: AdminPublisherPageComponent
 	},
 	{
@@ -45,11 +45,11 @@ const routes: Routes = [
 		component: PublishersPageComponent
 	},
 	{
-		path: "article/:uuid",
+		path: "article/:slug",
 		component: ArticlePageComponent
 	},
 	{
-		path: "publisher/:uuid",
+		path: "publisher/:slug",
 		component: PublisherPageComponent
 	}
 ]

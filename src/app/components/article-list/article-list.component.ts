@@ -23,11 +23,7 @@ export class ArticleListComponent {
 
 	itemClicked(event: Event, article: ArticleResource) {
 		event.preventDefault()
-		this.router.navigate(["article", article.uuid])
-	}
-
-	uriEncode(value: string) {
-		return encodeURIComponent(value)
+		this.router.navigate(["article", article.slug])
 	}
 
 	moreButtonClick(event: MouseEvent) {

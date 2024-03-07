@@ -114,6 +114,7 @@ export class StartPageComponent {
 			`
 				items {
 					uuid
+					slug
 					title
 					imageUrl
 					publisher {

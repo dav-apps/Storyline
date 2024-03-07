@@ -35,7 +35,7 @@
 			class="list-container slide-up-in"
 			[class.horizontal]="orientation == 'horizontal'"
 		>
-			@for (article of articles; track article.uuid) {
+			@for (article of articles; track article.slug) {
 			<div
 				class="card-container"
 				[class.horizontal]="orientation == 'horizontal'"
@@ -46,7 +46,7 @@
 					[imageSrc]="article.imageUrl"
 					altImageSrc="/assets/icons/icon-700x350.png"
 					[subheadImageSrc]="article.publisher?.logoUrl || ''"
-					[href]="'article/' + uriEncode(article.uuid)"
+					[href]="'article/' + article.slug"
 					(click)="itemClicked($event, article)"
 				></dav-card>
 			</div>

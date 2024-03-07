@@ -46,8 +46,8 @@ export class AdminPublisherPageComponent {
 	) {}
 
 	async ngOnInit() {
-		const uuid = this.activatedRoute.snapshot.paramMap.get("uuid")
-		const publisher = await this.loadPublisher(uuid)
+		const slug = this.activatedRoute.snapshot.paramMap.get("slug")
+		const publisher = await this.loadPublisher(slug)
 
 		if (publisher == null) {
 			this.router.navigate(["admin"])
@@ -61,10 +61,11 @@ export class AdminPublisherPageComponent {
 		}
 	}
 
-	async loadPublisher(uuid: string) {
+	async loadPublisher(slug: string) {
 		const response = await this.apiService.retrievePublisher(
 			`
 				uuid
+				slug
 				name
 				description
 				url
@@ -79,7 +80,7 @@ export class AdminPublisherPageComponent {
 					}
 				}
 			`,
-			{ uuid }
+			{ uuid: slug }
 		)
 
 		const responseData = response.data?.retrievePublisher
@@ -216,8 +217,7 @@ export class AdminPublisherPageComponent {
 			for (let errorCode of errors) {
 				switch (errorCode) {
 					case ErrorCodes.nameTooShort:
-						this.createFeedDialogUrlError =
-							this.errorsLocale.nameTooShort
+						this.createFeedDialogUrlError = this.errorsLocale.nameTooShort
 						break
 					case ErrorCodes.nameTooLong:
 						this.createFeedDialogUrlError = this.errorsLocale.nameTooLong

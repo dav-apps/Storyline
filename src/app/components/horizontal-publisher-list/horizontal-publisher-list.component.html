@@ -22,10 +22,10 @@
 		</div>
 		} @else {
 		<div class="list-container slide-up-in">
-			@for (publisher of publishers; track publisher.uuid) {
+			@for (publisher of publishers; track publisher.slug) {
 			<dav-icon-card
 				[text]="publisher.name"
-				[href]="'publisher/' + publisher.uuid"
+				[href]="'publisher/' + publisher.slug"
 				target="_blank"
 				(click)="navigateToPublisherPage($event, publisher)"
 			>

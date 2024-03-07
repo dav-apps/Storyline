@@ -28,7 +28,7 @@ export class ArticlePageComponent {
 	faShareFromSquare = faShareFromSquare
 	faBookmarkSolid = faBookmarkSolid
 	faBookmarkRegular = faBookmarkRegular
-	uuid: string = ""
+	slug: string = ""
 	article: ArticleResource = null
 	content: string = null
 	showShareButton: boolean = false
@@ -61,10 +61,10 @@ export class ArticlePageComponent {
 		await this.dataService.userPromiseHolder.AwaitResult()
 
 		this.activatedRoute.paramMap.subscribe(async (paramMap: ParamMap) => {
-			let uuid = paramMap.get("uuid")
+			let slug = paramMap.get("slug")
 
-			if (this.uuid != uuid) {
-				this.uuid = uuid
+			if (this.slug != slug) {
+				this.slug = slug
 
 				// Show loading screen & clear article recommendations
 				this.dataService.loadingScreenVisible = true
@@ -75,8 +75,10 @@ export class ArticlePageComponent {
 				const bookmarks = await GetAllTableObjects(
 					environment.bookmarkTableId
 				)
-				let i = bookmarks.findIndex(
-					b => b.GetPropertyValue(bookmarkTableArticleKey) == uuid
+				let i = bookmarks.findIndex(b =>
+					slug.endsWith(
+						b.GetPropertyValue(bookmarkTableArticleKey) as string
+					)
 				)
 				if (i != -1) this.bookmarkTableObject = bookmarks[i]
 
@@ -114,17 +116,19 @@ export class ArticlePageComponent {
 
 	async loadData() {
 		const isUserOnPlus = this.dataService.dav.user.Plan > 0
-		const uuid = this.activatedRoute.snapshot.paramMap.get("uuid")
+		const slug = this.activatedRoute.snapshot.paramMap.get("slug")
 
 		const response = await this.apiService.retrieveArticle(
 			`
 				uuid
+				slug
 				url
 				title
 				imageUrl
 				${isUserOnPlus ? "summary" : "content"}
 				publisher {
 					uuid
+					slug
 					name
 					url
 					logoUrl
@@ -135,7 +139,7 @@ export class ArticlePageComponent {
 					}
 				}
 			`,
-			{ uuid }
+			{ uuid: slug }
 		)
 
 		const responseData = response.data?.retrieveArticle
@@ -163,6 +167,7 @@ export class ArticlePageComponent {
 				) {
 					items {
 						uuid
+						slug
 						title
 						imageUrl
 					}
@@ -184,6 +189,7 @@ export class ArticlePageComponent {
 					...article,
 					publisher: {
 						uuid: null,
+						slug: null,
 						url: null,
 						name: null,
 						description: null,
@@ -223,7 +229,7 @@ export class ArticlePageComponent {
 
 	navigateToPublisherPage(event: Event) {
 		event.preventDefault()
-		this.router.navigate(["publisher", this.article.publisher.uuid])
+		this.router.navigate(["publisher", this.article.publisher.slug])
 	}
 
 	share() {

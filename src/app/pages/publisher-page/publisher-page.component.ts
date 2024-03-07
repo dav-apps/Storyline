@@ -41,8 +41,8 @@ export class PublisherPageComponent {
 	) {}
 
 	async ngOnInit() {
-		const uuid = this.activatedRoute.snapshot.paramMap.get("uuid")
-		const publisher = await this.loadPublisher(uuid, this.limit, this.offset)
+		const slug = this.activatedRoute.snapshot.paramMap.get("slug")
+		const publisher = await this.loadPublisher(slug, this.limit, this.offset)
 
 		if (publisher == null) {
 			this.router.navigate([""])
@@ -63,7 +63,7 @@ export class PublisherPageComponent {
 		// Try to find a Follow object for the publisher
 		const follows = await GetAllTableObjects(environment.followTableId)
 		let i = follows.findIndex(
-			f => f.GetPropertyValue(followTablePublisherKey) == uuid
+			f => f.GetPropertyValue(followTablePublisherKey) == publisher.uuid
 		)
 		if (i != -1) this.followTableObject = follows[i]
 	}
@@ -90,22 +90,24 @@ export class PublisherPageComponent {
 		}
 	}
 
-	async loadPublisher(uuid: string, limit: number, offset: number) {
+	async loadPublisher(slug: string, limit: number, offset: number) {
 		const response = await this.apiService.retrievePublisher(
 			`
 				uuid
+				slug
 				name
 				url
 				logoUrl
 				articles(limit: $limit, offset: $offset) {
 					items {
 						uuid
+						slug
 						title
 						imageUrl
 					}
 				}
 			`,
-			{ uuid, limit, offset }
+			{ uuid: slug, limit, offset }
 		)
 
 		const responseData = response.data?.retrievePublisher
@@ -120,7 +122,7 @@ export class PublisherPageComponent {
 		this.offset += this.limit
 
 		const publisher = await this.loadPublisher(
-			this.publisher.uuid,
+			this.publisher.slug,
 			this.limit,
 			this.offset
 		)

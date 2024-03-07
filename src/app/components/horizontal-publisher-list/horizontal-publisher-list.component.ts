@@ -38,6 +38,7 @@ export class HorizontalPublisherListComponent {
 			`
 				items {
 					uuid
+					slug
 					name
 					logoUrl
 				}
@@ -56,6 +57,7 @@ export class HorizontalPublisherListComponent {
 			let response = await this.apiService.retrievePublisher(
 				`
 					uuid
+					slug
 					name
 					logoUrl
 				`,
@@ -73,7 +75,7 @@ export class HorizontalPublisherListComponent {
 
 	navigateToPublisherPage(event: Event, publisher: PublisherResource) {
 		event.preventDefault()
-		this.router.navigate(["publisher", publisher.uuid])
+		this.router.navigate(["publisher", publisher.slug])
 	}
 
 	moreButtonClick(event: MouseEvent) {

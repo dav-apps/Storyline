@@ -65,6 +65,7 @@ export class DiscoverPageComponent {
 			`
 				items {
 					uuid
+					slug
 					title
 					imageUrl
 					publisher {

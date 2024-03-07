@@ -12,6 +12,7 @@ export enum Theme {
 //#region API types
 export interface PublisherResource {
 	uuid: string
+	slug: string
 	name: string
 	description: string
 	url: string
@@ -32,6 +33,7 @@ export interface FeedResource {
 export interface ArticleResource {
 	uuid: string
 	publisher: PublisherResource
+	slug: string
 	url: string
 	title: string
 	description: string

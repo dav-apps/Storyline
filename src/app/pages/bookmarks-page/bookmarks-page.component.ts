@@ -31,6 +31,7 @@ export class BookmarksPageComponent {
 			const response = await this.apiService.retrieveArticle(
 				`
 					uuid
+					slug
 					title
 					imageUrl
 					publisher {
