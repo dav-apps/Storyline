@@ -1,0 +1,29 @@
+.publisher-items-container {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	width: 100%;
+}
+
+.publisher-item-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.publisher-details {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	img {
+		border-radius: 50%;
+	}
+
+	p {
+		font-size: 18px;
+		margin: 0;
+	}
+}
+
