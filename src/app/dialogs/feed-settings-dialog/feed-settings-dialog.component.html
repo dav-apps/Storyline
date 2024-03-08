@@ -1,0 +1,11 @@
+<dav-dialog
+	#dialog
+	[headline]="locale.headline"
+	[defaultButtonText]="actionsLocale.close"
+	[visible]="visible"
+	maxWidth="450"
+	(dismiss)="visible = false"
+	(defaultButtonClick)="visible = false"
+>
+	<p>Hello World</p>
+</dav-dialog>

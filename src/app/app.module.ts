@@ -22,6 +22,7 @@ import { LogoutDialogComponent } from "./dialogs/logout-dialog/logout-dialog.com
 import { UpgradePlusDialogComponent } from "./dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { PublisherDialogComponent } from "./dialogs/publisher-dialog/publisher-dialog.component"
 import { CreateFeedDialogComponent } from "./dialogs/create-feed-dialog/create-feed-dialog.component"
+import { FeedSettingsDialogComponent } from "./dialogs/feed-settings-dialog/feed-settings-dialog.component"
 
 // Pages
 import { StartPageComponent } from "./pages/start-page/start-page.component"
@@ -53,6 +54,7 @@ import { SettingsService } from "./services/settings-service"
 		UpgradePlusDialogComponent,
 		PublisherDialogComponent,
 		CreateFeedDialogComponent,
+		FeedSettingsDialogComponent,
 		StartPageComponent,
 		BookmarksPageComponent,
 		AdminPageComponent,

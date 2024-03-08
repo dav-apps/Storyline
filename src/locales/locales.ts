@@ -97,6 +97,9 @@ const enDefaults = {
 		createFeedDialog: {
 			headline: "Create feed",
 			urlTextfieldLabel: "URL"
+		},
+		feedSettingsDialog: {
+			headline: "Personalize your feed"
 		}
 	},
 	actions: {
@@ -233,6 +236,9 @@ const deDefaults = {
 		createFeedDialog: {
 			headline: "Feed erstellen",
 			urlTextfieldLabel: "URL"
+		},
+		feedSettingsDialog: {
+			headline: "Personalisiere deinen Feed"
 		}
 	},
 	actions: {
