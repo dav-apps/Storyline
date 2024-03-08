@@ -40,6 +40,9 @@ const enDefaults = {
 		lightTheme: "Light",
 		darkTheme: "Dark",
 		systemTheme: "System default",
+		suggestProvider: "Send suggestions for providers",
+		suggestProviderLink:
+			"https://docs.google.com/forms/d/e/1FAIpQLSdlpLbkqIMiIx9wN5vsQ9MFu42fWtufYV_5Mh5-TFcpcoO26g/viewform?usp=sf_link",
 		github: "Storyline on GitHub",
 		privacy: "Privacy Policy"
 	},
@@ -172,6 +175,9 @@ const deDefaults = {
 		lightTheme: "Hell",
 		darkTheme: "Dunkel",
 		systemTheme: "System-Standard",
+		suggestProvider: "Vorschläge für Anbieter senden",
+		suggestProviderLink:
+			"https://docs.google.com/forms/d/e/1FAIpQLSfT3tKCHY_EkEqV5LBIVywPTm8j0jNSK-YFEMGv-LPe3QCbIA/viewform?usp=sf_link",
 		github: "Storyline auf GitHub",
 		privacy: "Datenschutzerklärung"
 	},
