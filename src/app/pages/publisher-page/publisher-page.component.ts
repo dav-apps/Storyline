@@ -22,11 +22,12 @@ import { environment } from "src/environments/environment"
 })
 export class PublisherPageComponent {
 	locale = this.localizationService.locale.publisherPage
+	actionsLocale = this.localizationService.locale.actions
 	faArrowUpRightFromSquare = faArrowUpRightFromSquare
+	faPlus = faPlus
 	@ViewChild("loginPromptDialog") loginPromptDialog: LoginPromptDialogComponent
 	publisher: PublisherResource = null
 	articles: ArticleResource[] = []
-	faPlus = faPlus
 	limit: number = 12
 	offset: number = 0
 	articlesLoading: boolean = false

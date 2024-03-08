@@ -59,8 +59,6 @@ const enDefaults = {
 		removedFromBookmarks: "Article was removed from bookmarks"
 	},
 	publisherPage: {
-		follow: "Follow",
-		unfollow: "Unfollow",
 		openWebsite: "Open website"
 	},
 	dialogs: {
@@ -103,6 +101,8 @@ const enDefaults = {
 		}
 	},
 	actions: {
+		follow: "Follow",
+		unfollow: "Unfollow",
 		login: "Log in",
 		logout: "Log out",
 		create: "Create",
@@ -198,8 +198,6 @@ const deDefaults = {
 		removedFromBookmarks: "Artikel wurde von Lesezeichen entfernt"
 	},
 	publisherPage: {
-		follow: "Folgen",
-		unfollow: "Entfolgen",
 		openWebsite: "Webseite öffnen"
 	},
 	dialogs: {
@@ -242,6 +240,8 @@ const deDefaults = {
 		}
 	},
 	actions: {
+		follow: "Folgen",
+		unfollow: "Entfolgen",
 		login: "Anmelden",
 		logout: "Abmelden",
 		create: "Erstellen",
