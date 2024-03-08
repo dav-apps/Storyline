@@ -3,6 +3,8 @@
 	<storyline-horizontal-publisher-list
 		[headline]="locale.youFollow"
 		[publisherUuids]="publisherUuids"
+		[showSettingsButton]="publishers.length > 0"
+		(settingsButtonClick)="showFeedSettingsDialog()"
 	></storyline-horizontal-publisher-list>
 	}
 
@@ -11,3 +13,8 @@
 		[articles]="articles"
 	></storyline-article-list>
 </div>
+
+<storyline-feed-settings-dialog
+	#feedSettingsDialog
+	[publishers]="publishers"
+></storyline-feed-settings-dialog>

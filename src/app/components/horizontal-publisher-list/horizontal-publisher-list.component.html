@@ -12,6 +12,10 @@
 		>
 			<fa-icon [icon]="faArrowRightLight"></fa-icon>
 		</dav-icon-button>
+		} @else if (headline && showSettingsButton) {
+		<dav-icon-button size="small" (click)="settingsButtonClick.emit()">
+			<fa-icon [icon]="faSlidersLight"></fa-icon>
+		</dav-icon-button>
 		}
 	</div>
 

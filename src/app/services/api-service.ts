@@ -129,8 +129,16 @@ export class ApiService {
 
 	async retrievePublisher(
 		queryData: string,
-		variables: { uuid: string; limit?: number; offset?: number }
+		variables: {
+			uuid: string
+			hasName?: boolean
+			limit?: number
+			offset?: number
+		}
 	): Promise<ApolloQueryResult<{ retrievePublisher: PublisherResource }>> {
+		let hasNameParam = queryData.includes("hasName")
+			? "$hasName: Boolean"
+			: ""
 		let limitParam = queryData.includes("limit") ? "$limit: Int" : ""
 		let offsetParam = queryData.includes("offset") ? "$offset: Int" : ""
 
@@ -141,6 +149,7 @@ export class ApiService {
 				query: gql`
 					query RetrievePublisher(
 						$uuid: String!
+						${hasNameParam}
 						${limitParam}
 						${offsetParam}
 					) {

@@ -1,9 +1,10 @@
-import { Component } from "@angular/core"
+import { Component, ViewChild } from "@angular/core"
 import { GetAllTableObjects } from "dav-js"
+import { FeedSettingsDialogComponent } from "src/app/dialogs/feed-settings-dialog/feed-settings-dialog.component"
 import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
-import { ArticleResource } from "src/app/types"
+import { ArticleResource, PublisherResource } from "src/app/types"
 import {
 	followTablePublisherKey,
 	bottomArticleThreshold
@@ -18,10 +19,13 @@ export class StartPageComponent {
 	locale = this.localizationService.locale.startPage
 	articles: ArticleResource[] = []
 	publisherUuids: string[] = []
+	publishers: PublisherResource[] = []
 	limit: number = 12
 	offset: number = 0
 	articlesLoading: boolean = false
 	initialized: boolean = false
+	@ViewChild("feedSettingsDialog")
+	feedSettingsDialog: FeedSettingsDialogComponent
 
 	constructor(
 		private apiService: ApiService,
@@ -55,6 +59,10 @@ export class StartPageComponent {
 
 		for (let article of articles) {
 			this.articles.push(article)
+		}
+
+		if (this.dataService.dav.user.Plan > 0) {
+			this.publishers = await this.loadPublishers()
 		}
 
 		this.dataService.contentContainer.addEventListener(
@@ -110,7 +118,7 @@ export class StartPageComponent {
 		limit: number = 12,
 		offset: number = 0
 	) {
-		const result = await this.apiService.listArticles(
+		const response = await this.apiService.listArticles(
 			`
 				items {
 					uuid
@@ -130,8 +138,8 @@ export class StartPageComponent {
 			}
 		)
 
-		if (result != null) {
-			return result.data.listArticles.items
+		if (response.errors == null) {
+			return response.data.listArticles.items
 		}
 
 		return []
@@ -154,5 +162,36 @@ export class StartPageComponent {
 		}
 
 		this.articlesLoading = false
+	}
+
+	async loadPublishers() {
+		let publishers: PublisherResource[] = []
+
+		for (let uuid of this.publisherUuids) {
+			let response = await this.apiService.retrievePublisher(
+				`
+					uuid
+					name
+					logoUrl
+					feeds(hasName: $hasName) {
+						items {
+							uuid
+							name
+						}
+					}
+				`,
+				{ uuid, hasName: true }
+			)
+
+			if (response.errors == null) {
+				publishers.push(response.data.retrievePublisher)
+			}
+		}
+
+		return publishers
+	}
+
+	showFeedSettingsDialog() {
+		this.feedSettingsDialog.show()
 	}
 }

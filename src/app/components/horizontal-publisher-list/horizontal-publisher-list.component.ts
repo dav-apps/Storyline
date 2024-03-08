@@ -1,6 +1,9 @@
-import { Component, Input } from "@angular/core"
+import { Component, EventEmitter, Input, Output } from "@angular/core"
 import { Router } from "@angular/router"
-import { faArrowRight as faArrowRightLight } from "@fortawesome/pro-light-svg-icons"
+import {
+	faArrowRight as faArrowRightLight,
+	faSliders as faSlidersLight
+} from "@fortawesome/pro-light-svg-icons"
 import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
 import { PublisherResource } from "src/app/types"
@@ -15,7 +18,10 @@ export class HorizontalPublisherListComponent {
 	@Input() maxItems: number = 4
 	@Input() publisherUuids: string[] = []
 	@Input() showMoreButton: boolean = false
+	@Input() showSettingsButton: boolean = false
+	@Output() settingsButtonClick = new EventEmitter()
 	faArrowRightLight = faArrowRightLight
+	faSlidersLight = faSlidersLight
 	publishers: PublisherResource[] = []
 	loading: boolean = true
 
