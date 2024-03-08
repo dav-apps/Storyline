@@ -11,13 +11,23 @@
 		@for (publisher of publishers; track publisher.uuid) {
 		<div class="publisher-item-container">
 			<div class="publisher-details">
-				<img [src]="publisher.logoUrl" width="28" height="28" />
-				<p>{{ publisher.name }}</p>
+				<div>
+					<img [src]="publisher.logoUrl" width="28" height="28" />
+					<p>{{ publisher.name }}</p>
+				</div>
+
+				<dav-button outline color="error" size="small">
+					{{ actionsLocale.unfollow }}
+				</dav-button>
 			</div>
 
-			<dav-button outline color="error" size="small">
-				{{ actionsLocale.unfollow }}
-			</dav-button>
+			@if (publisher.feeds.items.length > 0) {
+			<div class="feeds-container">
+				@for (feed of publisher.feeds.items; track feed.uuid) {
+				<dav-checkbox [label]="feed.name"></dav-checkbox>
+				}
+			</div>
+			}
 		</div>
 		}
 	</div>

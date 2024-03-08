@@ -5,14 +5,14 @@
 	width: 100%;
 }
 
-.publisher-item-container {
+.publisher-details {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
 }
 
-.publisher-details {
+.publisher-details > div {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -27,3 +27,7 @@
 	}
 }
 
+.feeds-container {
+	margin-top: 16px;
+	margin-left: 10px;
+}
