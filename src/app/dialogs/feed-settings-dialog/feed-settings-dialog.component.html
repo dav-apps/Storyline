@@ -4,8 +4,8 @@
 	[defaultButtonText]="actionsLocale.close"
 	[visible]="visible"
 	maxWidth="450"
-	(dismiss)="visible = false"
-	(defaultButtonClick)="visible = false"
+	(dismiss)="hide()"
+	(defaultButtonClick)="hide()"
 >
 	<div class="publisher-items-container">
 		@for (publisher of publishers; track publisher.uuid) {
@@ -16,7 +16,12 @@
 					<p>{{ publisher.name }}</p>
 				</div>
 
-				<dav-button outline color="error" size="small">
+				<dav-button
+					outline
+					color="error"
+					size="small"
+					(click)="unfollowPublisher.emit(publisher)"
+				>
 					{{ actionsLocale.unfollow }}
 				</dav-button>
 			</div>

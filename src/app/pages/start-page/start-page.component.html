@@ -1,6 +1,7 @@
 <div class="container">
 	@if (publisherUuids.length > 0) {
 	<storyline-horizontal-publisher-list
+		#horizontalPublisherList
 		[headline]="locale.youFollow"
 		[publisherUuids]="publisherUuids"
 		[showSettingsButton]="publishers.length > 0"
@@ -18,6 +19,8 @@
 	#feedSettingsDialog
 	[publishers]="publishers"
 	[excludedFeedUuids]="excludedfeedUuids"
+	(unfollowPublisher)="unfollowPublisher($event)"
 	(includeFeed)="includeFeed($event)"
 	(excludeFeed)="excludeFeed($event)"
+	(closed)="feedSettingsDialogClosed()"
 ></storyline-feed-settings-dialog>

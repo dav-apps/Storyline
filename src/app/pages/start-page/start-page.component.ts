@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core"
 import { GetAllTableObjects, TableObject } from "dav-js"
+import { HorizontalPublisherListComponent } from "src/app/components/horizontal-publisher-list/horizontal-publisher-list.component"
 import { FeedSettingsDialogComponent } from "src/app/dialogs/feed-settings-dialog/feed-settings-dialog.component"
 import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
@@ -27,6 +28,9 @@ export class StartPageComponent {
 	offset: number = 0
 	articlesLoading: boolean = false
 	initialized: boolean = false
+	unfollowedPublishers: PublisherResource[] = []
+	@ViewChild("horizontalPublisherList")
+	horizontalPublisherList: HorizontalPublisherListComponent
 	@ViewChild("feedSettingsDialog")
 	feedSettingsDialog: FeedSettingsDialogComponent
 
@@ -208,7 +212,18 @@ export class StartPageComponent {
 	}
 
 	showFeedSettingsDialog() {
+		this.unfollowedPublishers = []
 		this.feedSettingsDialog.show()
+	}
+
+	unfollowPublisher(publisher: PublisherResource) {
+		let i = this.publishers.findIndex(p => p.uuid == publisher.uuid)
+
+		if (i != -1) {
+			this.publishers.splice(i, 1)
+		}
+
+		this.unfollowedPublishers.push(publisher)
 	}
 
 	async includeFeed(event: {
@@ -269,5 +284,30 @@ export class StartPageComponent {
 			name: followTableExcludedFeedsKey,
 			value: newFeedUuidsString
 		})
+	}
+
+	async feedSettingsDialogClosed() {
+		if (this.unfollowedPublishers.length == 0) return
+
+		for (let publisher of this.unfollowedPublishers) {
+			let i = this.publisherUuids.findIndex(u => u == publisher.uuid)
+
+			if (i != -1) {
+				this.publisherUuids.splice(i, 1)
+			}
+
+			// Delete the follow table object
+			i = this.followTableObjects.findIndex(
+				obj =>
+					obj.GetPropertyValue(followTablePublisherKey) == publisher.uuid
+			)
+
+			if (i != -1) {
+				await this.followTableObjects[i].Delete()
+				this.followTableObjects.splice(i, 1)
+			}
+		}
+
+		this.horizontalPublisherList.init()
 	}
 }

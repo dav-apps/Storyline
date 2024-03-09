@@ -31,7 +31,11 @@ export class HorizontalPublisherListComponent {
 		private router: Router
 	) {}
 
-	async ngOnInit() {
+	ngOnInit() {
+		this.init()
+	}
+
+	async init() {
 		if (this.publisherUuids.length > 0) {
 			await this.loadPublishersFromUuids()
 		} else {
@@ -59,6 +63,8 @@ export class HorizontalPublisherListComponent {
 	}
 
 	async loadPublishersFromUuids() {
+		this.publishers = []
+
 		for (let uuid of this.publisherUuids) {
 			let response = await this.apiService.retrievePublisher(
 				`

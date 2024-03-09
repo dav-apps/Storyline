@@ -20,8 +20,10 @@ export class FeedSettingsDialogComponent {
 	actionsLocale = this.localizationService.locale.actions
 	@Input() publishers: PublisherResource[] = []
 	@Input() excludedFeedUuids: string[] = []
+	@Output() unfollowPublisher = new EventEmitter()
 	@Output() includeFeed = new EventEmitter()
 	@Output() excludeFeed = new EventEmitter()
+	@Output() closed = new EventEmitter()
 	@ViewChild("dialog")
 	dialog: ElementRef<Dialog>
 	visible: boolean = false
@@ -42,6 +44,7 @@ export class FeedSettingsDialogComponent {
 
 	hide() {
 		this.visible = false
+		this.closed.emit()
 	}
 
 	feedCheckboxChange(
