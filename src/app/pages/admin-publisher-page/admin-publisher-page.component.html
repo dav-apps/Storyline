@@ -19,7 +19,7 @@
 		<div class="list-container">
 			<dav-list>
 				@for (feed of feeds; track feed.uuid) {
-				<dav-list-item [headline]="feed.name" size="small"></dav-list-item>
+				<dav-list-item [headline]="feed.name ?? '[no name]'" size="small"></dav-list-item>
 				}
 			</dav-list>
 		</div>
