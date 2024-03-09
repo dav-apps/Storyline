@@ -24,7 +24,11 @@
 			@if (publisher.feeds.items.length > 0) {
 			<div class="feeds-container">
 				@for (feed of publisher.feeds.items; track feed.uuid) {
-				<dav-checkbox [label]="feed.name"></dav-checkbox>
+				<dav-checkbox
+					[label]="feed.name"
+					[checked]="!excludedFeedUuids.includes(feed.uuid)"
+					(change)="feedCheckboxChange($event, publisher, feed)"
+				></dav-checkbox>
 				}
 			</div>
 			}

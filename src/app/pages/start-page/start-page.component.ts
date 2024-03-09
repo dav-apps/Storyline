@@ -1,12 +1,13 @@
 import { Component, ViewChild } from "@angular/core"
-import { GetAllTableObjects } from "dav-js"
+import { GetAllTableObjects, TableObject } from "dav-js"
 import { FeedSettingsDialogComponent } from "src/app/dialogs/feed-settings-dialog/feed-settings-dialog.component"
 import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
-import { ArticleResource, PublisherResource } from "src/app/types"
+import { ArticleResource, FeedResource, PublisherResource } from "src/app/types"
 import {
 	followTablePublisherKey,
+	followTableExcludedFeedsKey,
 	bottomArticleThreshold
 } from "src/app/constants"
 import { environment } from "src/environments/environment"
@@ -19,7 +20,9 @@ export class StartPageComponent {
 	locale = this.localizationService.locale.startPage
 	articles: ArticleResource[] = []
 	publisherUuids: string[] = []
+	excludedfeedUuids: string[] = []
 	publishers: PublisherResource[] = []
+	followTableObjects: TableObject[] = []
 	limit: number = 12
 	offset: number = 0
 	articlesLoading: boolean = false
@@ -37,13 +40,26 @@ export class StartPageComponent {
 
 	async ngOnInit() {
 		// Get all Follow table objects
-		let tableObjects = await GetAllTableObjects(environment.followTableId)
+		this.followTableObjects = await GetAllTableObjects(
+			environment.followTableId
+		)
 		this.publisherUuids = []
+		this.excludedfeedUuids = []
 
-		for (let tableObject of tableObjects) {
+		for (let tableObject of this.followTableObjects) {
 			this.publisherUuids.push(
 				tableObject.GetPropertyValue(followTablePublisherKey) as string
 			)
+
+			let feedsString = tableObject.GetPropertyValue(
+				followTableExcludedFeedsKey
+			) as string
+
+			if (feedsString != null) {
+				for (let feedUuid of feedsString.split(",")) {
+					this.excludedfeedUuids.push(feedUuid)
+				}
+			}
 		}
 
 		let articles: ArticleResource[] = []
@@ -193,5 +209,65 @@ export class StartPageComponent {
 
 	showFeedSettingsDialog() {
 		this.feedSettingsDialog.show()
+	}
+
+	async includeFeed(event: {
+		publisher: PublisherResource
+		feed: FeedResource
+	}) {
+		let i = this.followTableObjects.findIndex(
+			obj =>
+				obj.GetPropertyValue(followTablePublisherKey) ==
+				event.publisher.uuid
+		)
+
+		if (i == -1) return
+
+		let followTableObject = this.followTableObjects[i]
+		let feedUuidsString = followTableObject.GetPropertyValue(
+			followTableExcludedFeedsKey
+		) as string
+
+		if (feedUuidsString == null) return
+
+		let feedUuids = feedUuidsString.split(",")
+		let j = feedUuids.findIndex(f => f == event.feed.uuid)
+
+		// Remove the feed from the feed uuids string
+		feedUuids.splice(j, 1)
+
+		await followTableObject.SetPropertyValue({
+			name: followTableExcludedFeedsKey,
+			value: feedUuids.join(",")
+		})
+	}
+
+	async excludeFeed(event: {
+		publisher: PublisherResource
+		feed: FeedResource
+	}) {
+		let i = this.followTableObjects.findIndex(
+			obj =>
+				obj.GetPropertyValue(followTablePublisherKey) ==
+				event.publisher.uuid
+		)
+
+		if (i == -1) return
+
+		let followTableObject = this.followTableObjects[i]
+		let feedUuidsString = followTableObject.GetPropertyValue(
+			followTableExcludedFeedsKey
+		) as string
+
+		let newFeedUuidsString = event.feed.uuid
+
+		if (feedUuidsString != null && feedUuidsString.length > 0) {
+			newFeedUuidsString = `${feedUuidsString},${event.feed.uuid}`
+		}
+
+		await followTableObject.SetPropertyValue({
+			name: followTableExcludedFeedsKey,
+			value: newFeedUuidsString
+		})
 	}
 }

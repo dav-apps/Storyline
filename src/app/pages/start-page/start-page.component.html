@@ -17,4 +17,7 @@
 <storyline-feed-settings-dialog
 	#feedSettingsDialog
 	[publishers]="publishers"
+	[excludedFeedUuids]="excludedfeedUuids"
+	(includeFeed)="includeFeed($event)"
+	(excludeFeed)="excludeFeed($event)"
 ></storyline-feed-settings-dialog>
