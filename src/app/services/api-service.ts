@@ -291,7 +291,12 @@ export class ApiService {
 
 	async listArticles(
 		queryData: string,
-		variables: { publishers?: string[]; limit?: number; offset?: number }
+		variables: {
+			publishers?: string[]
+			excludeFeeds?: string[]
+			limit?: number
+			offset?: number
+		}
 	): Promise<
 		ApolloQueryResult<{ listArticles: List<ArticleResource> }> | undefined
 	> {
@@ -302,11 +307,13 @@ export class ApiService {
 				query: gql`
 					query ListArticles(
 						$publishers: [String!]
+						$excludeFeeds: [String!]
 						$limit: Int
 						$offset: Int
 					) {
 						listArticles(
 							publishers: $publishers
+							excludeFeeds: $excludeFeeds
 							limit: $limit
 							offset: $offset
 						) {

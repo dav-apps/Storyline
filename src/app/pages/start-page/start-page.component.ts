@@ -21,7 +21,7 @@ export class StartPageComponent {
 	locale = this.localizationService.locale.startPage
 	articles: ArticleResource[] = []
 	publisherUuids: string[] = []
-	excludedfeedUuids: string[] = []
+	excludedFeedUuids: string[] = []
 	publishers: PublisherResource[] = []
 	followTableObjects: TableObject[] = []
 	limit: number = 12
@@ -29,6 +29,7 @@ export class StartPageComponent {
 	articlesLoading: boolean = false
 	initialized: boolean = false
 	unfollowedPublishers: PublisherResource[] = []
+	feedSettingsChanged: boolean = false
 	@ViewChild("horizontalPublisherList")
 	horizontalPublisherList: HorizontalPublisherListComponent
 	@ViewChild("feedSettingsDialog")
@@ -43,43 +44,9 @@ export class StartPageComponent {
 	}
 
 	async ngOnInit() {
-		// Get all Follow table objects
-		this.followTableObjects = await GetAllTableObjects(
-			environment.followTableId
-		)
-		this.publisherUuids = []
-		this.excludedfeedUuids = []
-
-		for (let tableObject of this.followTableObjects) {
-			this.publisherUuids.push(
-				tableObject.GetPropertyValue(followTablePublisherKey) as string
-			)
-
-			let feedsString = tableObject.GetPropertyValue(
-				followTableExcludedFeedsKey
-			) as string
-
-			if (feedsString != null) {
-				for (let feedUuid of feedsString.split(",")) {
-					this.excludedfeedUuids.push(feedUuid)
-				}
-			}
-		}
-
-		let articles: ArticleResource[] = []
-
-		if (this.dataService.startPageArticles.length > 0) {
-			articles = this.dataService.startPageArticles
-			this.offset = this.dataService.startPageOffset
-		} else {
-			articles = await this.loadArticles(this.publisherUuids)
-		}
+		await this.loadFeed()
 
 		this.dataService.loadingScreenVisible = false
-
-		for (let article of articles) {
-			this.articles.push(article)
-		}
 
 		if (this.dataService.dav.user.Plan > 0) {
 			this.publishers = await this.loadPublishers()
@@ -133,8 +100,52 @@ export class StartPageComponent {
 		}
 	}
 
+	async loadFeed() {
+		this.articles = []
+
+		// Get all Follow table objects
+		this.followTableObjects = await GetAllTableObjects(
+			environment.followTableId
+		)
+		this.publisherUuids = []
+		this.excludedFeedUuids = []
+
+		for (let tableObject of this.followTableObjects) {
+			this.publisherUuids.push(
+				tableObject.GetPropertyValue(followTablePublisherKey) as string
+			)
+
+			let feedsString = tableObject.GetPropertyValue(
+				followTableExcludedFeedsKey
+			) as string
+
+			if (feedsString != null) {
+				for (let feedUuid of feedsString.split(",")) {
+					this.excludedFeedUuids.push(feedUuid)
+				}
+			}
+		}
+
+		let articles: ArticleResource[] = []
+
+		if (this.dataService.startPageArticles.length > 0) {
+			articles = this.dataService.startPageArticles
+			this.offset = this.dataService.startPageOffset
+		} else {
+			articles = await this.loadArticles(
+				this.publisherUuids,
+				this.excludedFeedUuids
+			)
+		}
+
+		for (let article of articles) {
+			this.articles.push(article)
+		}
+	}
+
 	async loadArticles(
 		publishers: string[],
+		excludeFeeds: string[],
 		limit: number = 12,
 		offset: number = 0
 	) {
@@ -153,6 +164,7 @@ export class StartPageComponent {
 			`,
 			{
 				publishers,
+				excludeFeeds,
 				limit,
 				offset
 			}
@@ -173,6 +185,7 @@ export class StartPageComponent {
 
 		const articles = await this.loadArticles(
 			this.publisherUuids,
+			this.excludedFeedUuids,
 			this.limit,
 			this.offset
 		)
@@ -213,6 +226,7 @@ export class StartPageComponent {
 
 	showFeedSettingsDialog() {
 		this.unfollowedPublishers = []
+		this.feedSettingsChanged = false
 		this.feedSettingsDialog.show()
 	}
 
@@ -230,7 +244,14 @@ export class StartPageComponent {
 		publisher: PublisherResource
 		feed: FeedResource
 	}) {
-		let i = this.followTableObjects.findIndex(
+		// Remove the feed from excluded feeds
+		let i = this.excludedFeedUuids.findIndex(u => u == event.feed.uuid)
+
+		if (i != -1) {
+			this.excludedFeedUuids.splice(i, 1)
+		}
+
+		i = this.followTableObjects.findIndex(
 			obj =>
 				obj.GetPropertyValue(followTablePublisherKey) ==
 				event.publisher.uuid
@@ -255,12 +276,17 @@ export class StartPageComponent {
 			name: followTableExcludedFeedsKey,
 			value: feedUuids.join(",")
 		})
+
+		this.feedSettingsChanged = true
 	}
 
 	async excludeFeed(event: {
 		publisher: PublisherResource
 		feed: FeedResource
 	}) {
+		// Add the feed to excluded feeds
+		this.excludedFeedUuids.push(event.feed.uuid)
+
 		let i = this.followTableObjects.findIndex(
 			obj =>
 				obj.GetPropertyValue(followTablePublisherKey) ==
@@ -284,10 +310,16 @@ export class StartPageComponent {
 			name: followTableExcludedFeedsKey,
 			value: newFeedUuidsString
 		})
+
+		this.feedSettingsChanged = true
 	}
 
 	async feedSettingsDialogClosed() {
-		if (this.unfollowedPublishers.length == 0) return
+		if (this.unfollowedPublishers.length == 0 && !this.feedSettingsChanged) {
+			return
+		}
+
+		this.dataService.loadingScreenVisible = true
 
 		for (let publisher of this.unfollowedPublishers) {
 			let i = this.publisherUuids.findIndex(u => u == publisher.uuid)
@@ -309,5 +341,10 @@ export class StartPageComponent {
 		}
 
 		this.horizontalPublisherList.init()
+
+		// Reload the feed
+		await this.loadFeed()
+
+		this.dataService.loadingScreenVisible = false
 	}
 }
