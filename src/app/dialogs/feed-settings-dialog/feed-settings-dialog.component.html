@@ -32,6 +32,10 @@
 				<dav-checkbox
 					[label]="feed.name"
 					[checked]="!excludedFeedUuids.includes(feed.uuid)"
+					[disabled]="
+						!excludedFeedUuids.includes(feed.uuid) &&
+						excludedFeedUuids.length == publisher.feeds.items.length - 1
+					"
 					(change)="feedCheckboxChange($event, publisher, feed)"
 				></dav-checkbox>
 				}
