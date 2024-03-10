@@ -2,7 +2,9 @@ import { Component, ViewChild } from "@angular/core"
 import { GetAllTableObjects, TableObject } from "dav-js"
 import { HorizontalPublisherListComponent } from "src/app/components/horizontal-publisher-list/horizontal-publisher-list.component"
 import { FeedSettingsDialogComponent } from "src/app/dialogs/feed-settings-dialog/feed-settings-dialog.component"
+import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { ApiService } from "src/app/services/api-service"
+import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { ArticleResource, FeedResource, PublisherResource } from "src/app/types"
@@ -35,9 +37,16 @@ export class StartPageComponent {
 	@ViewChild("feedSettingsDialog")
 	feedSettingsDialog: FeedSettingsDialogComponent
 
+	//#region UpgradePlusDialog
+	@ViewChild("upgradePlusDialog")
+	upgradePlusDialog: UpgradePlusDialogComponent
+	upgradePlusDialogLoading: boolean = false
+	//#endregion
+
 	constructor(
 		private apiService: ApiService,
-		private dataService: DataService,
+		private davApiService: DavApiService,
+		public dataService: DataService,
 		private localizationService: LocalizationService
 	) {
 		this.dataService.loadingScreenVisible = true
@@ -45,12 +54,9 @@ export class StartPageComponent {
 
 	async ngOnInit() {
 		await this.loadFeed()
+		this.publishers = await this.loadPublishers()
 
 		this.dataService.loadingScreenVisible = false
-
-		if (this.dataService.dav.user.Plan > 0) {
-			this.publishers = await this.loadPublishers()
-		}
 
 		this.dataService.contentContainer.addEventListener(
 			"scroll",
@@ -225,9 +231,13 @@ export class StartPageComponent {
 	}
 
 	showFeedSettingsDialog() {
-		this.unfollowedPublishers = []
-		this.feedSettingsChanged = false
-		this.feedSettingsDialog.show()
+		if (this.dataService.dav.user.Plan > 0) {
+			this.unfollowedPublishers = []
+			this.feedSettingsChanged = false
+			this.feedSettingsDialog.show()
+		} else {
+			this.upgradePlusDialog.show()
+		}
 	}
 
 	unfollowPublisher(publisher: PublisherResource) {
@@ -346,5 +356,26 @@ export class StartPageComponent {
 		await this.loadFeed()
 
 		this.dataService.loadingScreenVisible = false
+	}
+
+	async navigateToCheckoutPage() {
+		this.upgradePlusDialogLoading = true
+
+		let response = await this.davApiService.createSubscriptionCheckoutSession(
+			`url`,
+			{
+				plan: "PLUS",
+				successUrl: window.location.href,
+				cancelUrl: window.location.href
+			}
+		)
+
+		const url = response.data?.createSubscriptionCheckoutSession?.url
+
+		if (url != null) {
+			window.location.href = url
+		} else {
+			this.upgradePlusDialogLoading = false
+		}
 	}
 }

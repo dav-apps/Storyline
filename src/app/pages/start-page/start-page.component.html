@@ -1,10 +1,10 @@
 <div class="container">
-	@if (publisherUuids.length > 0) {
+	@if (publishers.length > 0) {
 	<storyline-horizontal-publisher-list
 		#horizontalPublisherList
 		[headline]="locale.youFollow"
 		[publisherUuids]="publisherUuids"
-		[showSettingsButton]="publishers.length > 0"
+		[showSettingsButton]="dataService.dav.isLoggedIn"
 		(settingsButtonClick)="showFeedSettingsDialog()"
 	></storyline-horizontal-publisher-list>
 	}
@@ -24,3 +24,9 @@
 	(excludeFeed)="excludeFeed($event)"
 	(closed)="feedSettingsDialogClosed()"
 ></storyline-feed-settings-dialog>
+
+<storyline-upgrade-plus-dialog
+	#upgradePlusDialog
+	[loading]="upgradePlusDialogLoading"
+	(primaryButtonClick)="navigateToCheckoutPage()"
+></storyline-upgrade-plus-dialog>
