@@ -98,10 +98,40 @@ export class AppComponent {
 			if (params["accessToken"]) {
 				// Log in with the access token
 				await this.dataService.dav.Login(params["accessToken"])
-				window.location.href = this.router.url.slice(
-					0,
-					this.router.url.indexOf("?")
-				)
+
+				// Reload the page without accessToken in the url
+				let url = new URL(window.location.href)
+				url.searchParams.delete("accessToken")
+				window.location.href = url.toString()
+			} else if (params["upgradePlus"] == "true") {
+				await this.dataService.userPromiseHolder.AwaitResult()
+
+				if (
+					this.dataService.dav.isLoggedIn &&
+					this.dataService.dav.user.Plan == 0
+				) {
+					let redirectUrl =
+						window.location.origin + window.location.pathname
+
+					let response =
+						await this.davApiService.createSubscriptionCheckoutSession(
+							`url`,
+							{
+								plan: "PLUS",
+								successUrl: redirectUrl,
+								cancelUrl: redirectUrl
+							}
+						)
+
+					const url = response.data?.createSubscriptionCheckoutSession?.url
+
+					if (url != null) {
+						window.location.href = url
+					} else {
+						window.location.href =
+							window.location.origin + window.location.pathname
+					}
+				}
 			}
 		})
 	}

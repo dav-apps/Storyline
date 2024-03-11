@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core"
-import { GetAllTableObjects, TableObject } from "dav-js"
+import { Dav, GetAllTableObjects, TableObject } from "dav-js"
 import { HorizontalPublisherListComponent } from "src/app/components/horizontal-publisher-list/horizontal-publisher-list.component"
 import { FeedSettingsDialogComponent } from "src/app/dialogs/feed-settings-dialog/feed-settings-dialog.component"
 import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
@@ -358,6 +358,14 @@ export class StartPageComponent {
 		this.dataService.loadingScreenVisible = false
 	}
 
+	async upgradePlusDialogPrimaryButtonClick() {
+		if (this.dataService.dav.isLoggedIn) {
+			await this.navigateToCheckoutPage()
+		} else {
+			await this.navigateToLoginPage()
+		}
+	}
+
 	async navigateToCheckoutPage() {
 		this.upgradePlusDialogLoading = true
 
@@ -377,5 +385,12 @@ export class StartPageComponent {
 		} else {
 			this.upgradePlusDialogLoading = false
 		}
+	}
+
+	async navigateToLoginPage() {
+		// Go to login page with upgradePlus=true in the url
+		let url = new URL(window.location.href)
+		url.searchParams.append("upgradePlus", "true")
+		Dav.ShowLoginPage(environment.apiKey, url.toString())
 	}
 }

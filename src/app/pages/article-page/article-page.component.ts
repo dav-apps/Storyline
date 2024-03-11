@@ -5,7 +5,7 @@ import {
 	faShareFromSquare,
 	faBookmark as faBookmarkRegular
 } from "@fortawesome/pro-regular-svg-icons"
-import { GetAllTableObjects, TableObject } from "dav-js"
+import { Dav, GetAllTableObjects, TableObject } from "dav-js"
 import { Toast } from "dav-ui-components"
 import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { ApiService } from "src/app/services/api-service"
@@ -277,6 +277,14 @@ export class ArticlePageComponent {
 		this.upgradePlusDialog.show()
 	}
 
+	async upgradePlusDialogPrimaryButtonClick() {
+		if (this.dataService.dav.isLoggedIn) {
+			await this.navigateToCheckoutPage()
+		} else {
+			await this.navigateToLoginPage()
+		}
+	}
+
 	async navigateToCheckoutPage() {
 		this.upgradePlusDialogLoading = true
 
@@ -296,5 +304,12 @@ export class ArticlePageComponent {
 		} else {
 			this.upgradePlusDialogLoading = false
 		}
+	}
+
+	async navigateToLoginPage() {
+		// Go to login page with upgradePlus=true in the url
+		let url = new URL(window.location.href)
+		url.searchParams.append("upgradePlus", "true")
+		Dav.ShowLoginPage(environment.apiKey, url.toString())
 	}
 }
