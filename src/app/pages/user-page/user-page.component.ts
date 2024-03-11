@@ -1,8 +1,8 @@
 import { Component, ViewChild } from "@angular/core"
 import {
 	faRotate as faRotateLight,
-	faPlus as faPlusLight,
-	faGem as faGemLight
+	faBellRing as faBellRingLight,
+	faUserPlus as faUserPlusLight
 } from "@fortawesome/pro-light-svg-icons"
 import { Dav } from "dav-js"
 import { LogoutDialogComponent } from "src/app/dialogs/logout-dialog/logout-dialog.component"
@@ -18,8 +18,8 @@ import { environment } from "../../../environments/environment"
 export class UserPageComponent {
 	locale = this.localizationService.locale.userPage
 	faRotateLight = faRotateLight
-	faPlusLight = faPlusLight
-	faGemLight = faGemLight
+	faBellRingLight = faBellRingLight
+	faUserPlusLight = faUserPlusLight
 	@ViewChild("logoutDialog")
 	logoutDialog: LogoutDialogComponent
 	websiteUrl = environment.websiteUrl

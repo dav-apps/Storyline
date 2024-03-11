@@ -24,8 +24,8 @@ const enDefaults = {
 		title: "Your account",
 		headline: "Save your data and get access to advanced features",
 		benefit1: "Access your news feed on all your devices",
-		benefit2: "More features: Get notifications, save articles & more",
-		benefit3: "Get access to exclusive content",
+		benefit2: "Follow as many providers as you like",
+		benefit3: "Enable optional notifications for new articles",
 		login: "Log in",
 		logout: "Log out",
 		signup: "Sign up",
@@ -159,11 +159,10 @@ const deDefaults = {
 	userPage: {
 		title: "Dein Account",
 		headline:
-			"Sichere deine Daten und bekomme Zugriff zu erweiterten Funktionen",
+			"Sichere deine Daten und erhalte Zugriff auf erweiterte Funktionen",
 		benefit1: "Lese deinen News-Feed auf all deinen Geräten",
-		benefit2:
-			"Zusätzliche Funktionen: Benachrichtigungen, Artikel speichern & mehr",
-		benefit3: "Erhalte Zugriff auf exklusive Inhalte",
+		benefit2: "Folge beliebig vielen Anbietern",
+		benefit3: "Schalte optionale Benachrichtigungen für neue Artikel frei",
 		login: "Anmelden",
 		logout: "Abmelden",
 		signup: "Registrieren",
