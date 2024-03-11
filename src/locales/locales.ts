@@ -64,8 +64,11 @@ const enDefaults = {
 	dialogs: {
 		loginPromptDialog: {
 			headline: "Log in",
-			description:
-				"Log in to follow more publishers, receive notifications and more."
+			intro: "Log in to enjoy the following additional features:",
+			followingPublishers:
+				"📰 <strong>Limitless Publisher Follows</strong>: Follow as many publishers as you desire, customizing your content stream to match your interests and preferences.",
+			notifications:
+				"🔔 <strong>Real-time Notifications</strong>: Stay informed with our timely alerts! Receive notifications for new articles, ensuring you never miss out on the latest updates and insights."
 		},
 		logoutDialog: {
 			headline: "Log out",
@@ -80,7 +83,7 @@ const enDefaults = {
 				"⏳ <strong>Real-time Updates</strong>: Stay on the pulse of the latest news as it happens, ensuring that you are always informed and up-to-date with the latest developments.",
 			feedCustomization:
 				"🎯 <strong>Enhanced Feed Personalization</strong>: Take control of your content by customizing your feed based on your unique interests. Fine-tune preferences for each publisher, enabling you to filter out articles that don't align with your specific interests.",
-			getStarted: "Get started now"
+			getStarted: "Get started"
 		},
 		publisherDialog: {
 			headline: {
@@ -202,8 +205,11 @@ const deDefaults = {
 	dialogs: {
 		loginPromptDialog: {
 			headline: "Anmelden",
-			description:
-				"Melde dich an, um weiteren Anbietern zu folgen, Benachrichtigungen zu erhalten und vieles mehr."
+			intro: "Melde dich an, um die folgenden zusätzlichen Funktionen zu genießen:",
+			followingPublishers:
+				"📰 <strong>Unbegrenztes Folgen von Anbietern</strong>: Folge beliebig vielen Anbietern und passe deinen News-Feed an deine Interessen und Vorlieben an.",
+			notifications:
+				"🔔 <strong>Echtzeit-Benachrichtigungen</strong>: Bleibe informiert mit unseren zeitnahen Benachrichtigungen! Erhalte umgehend Meldungen zu neuen Artikeln und verpasse so nie die neuesten Updates und Einsichten."
 		},
 		logoutDialog: {
 			headline: "Abmelden",

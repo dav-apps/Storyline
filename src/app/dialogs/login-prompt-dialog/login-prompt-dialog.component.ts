@@ -10,7 +10,8 @@ import { LocalizationService } from "src/app/services/localization-service"
 
 @Component({
 	selector: "storyline-login-prompt-dialog",
-	templateUrl: "./login-prompt-dialog.component.html"
+	templateUrl: "./login-prompt-dialog.component.html",
+	styleUrl: "./login-prompt-dialog.component.scss"
 })
 export class LoginPromptDialogComponent {
 	locale = this.localizationService.locale.dialogs.loginPromptDialog

@@ -4,10 +4,15 @@
 	[primaryButtonText]="actionsLocale.login"
 	[defaultButtonText]="actionsLocale.close"
 	[visible]="visible"
-	maxWidth="340"
+	maxWidth="400"
 	(dismiss)="visible = false"
 	(primaryButtonClick)="primaryButtonClick.emit()"
 	(defaultButtonClick)="visible = false"
 >
-	<p>{{ locale.description }}</p>
+	<p>{{ locale.intro }}</p>
+
+	<ul>
+		<li [innerHTML]="locale.followingPublishers"></li>
+		<li [innerHTML]="locale.notifications"></li>
+	</ul>
 </dav-dialog>
