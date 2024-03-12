@@ -15,6 +15,7 @@ export const storylineApiClientName = "storylineClient"
 export const followTablePublisherKey = "publisher"
 export const followTableExcludedFeedsKey = "excludedFeeds"
 export const bookmarkTableArticleKey = "article"
+export const notificationTablePublisherKey = "publisher"
 //#endregion
 
 //#region settings keys

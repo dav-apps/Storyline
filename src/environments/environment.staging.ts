@@ -8,5 +8,6 @@ export const environment = {
 	websiteUrl: "https://dav-website-staging-o3oot.ondigitalocean.app/",
 	appId: 7,
 	followTableId: 43,
-	bookmarkTableId: 44
+	bookmarkTableId: 44,
+	notificationTableId: 45
 }
