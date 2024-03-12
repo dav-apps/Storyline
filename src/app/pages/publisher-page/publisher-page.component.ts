@@ -1,10 +1,17 @@
 import { Component, ViewChild } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
+import { faBellOn } from "@fortawesome/pro-solid-svg-icons"
 import {
 	faArrowUpRightFromSquare,
-	faPlus
+	faPlus,
+	faBell
 } from "@fortawesome/pro-regular-svg-icons"
-import { Dav, TableObject, GetAllTableObjects } from "dav-js"
+import {
+	Dav,
+	TableObject,
+	GetAllTableObjects,
+	SetupWebPushSubscription
+} from "dav-js"
 import { ApiService } from "../../services/api-service"
 import { DataService } from "../../services/data-service"
 import { LocalizationService } from "../../services/localization-service"
@@ -12,6 +19,7 @@ import { LoginPromptDialogComponent } from "../../dialogs/login-prompt-dialog/lo
 import { ArticleResource, PublisherResource } from "src/app/types"
 import {
 	followTablePublisherKey,
+	notificationTablePublisherKey,
 	bottomArticleThreshold
 } from "src/app/constants"
 import { environment } from "src/environments/environment"
@@ -25,6 +33,8 @@ export class PublisherPageComponent {
 	actionsLocale = this.localizationService.locale.actions
 	faArrowUpRightFromSquare = faArrowUpRightFromSquare
 	faPlus = faPlus
+	faBell = faBell
+	faBellOn = faBellOn
 	@ViewChild("loginPromptDialog") loginPromptDialog: LoginPromptDialogComponent
 	publisher: PublisherResource = null
 	articles: ArticleResource[] = []
@@ -32,6 +42,7 @@ export class PublisherPageComponent {
 	offset: number = 0
 	articlesLoading: boolean = false
 	followTableObject: TableObject = null
+	notificationTableObject: TableObject = null
 
 	constructor(
 		private apiService: ApiService,
@@ -151,7 +162,7 @@ export class PublisherPageComponent {
 			}
 		}
 
-		// Follow the publisher by creating a Follow object
+		// Follow the publisher by creating a Follow table object
 		let tableObject = new TableObject()
 		tableObject.TableId = environment.followTableId
 
@@ -176,6 +187,33 @@ export class PublisherPageComponent {
 		this.dataService.startPageArticles = []
 		this.dataService.startPageOffset = 0
 		this.dataService.startPagePosition = 0
+	}
+
+	async activateNotifications() {
+		// Check if the user is logged in
+		if (!this.dataService.dav.isLoggedIn) {
+			this.loginPromptDialog.show()
+			return
+		}
+
+		// Ask the user for notification permission
+		if (!(await SetupWebPushSubscription())) return
+
+		// Activate notifications by creating a Notifications table object
+		let tableObject = new TableObject()
+		tableObject.TableId = environment.notificationTableId
+
+		await tableObject.SetPropertyValue({
+			name: notificationTablePublisherKey,
+			value: this.publisher.uuid
+		})
+
+		this.notificationTableObject = tableObject
+	}
+
+	async deactivateNotifications() {
+		await this.notificationTableObject.Delete()
+		this.notificationTableObject = null
 	}
 
 	navigateToLoginPage() {

@@ -18,13 +18,28 @@
 						followTableObject != null ? 'rotate(45deg)' : 'rotate(0deg)'
 					"
 				></fa-icon>
-				{{ followTableObject != null ? actionsLocale.unfollow : actionsLocale.follow }}
+				{{
+					followTableObject != null
+						? actionsLocale.unfollow
+						: actionsLocale.follow
+				}}
 			</dav-button>
 
-			<dav-button outline size="small" (click)="openWebsite()">
+			<dav-icon-button
+				size="small"
+				(click)="
+					notificationTableObject != null
+						? deactivateNotifications()
+						: activateNotifications()
+				"
+				*ngIf="followTableObject != null"
+			>
+				<fa-icon [icon]="notificationTableObject != null ? faBellOn : faBell"></fa-icon>
+			</dav-icon-button>
+
+			<dav-icon-button size="small" (click)="openWebsite()">
 				<fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-				{{ locale.openWebsite }}
-			</dav-button>
+			</dav-icon-button>
 		</div>
 
 		<storyline-article-list

@@ -58,9 +58,7 @@ const enDefaults = {
 		addedToBookmarks: "Article was added to bookmarks",
 		removedFromBookmarks: "Article was removed from bookmarks"
 	},
-	publisherPage: {
-		openWebsite: "Open website"
-	},
+	publisherPage: {},
 	dialogs: {
 		loginPromptDialog: {
 			headline: "Log in",
@@ -199,9 +197,7 @@ const deDefaults = {
 		addedToBookmarks: "Artikel wurde in Lesezeichen gespeichert",
 		removedFromBookmarks: "Artikel wurde von Lesezeichen entfernt"
 	},
-	publisherPage: {
-		openWebsite: "Webseite öffnen"
-	},
+	publisherPage: {},
 	dialogs: {
 		loginPromptDialog: {
 			headline: "Anmelden",
