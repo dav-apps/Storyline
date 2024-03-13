@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
+import { ServiceWorkerModule } from "@angular/service-worker"
 
 // Local modules
 import { GraphQLModule } from "./graphql.module"
@@ -72,7 +73,8 @@ import { SettingsService } from "./services/settings-service"
 		ApolloModule,
 		HttpClientModule,
 		AppRoutingModule,
-		GraphQLModule
+		GraphQLModule,
+		ServiceWorkerModule.register("ngsw-worker.js")
 	],
 	providers: [
 		ApiService,
