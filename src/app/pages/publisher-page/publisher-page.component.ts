@@ -72,12 +72,22 @@ export class PublisherPageComponent {
 			this.onScroll
 		)
 
-		// Try to find a Follow object for the publisher
+		// Try to find a Follow table object for the publisher
 		const follows = await GetAllTableObjects(environment.followTableId)
 		let i = follows.findIndex(
 			f => f.GetPropertyValue(followTablePublisherKey) == publisher.uuid
 		)
 		if (i != -1) this.followTableObject = follows[i]
+
+		// Try to find a Notification table object for the publisher
+		const notifications = await GetAllTableObjects(
+			environment.notificationTableId
+		)
+		i = notifications.findIndex(
+			n =>
+				n.GetPropertyValue(notificationTablePublisherKey) == publisher.uuid
+		)
+		if (i != -1) this.notificationTableObject = notifications[i]
 	}
 
 	ngOnDestroy() {
