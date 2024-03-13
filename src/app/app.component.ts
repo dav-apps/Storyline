@@ -144,7 +144,11 @@ export class AppComponent {
 		new Dav({
 			environment: environment.environment,
 			appId: environment.appId,
-			tableIds: [],
+			tableIds: [
+				environment.followTableId,
+				environment.bookmarkTableId,
+				environment.notificationTableId
+			],
 			callbacks: {
 				UserLoaded: () => this.userLoaded(),
 				AccessTokenRenewed: (accessToken: string) =>
