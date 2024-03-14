@@ -76,7 +76,6 @@ export class AdminPublisherPageComponent {
 						uuid
 						url
 						name
-						description
 					}
 				}
 			`,
@@ -198,7 +197,6 @@ export class AdminPublisherPageComponent {
 				uuid
 				url
 				name
-				description
 				language
 			`,
 			{ publisherUuid: this.publisher.uuid, url: data.url }

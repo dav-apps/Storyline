@@ -25,7 +25,6 @@ export interface FeedResource {
 	uuid: string
 	url: string
 	name: string
-	description: string
 	language: string
 	articles: List<ArticleResource>
 }
