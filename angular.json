@@ -27,7 +27,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/manifest.webmanifest",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/dav-js/dist/lib/workers/",
+                "output": "./"
+              }
             ],
             "styles": [
               "src/styles.scss"

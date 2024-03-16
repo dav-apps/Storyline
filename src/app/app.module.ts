@@ -1,7 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
 import { ServiceWorkerModule } from "@angular/service-worker"
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
+import { Environment } from "dav-js"
+import { environment } from "src/environments/environment"
 
 // Local modules
 import { GraphQLModule } from "./graphql.module"
@@ -74,7 +76,11 @@ import { SettingsService } from "./services/settings-service"
 		HttpClientModule,
 		AppRoutingModule,
 		GraphQLModule,
-		ServiceWorkerModule.register("ngsw-worker.js")
+		ServiceWorkerModule.register("sw.js", {
+			enabled:
+				environment.environment == Environment.Staging ||
+				environment.environment == Environment.Production
+		})
 	],
 	providers: [
 		ApiService,
