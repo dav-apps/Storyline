@@ -9,11 +9,11 @@ let websiteUrl = "http://localhost:3004"
 
 switch (process.env.ENV) {
 	case "production":
-		backendUrl = "https://storyline-api-staging-85btq.ondigitalocean.app/"
-		websiteUrl = "https://storyline-staging-a6ylk.ondigitalocean.app"
+		backendUrl = "https://storyline-api-5g4us.ondigitalocean.app"
+		websiteUrl = "https://storyline.press"
 		break
 	case "staging":
-		backendUrl = "https://storyline-api-staging-85btq.ondigitalocean.app/"
+		backendUrl = "https://storyline-api-staging-85btq.ondigitalocean.app"
 		websiteUrl = "https://storyline-staging-a6ylk.ondigitalocean.app"
 		break
 }
