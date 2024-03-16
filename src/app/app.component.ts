@@ -149,6 +149,10 @@ export class AppComponent {
 				environment.bookmarkTableId,
 				environment.notificationTableId
 			],
+			notificationOptions: {
+				icon: "/assets/icons/icon-192.png",
+				badge: "/assets/icons/badge-128.png"
+			},
 			callbacks: {
 				UserLoaded: () => this.userLoaded(),
 				AccessTokenRenewed: (accessToken: string) =>
