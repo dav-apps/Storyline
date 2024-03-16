@@ -15,13 +15,13 @@ app.get("/sitemap.txt", async (req, res) => {
 	res.send(await generateSitemap())
 })
 
-app.get("/article/:uuid", async (req: Request, res: Response) => {
-	let result = await prepareArticlePage(req.params.uuid)
+app.get("/article/:slug", async (req: Request, res: Response) => {
+	let result = await prepareArticlePage(req.params.slug)
 	res.status(result.status).send(result.html)
 })
 
-app.get("/publisher/:uuid", async (req: Request, res: Response) => {
-	let result = await preparePublisherPage(req.params.uuid)
+app.get("/publisher/:slug", async (req: Request, res: Response) => {
+	let result = await preparePublisherPage(req.params.slug)
 	res.status(result.status).send(result.html)
 })
 

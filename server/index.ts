@@ -36,14 +36,14 @@ export async function generateSitemap(): Promise<string> {
 	// Publishers
 	try {
 		let response = await request<{
-			listPublishers: { items: { uuid: string }[] }
+			listPublishers: { items: { slug: string }[] }
 		}>(
 			backendUrl,
 			gql`
 				query ListPublishers {
 					listPublishers(limit: 10000) {
 						items {
-							uuid
+							slug
 						}
 					}
 				}
@@ -54,7 +54,7 @@ export async function generateSitemap(): Promise<string> {
 		let publisherItems = response.listPublishers.items
 
 		for (let item of publisherItems) {
-			result += `${websiteUrl}/publisher/${item.uuid}\n`
+			result += `${websiteUrl}/publisher/${item.slug}\n`
 		}
 	} catch (error) {
 		console.error(error)
@@ -63,14 +63,14 @@ export async function generateSitemap(): Promise<string> {
 	// Articles
 	try {
 		let response = await request<{
-			listArticles: { items: { uuid: string }[] }
+			listArticles: { items: { slug: string }[] }
 		}>(
 			backendUrl,
 			gql`
 				query ListArticles {
 					listArticles(limit: 10000) {
 						items {
-							uuid
+							slug
 						}
 					}
 				}
@@ -81,7 +81,7 @@ export async function generateSitemap(): Promise<string> {
 		let articleItems = response.listArticles.items
 
 		for (let item of articleItems) {
-			result += `${websiteUrl}/article/${encodeURIComponent(item.uuid)}\n`
+			result += `${websiteUrl}/article/${item.slug}\n`
 		}
 	} catch (error) {
 		console.error(error)
@@ -91,7 +91,7 @@ export async function generateSitemap(): Promise<string> {
 	return result
 }
 
-export async function prepareArticlePage(uuid: string): Promise<PageResult> {
+export async function prepareArticlePage(slug: string): Promise<PageResult> {
 	try {
 		let response = await request<{
 			retrieveArticle: {
@@ -110,7 +110,7 @@ export async function prepareArticlePage(uuid: string): Promise<PageResult> {
 					}
 				}
 			`,
-			{ uuid }
+			{ uuid: slug }
 		)
 
 		let responseData = response.retrieveArticle
@@ -120,7 +120,7 @@ export async function prepareArticlePage(uuid: string): Promise<PageResult> {
 				title: responseData.title,
 				description: responseData.description,
 				imageUrl: responseData.imageUrl,
-				url: `${websiteUrl}/article/${uuid}`
+				url: `${websiteUrl}/article/${slug}`
 			}),
 			status: 200
 		}
@@ -133,7 +133,7 @@ export async function prepareArticlePage(uuid: string): Promise<PageResult> {
 	}
 }
 
-export async function preparePublisherPage(uuid: string): Promise<PageResult> {
+export async function preparePublisherPage(slug: string): Promise<PageResult> {
 	try {
 		let response = await request<{
 			retrievePublisher: {
@@ -152,7 +152,7 @@ export async function preparePublisherPage(uuid: string): Promise<PageResult> {
 					}
 				}
 			`,
-			{ uuid }
+			{ uuid: slug }
 		)
 
 		let responseData = response.retrievePublisher
@@ -162,7 +162,7 @@ export async function preparePublisherPage(uuid: string): Promise<PageResult> {
 				title: responseData.name,
 				description: responseData.description,
 				imageUrl: responseData.logoUrl,
-				url: `${websiteUrl}/publisher/${uuid}`
+				url: `${websiteUrl}/publisher/${slug}`
 			}),
 			status: 200
 		}
