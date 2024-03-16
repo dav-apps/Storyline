@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core"
 import * as localforage from "localforage"
-import { settingsThemeKey, settingsThemeDefault } from "src/app/constants"
+import {
+	settingsThemeKey,
+	settingsThemeDefault,
+	settingsActivateNotificationsCardClosedKey,
+	settingsActivateNotificationsCardClosedDefault
+} from "src/app/constants"
 
 @Injectable()
 export class SettingsService {
@@ -16,6 +21,23 @@ export class SettingsService {
 
 	async getTheme(): Promise<string> {
 		return this.getSetting<string>(settingsThemeKey, settingsThemeDefault)
+	}
+	//#endregion
+
+	//#region ActivateNotificationsCardClosed
+	async setActivateNotificationsCardClosed(value: boolean) {
+		await localforage.setItem(
+			settingsActivateNotificationsCardClosedKey,
+			value
+		)
+		this.cache[settingsActivateNotificationsCardClosedKey] = value
+	}
+
+	async getActivateNotificationsCardClosed(): Promise<boolean> {
+		return this.getSetting<boolean>(
+			settingsActivateNotificationsCardClosedKey,
+			settingsActivateNotificationsCardClosedDefault
+		)
 	}
 	//#endregion
 

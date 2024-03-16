@@ -9,6 +9,26 @@
 	></storyline-horizontal-publisher-list>
 	}
 
+	<dav-card
+		[headline]="locale.activateNotificationsCard.headline"
+		[subhead]="locale.activateNotificationsCard.subhead"
+		*ngIf="activateNotificationsCardVisible"
+	>
+		<div>
+			<dav-button size="small" (click)="activateNotifications()">
+				{{ actionsLocale.activate }}
+			</dav-button>
+
+			<dav-button
+				outline
+				size="small"
+				(click)="closeActivateNotificationsCard()"
+			>
+				{{ actionsLocale.close }}
+			</dav-button>
+		</div>
+	</dav-card>
+
 	<storyline-article-list
 		[loadingMore]="articlesLoading"
 		[articles]="articles"

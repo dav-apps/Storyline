@@ -1,7 +1,14 @@
 //#region en
 const enDefaults = {
 	startPage: {
-		youFollow: "You follow"
+		youFollow: "You follow",
+		activateNotificationsCard: {
+			headline: "Activate notifications",
+			subhead:
+				"Allow notifications to stay up to date with the latest events on this device as well!",
+			successMessage: "Notifications have been successfully activated",
+			failureMessage: "There was a problem activating notifications"
+		}
 	},
 	discoverPage: {
 		publishersInTheSpotlight: "Publishers in the spotlight",
@@ -108,6 +115,7 @@ const enDefaults = {
 		logout: "Log out",
 		create: "Create",
 		save: "Save",
+		activate: "Activate",
 		cancel: "Cancel",
 		close: "Close"
 	},
@@ -138,7 +146,15 @@ export var enGB = enDefaults
 //#region de
 const deDefaults = {
 	startPage: {
-		youFollow: "Du folgst"
+		youFollow: "Du folgst",
+		activateNotificationsCard: {
+			headline: "Benachrichtigungen aktivieren",
+			subhead:
+				"Erlaube Benachrichtigungen, um auch auf diesem Gerät immer auf dem neuesten Stand der Ereignisse zu sein!",
+			successMessage: "Benachrichtigungen wurden erfolgreich aktiviert",
+			failureMessage:
+				"Es gab ein Problem beim Aktivieren von Benachrichtigungen"
+		}
 	},
 	discoverPage: {
 		publishersInTheSpotlight: "Anbieter im Rampenlicht",
@@ -247,6 +263,7 @@ const deDefaults = {
 		logout: "Abmelden",
 		create: "Erstellen",
 		save: "Speichern",
+		activate: "Aktivieren",
 		cancel: "Abbrechen",
 		close: "Schließen"
 	},

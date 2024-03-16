@@ -6,3 +6,12 @@
 	margin-top: 24px;
 	gap: 24px;
 }
+
+dav-card {
+	max-width: 450px;
+
+	div {
+		display: flex;
+		gap: 16px;
+	}
+}

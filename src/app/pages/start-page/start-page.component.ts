@@ -1,5 +1,12 @@
 import { Component, ViewChild } from "@angular/core"
-import { Dav, GetAllTableObjects, TableObject } from "dav-js"
+import {
+	Dav,
+	GetAllTableObjects,
+	TableObject,
+	CanSetupWebPushSubscription,
+	SetupWebPushSubscription
+} from "dav-js"
+import { Toast } from "dav-ui-components"
 import { HorizontalPublisherListComponent } from "src/app/components/horizontal-publisher-list/horizontal-publisher-list.component"
 import { FeedSettingsDialogComponent } from "src/app/dialogs/feed-settings-dialog/feed-settings-dialog.component"
 import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
@@ -7,6 +14,7 @@ import { ApiService } from "src/app/services/api-service"
 import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
+import { SettingsService } from "src/app/services/settings-service"
 import { ArticleResource, FeedResource, PublisherResource } from "src/app/types"
 import {
 	followTablePublisherKey,
@@ -21,6 +29,7 @@ import { environment } from "src/environments/environment"
 })
 export class StartPageComponent {
 	locale = this.localizationService.locale.startPage
+	actionsLocale = this.localizationService.locale.actions
 	articles: ArticleResource[] = []
 	publisherUuids: string[] = []
 	excludedFeedUuids: string[] = []
@@ -30,6 +39,7 @@ export class StartPageComponent {
 	offset: number = 0
 	articlesLoading: boolean = false
 	initialized: boolean = false
+	activateNotificationsCardVisible: boolean = false
 	unfollowedPublishers: PublisherResource[] = []
 	feedSettingsChanged: boolean = false
 	@ViewChild("horizontalPublisherList")
@@ -47,7 +57,8 @@ export class StartPageComponent {
 		private apiService: ApiService,
 		private davApiService: DavApiService,
 		public dataService: DataService,
-		private localizationService: LocalizationService
+		private localizationService: LocalizationService,
+		private settingsService: SettingsService
 	) {
 		this.dataService.loadingScreenVisible = true
 	}
@@ -57,6 +68,16 @@ export class StartPageComponent {
 		this.publishers = await this.loadPublishers()
 
 		this.dataService.loadingScreenVisible = false
+
+		// Check if there are any Notification table objects
+		const notificationTableObjects = await GetAllTableObjects(
+			environment.notificationTableId
+		)
+
+		this.activateNotificationsCardVisible =
+			notificationTableObjects.length > 0 &&
+			!(await this.settingsService.getActivateNotificationsCardClosed()) &&
+			(await CanSetupWebPushSubscription())
 
 		this.dataService.contentContainer.addEventListener(
 			"scroll",
@@ -392,5 +413,23 @@ export class StartPageComponent {
 		let url = new URL(window.location.href)
 		url.searchParams.append("upgradePlus", "true")
 		Dav.ShowLoginPage(environment.apiKey, url.toString())
+	}
+
+	async activateNotifications() {
+		let toast = document.createElement("dav-toast")
+		toast.text = this.locale.activateNotificationsCard.failureMessage
+		toast.paddingBottom = this.dataService.isMobile ? 80 : 0
+
+		if (await SetupWebPushSubscription()) {
+			this.activateNotificationsCardVisible = false
+			toast.text = this.locale.activateNotificationsCard.successMessage
+		}
+
+		Toast.show(toast)
+	}
+
+	async closeActivateNotificationsCard() {
+		this.activateNotificationsCardVisible = false
+		await this.settingsService.setActivateNotificationsCardClosed(true)
 	}
 }

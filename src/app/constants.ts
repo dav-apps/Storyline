@@ -20,8 +20,11 @@ export const notificationTablePublisherKey = "publisher"
 
 //#region settings keys
 export const settingsThemeKey = "settings-theme"
+export const settingsActivateNotificationsCardClosedKey =
+	"settings-activateNotificationsCardClosed"
 //#endregion
 
 //#region settings default values
 export const settingsThemeDefault = systemThemeKey
+export const settingsActivateNotificationsCardClosedDefault = false
 //#endregion
