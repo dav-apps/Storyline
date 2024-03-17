@@ -30,6 +30,7 @@ export class PublishersPageComponent {
 					articles {
 						items {
 							uuid
+							slug
 							title
 							imageUrl
 						}
