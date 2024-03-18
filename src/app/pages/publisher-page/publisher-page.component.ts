@@ -10,6 +10,7 @@ import {
 	Dav,
 	TableObject,
 	GetAllTableObjects,
+	HasWebPushSubscription,
 	SetupWebPushSubscription
 } from "dav-js"
 import { ApiService } from "../../services/api-service"
@@ -206,8 +207,10 @@ export class PublisherPageComponent {
 			return
 		}
 
-		// Ask the user for notification permission
-		if (!(await SetupWebPushSubscription())) return
+		if (!(await HasWebPushSubscription())) {
+			// Ask the user for notification permission
+			if (!(await SetupWebPushSubscription())) return
+		}
 
 		// Activate notifications by creating a Notifications table object
 		let tableObject = new TableObject()
