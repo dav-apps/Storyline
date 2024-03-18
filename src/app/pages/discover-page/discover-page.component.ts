@@ -75,6 +75,7 @@ export class DiscoverPageComponent {
 				}
 			`,
 			{
+				languages: this.dataService.getLanguages(),
 				limit,
 				offset
 			}

@@ -166,7 +166,12 @@ export class ApiService {
 
 	async listPublishers(
 		queryData: string,
-		variables?: { random?: boolean; limit?: number; offset?: number }
+		variables?: {
+			random?: boolean
+			languages?: string[]
+			limit?: number
+			offset?: number
+		}
 	): Promise<ApolloQueryResult<{ listPublishers: List<PublisherResource> }>> {
 		return await this.apollo
 			.query<{
@@ -175,11 +180,13 @@ export class ApiService {
 				query: gql`
 					query ListPublishers(
 						$random: Boolean
+						$languages: [String!]
 						$limit: Int
 						$offset: Int
 					) {
 						listPublishers(
 							random: $random
+							languages: $languages
 							limit: $limit
 							offset: $offset
 						) {
@@ -294,6 +301,7 @@ export class ApiService {
 		variables: {
 			publishers?: string[]
 			excludeFeeds?: string[]
+			languages?: string[]
 			limit?: number
 			offset?: number
 		}
@@ -308,12 +316,14 @@ export class ApiService {
 					query ListArticles(
 						$publishers: [String!]
 						$excludeFeeds: [String!]
+						$languages: [String!]
 						$limit: Int
 						$offset: Int
 					) {
 						listArticles(
 							publishers: $publishers
 							excludeFeeds: $excludeFeeds
+							languages: $languages
 							limit: $limit
 							offset: $offset
 						) {

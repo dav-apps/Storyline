@@ -63,4 +63,12 @@ export class DataService {
 				: DavUIComponents.Theme.light
 		)
 	}
+
+	getLanguages() {
+		if (navigator.language.startsWith("de")) {
+			return ["de", "en"]
+		}
+
+		return ["en"]
+	}
 }

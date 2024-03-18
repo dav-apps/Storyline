@@ -53,7 +53,11 @@ export class HorizontalPublisherListComponent {
 					logoUrl
 				}
 			`,
-			{ random: true, limit: this.maxItems }
+			{
+				random: true,
+				languages: this.dataService.getLanguages(),
+				limit: this.maxItems
+			}
 		)
 		let responseData = response.data.listPublishers
 		if (responseData == null) return

@@ -36,7 +36,10 @@ export class PublishersPageComponent {
 						}
 					}
 				}
-			`
+			`,
+			{
+				languages: this.dataService.getLanguages()
+			}
 		)
 
 		if (response.errors == null) {
