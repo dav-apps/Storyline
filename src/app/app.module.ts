@@ -1,5 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core"
-import { BrowserModule } from "@angular/platform-browser"
+import {
+	BrowserModule,
+	provideClientHydration
+} from "@angular/platform-browser"
 import { ServiceWorkerModule } from "@angular/service-worker"
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
 import { Environment } from "dav-js"
@@ -87,7 +90,8 @@ import { SettingsService } from "./services/settings-service"
 		DavApiService,
 		DataService,
 		LocalizationService,
-		SettingsService
+		SettingsService,
+		provideClientHydration()
 	],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
