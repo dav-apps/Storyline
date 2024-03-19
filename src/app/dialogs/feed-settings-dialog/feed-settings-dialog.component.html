@@ -31,10 +31,10 @@
 				@for (feed of publisher.feeds.items; track feed.uuid) {
 				<dav-checkbox
 					[label]="feed.name"
-					[checked]="!excludedFeedUuids.includes(feed.uuid)"
+					[checked]="!excludedFeeds[publisher.uuid].includes(feed.uuid)"
 					[disabled]="
-						!excludedFeedUuids.includes(feed.uuid) &&
-						excludedFeedUuids.length == publisher.feeds.items.length - 1
+						!excludedFeeds[publisher.uuid]?.includes(feed.uuid) &&
+						excludedFeeds[publisher.uuid]?.length == publisher.feeds.items.length - 1
 					"
 					(change)="feedCheckboxChange($event, publisher, feed)"
 				></dav-checkbox>

@@ -32,7 +32,7 @@ export class StartPageComponent {
 	actionsLocale = this.localizationService.locale.actions
 	articles: ArticleResource[] = []
 	publisherUuids: string[] = []
-	excludedFeedUuids: string[] = []
+	excludedFeeds: { [uuid: string]: string[] } = {}
 	publishers: PublisherResource[] = []
 	followTableObjects: TableObject[] = []
 	limit: number = 12
@@ -135,12 +135,21 @@ export class StartPageComponent {
 			environment.followTableId
 		)
 		this.publisherUuids = []
-		this.excludedFeedUuids = []
+		this.excludedFeeds = {}
 
 		for (let tableObject of this.followTableObjects) {
-			this.publisherUuids.push(
-				tableObject.GetPropertyValue(followTablePublisherKey) as string
-			)
+			const publisherUuid = tableObject.GetPropertyValue(
+				followTablePublisherKey
+			) as string
+
+			// Delete duplicate follow table objects
+			if (this.publisherUuids.includes(publisherUuid)) {
+				await tableObject.Delete()
+				continue
+			}
+
+			this.publisherUuids.push(publisherUuid)
+			this.excludedFeeds[publisherUuid] = []
 
 			let feedsString = tableObject.GetPropertyValue(
 				followTableExcludedFeedsKey
@@ -148,7 +157,9 @@ export class StartPageComponent {
 
 			if (feedsString != null) {
 				for (let feedUuid of feedsString.split(",")) {
-					this.excludedFeedUuids.push(feedUuid)
+					if (feedUuid.length > 0) {
+						this.excludedFeeds[publisherUuid].push(feedUuid)
+					}
 				}
 			}
 		}
@@ -161,7 +172,7 @@ export class StartPageComponent {
 		} else {
 			articles = await this.loadArticles(
 				this.publisherUuids,
-				this.excludedFeedUuids
+				this.flattenExcludedFeeds(this.excludedFeeds)
 			)
 		}
 
@@ -212,7 +223,7 @@ export class StartPageComponent {
 
 		const articles = await this.loadArticles(
 			this.publisherUuids,
-			this.excludedFeedUuids,
+			this.flattenExcludedFeeds(this.excludedFeeds),
 			this.limit,
 			this.offset
 		)
@@ -276,10 +287,12 @@ export class StartPageComponent {
 		feed: FeedResource
 	}) {
 		// Remove the feed from excluded feeds
-		let i = this.excludedFeedUuids.findIndex(u => u == event.feed.uuid)
+		let i = this.excludedFeeds[event.publisher.uuid].findIndex(
+			u => u == event.feed.uuid
+		)
 
 		if (i != -1) {
-			this.excludedFeedUuids.splice(i, 1)
+			this.excludedFeeds[event.publisher.uuid].splice(i, 1)
 		}
 
 		i = this.followTableObjects.findIndex(
@@ -316,7 +329,7 @@ export class StartPageComponent {
 		feed: FeedResource
 	}) {
 		// Add the feed to excluded feeds
-		this.excludedFeedUuids.push(event.feed.uuid)
+		this.excludedFeeds[event.publisher.uuid].push(event.feed.uuid)
 
 		let i = this.followTableObjects.findIndex(
 			obj =>
@@ -431,5 +444,15 @@ export class StartPageComponent {
 	async closeActivateNotificationsCard() {
 		this.activateNotificationsCardVisible = false
 		await this.settingsService.setActivateNotificationsCardClosed(true)
+	}
+
+	flattenExcludedFeeds(excludedFeeds: { [uuid: string]: string[] }) {
+		let allExcludedFeeds: string[] = []
+
+		for (let publisherUuid of Object.keys(excludedFeeds)) {
+			allExcludedFeeds.push(...excludedFeeds[publisherUuid])
+		}
+
+		return allExcludedFeeds
 	}
 }

@@ -19,7 +19,7 @@ export class FeedSettingsDialogComponent {
 	locale = this.localizationService.locale.dialogs.feedSettingsDialog
 	actionsLocale = this.localizationService.locale.actions
 	@Input() publishers: PublisherResource[] = []
-	@Input() excludedFeedUuids: string[] = []
+	@Input() excludedFeeds: { [uuid: string]: string[] } = {}
 	@Output() unfollowPublisher = new EventEmitter()
 	@Output() includeFeed = new EventEmitter()
 	@Output() excludeFeed = new EventEmitter()
