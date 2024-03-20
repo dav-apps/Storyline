@@ -32,21 +32,26 @@ export class DiscoverPageComponent {
 
 		this.articlesLoading = false
 
-		this.dataService.contentContainer.addEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.addEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 	}
 
 	ngOnDestroy() {
-		this.dataService.contentContainer.removeEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.removeEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 	}
 
 	onScroll = () => {
 		const contentContainer = this.dataService.contentContainer
+		if (contentContainer == null) return
 
 		const hasReachedBottom =
 			contentContainer.scrollHeight -

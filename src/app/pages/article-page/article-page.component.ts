@@ -12,6 +12,7 @@ import { ApiService } from "src/app/services/api-service"
 import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
+import { isClient } from "src/app/utils"
 import { ArticleResource } from "src/app/types"
 import {
 	bookmarkTableArticleKey,
@@ -53,7 +54,7 @@ export class ArticlePageComponent {
 		private activatedRoute: ActivatedRoute,
 		private router: Router
 	) {
-		this.showShareButton = navigator.share != null
+		this.showShareButton = isClient() && navigator.share != null
 		this.dataService.loadingScreenVisible = true
 	}
 
@@ -86,21 +87,26 @@ export class ArticlePageComponent {
 			}
 		})
 
-		this.dataService.contentContainer.addEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.addEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 	}
 
 	ngOnDestroy() {
-		this.dataService.contentContainer.removeEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.removeEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 	}
 
 	onScroll = () => {
 		const contentContainer = this.dataService.contentContainer
+		if (contentContainer == null) return
 
 		const hasReachedBottom =
 			contentContainer.scrollHeight -
@@ -233,6 +239,8 @@ export class ArticlePageComponent {
 	}
 
 	share() {
+		if (isClient()) return
+
 		navigator.share({
 			url: this.article.url,
 			title: this.article.title

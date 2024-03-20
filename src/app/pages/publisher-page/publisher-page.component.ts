@@ -68,10 +68,12 @@ export class PublisherPageComponent {
 			this.articles.push(article)
 		}
 
-		this.dataService.contentContainer.addEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.addEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 
 		// Try to find a Follow table object for the publisher
 		const follows = await GetAllTableObjects(environment.followTableId)
@@ -92,14 +94,17 @@ export class PublisherPageComponent {
 	}
 
 	ngOnDestroy() {
-		this.dataService.contentContainer.removeEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.removeEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 	}
 
 	onScroll = () => {
 		const contentContainer = this.dataService.contentContainer
+		if (contentContainer == null) return
 
 		const hasReachedBottom =
 			contentContainer.scrollHeight -

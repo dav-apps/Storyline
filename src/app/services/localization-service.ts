@@ -1,15 +1,18 @@
 import { Injectable } from "@angular/core"
-import * as locales from "../../locales/locales"
+import { isClient } from "src/app/utils"
+import * as locales from "src/locales/locales"
 
 @Injectable()
 export class LocalizationService {
 	locale = locales.enUS
 
 	constructor() {
-		this.locale = this.getLocale(navigator.language)
+		this.locale = this.getLocale(isClient() ? navigator.language : null)
 	}
 
-	getLocale(language: string) {
+	getLocale(language?: string) {
+		if (language == null) return locales.enUS
+
 		const locale = language.toLowerCase()
 
 		if (locale.startsWith("en")) {

@@ -79,13 +79,17 @@ export class StartPageComponent {
 			!(await this.settingsService.getActivateNotificationsCardClosed()) &&
 			(await CanSetupWebPushSubscription())
 
-		this.dataService.contentContainer.addEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.addEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 	}
 
 	ngAfterViewInit() {
+		if (this.dataService.contentContainer == null) return
+
 		setTimeout(() => {
 			this.dataService.contentContainer.scrollTo(
 				0,
@@ -97,16 +101,20 @@ export class StartPageComponent {
 	}
 
 	ngOnDestroy() {
-		this.dataService.contentContainer.removeEventListener(
-			"scroll",
-			this.onScroll
-		)
+		if (this.dataService.contentContainer != null) {
+			this.dataService.contentContainer.removeEventListener(
+				"scroll",
+				this.onScroll
+			)
+		}
 
 		this.dataService.startPageArticles = this.articles
 		this.dataService.startPageOffset = this.offset
 	}
 
 	onScroll = () => {
+		if (this.dataService.contentContainer == null) return
+
 		if (this.initialized) {
 			// Save the new position
 			this.dataService.startPagePosition =

@@ -26,7 +26,7 @@ import { DataService } from "./services/data-service"
 import { ApiService } from "./services/api-service"
 import { DavApiService } from "./services/dav-api-service"
 import { LocalizationService } from "./services/localization-service"
-import { dataIdFromObject } from "src/app/utils"
+import { dataIdFromObject, isServer } from "src/app/utils"
 import {
 	smallWindowMaxSize,
 	admins,
@@ -137,6 +137,11 @@ export class AppComponent {
 	}
 
 	async ngOnInit() {
+		if (isServer()) {
+			this.userLoaded()
+			return
+		}
+
 		this.setSize()
 		this.dataService.loadTheme()
 		this.dataService.contentContainer = this.contentContainer.nativeElement
@@ -167,7 +172,8 @@ export class AppComponent {
 
 	@HostListener("window:resize")
 	setSize() {
-		this.dataService.isMobile = window.innerWidth <= smallWindowMaxSize
+		this.dataService.isMobile =
+			!isServer() && window.innerWidth <= smallWindowMaxSize
 	}
 
 	navigateToPage(path: string) {

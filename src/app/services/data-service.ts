@@ -3,7 +3,7 @@ import { Dav, PromiseHolder } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { SettingsService } from "./settings-service"
 import { ArticleResource, Theme } from "../types"
-import { convertStringToTheme } from "../utils"
+import { convertStringToTheme, isClient, isServer } from "../utils"
 import { darkThemeKey, lightThemeKey, themeKey } from "../constants"
 
 @Injectable()
@@ -23,6 +23,8 @@ export class DataService {
 	constructor(private settingsService: SettingsService) {}
 
 	async loadTheme(theme?: Theme) {
+		if (isServer()) return
+
 		if (theme == null) {
 			// Get the theme from the settings
 			theme = convertStringToTheme(await this.settingsService.getTheme())
@@ -65,7 +67,7 @@ export class DataService {
 	}
 
 	getLanguages() {
-		if (navigator.language.startsWith("de")) {
+		if (isClient() && navigator.language.startsWith("de")) {
 			return ["de", "en"]
 		}
 

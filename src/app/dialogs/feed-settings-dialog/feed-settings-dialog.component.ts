@@ -8,6 +8,7 @@ import {
 } from "@angular/core"
 import { Dialog } from "dav-ui-components"
 import { LocalizationService } from "src/app/services/localization-service"
+import { isClient } from "src/app/utils"
 import { FeedResource, PublisherResource } from "src/app/types"
 
 @Component({
@@ -31,11 +32,15 @@ export class FeedSettingsDialogComponent {
 	constructor(private localizationService: LocalizationService) {}
 
 	ngAfterViewInit() {
-		document.body.appendChild(this.dialog.nativeElement)
+		if (isClient()) {
+			document.body.appendChild(this.dialog.nativeElement)
+		}
 	}
 
 	ngOnDestroy() {
-		document.body.removeChild(this.dialog.nativeElement)
+		if (isClient()) {
+			document.body.removeChild(this.dialog.nativeElement)
+		}
 	}
 
 	show() {
