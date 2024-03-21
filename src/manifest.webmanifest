@@ -1,7 +1,7 @@
 {
   "name": "Storyline",
   "short_name": "Storyline",
-  "description": "",
+  "description": "The simple way to get all your news in one place",
   "theme_color": "#E47C15",
   "background_color": "#E47C15",
   "display": "standalone",
