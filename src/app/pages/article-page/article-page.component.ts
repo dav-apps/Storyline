@@ -59,32 +59,45 @@ export class ArticlePageComponent {
 	}
 
 	async ngOnInit() {
-		await this.dataService.userPromiseHolder.AwaitResult()
+		this.slug = this.activatedRoute.snapshot.paramMap.get("slug")
+
+		await this.loadData()
+
+		this.dataService.setMeta({
+			title: `${this.article.title} | Storyline`,
+			description: this.article.content,
+			image: this.article.imageUrl,
+			url: `article/${this.article.slug}`
+		})
 
 		this.activatedRoute.paramMap.subscribe(async (paramMap: ParamMap) => {
 			let slug = paramMap.get("slug")
+			if (this.slug == slug) return
 
-			if (this.slug != slug) {
-				this.slug = slug
+			this.slug = slug
 
-				// Show loading screen & clear article recommendations
-				this.dataService.loadingScreenVisible = true
-				this.articleRecommendations = []
-				this.dataService.contentContainer.scrollTo(0, 0)
+			// Show loading screen & clear article recommendations
+			this.dataService.loadingScreenVisible = true
+			this.articleRecommendations = []
+			this.dataService.contentContainer.scrollTo(0, 0)
 
-				// Try to find a bookmark table object for the article
-				const bookmarks = await GetAllTableObjects(
-					environment.bookmarkTableId
-				)
-				let i = bookmarks.findIndex(b =>
-					slug.endsWith(
-						b.GetPropertyValue(bookmarkTableArticleKey) as string
-					)
-				)
-				if (i != -1) this.bookmarkTableObject = bookmarks[i]
+			await this.loadData()
 
-				await this.loadData()
-			}
+			this.dataService.setMeta({
+				title: `${this.article.title} | Storyline`,
+				description: this.article.content,
+				image: this.article.imageUrl,
+				url: `article/${this.article.slug}`
+			})
+
+			await this.dataService.userPromiseHolder.AwaitResult()
+
+			// Try to find a bookmark table object for the article
+			const bookmarks = await GetAllTableObjects(environment.bookmarkTableId)
+			let i = bookmarks.findIndex(b =>
+				slug.endsWith(b.GetPropertyValue(bookmarkTableArticleKey) as string)
+			)
+			if (i != -1) this.bookmarkTableObject = bookmarks[i]
 		})
 
 		if (this.dataService.contentContainer != null) {
@@ -131,7 +144,8 @@ export class ArticlePageComponent {
 				url
 				title
 				imageUrl
-				${isUserOnPlus ? "summary" : "content"}
+				content
+				${isUserOnPlus ? "summary" : ""}
 				publisher {
 					uuid
 					slug

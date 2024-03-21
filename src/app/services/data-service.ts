@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core"
+import { Title, Meta } from "@angular/platform-browser"
 import { Dav, PromiseHolder } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { SettingsService } from "./settings-service"
@@ -20,7 +21,11 @@ export class DataService {
 	startPageOffset: number = 0
 	startPageArticles: ArticleResource[] = []
 
-	constructor(private settingsService: SettingsService) {}
+	constructor(
+		private settingsService: SettingsService,
+		private title: Title,
+		private meta: Meta
+	) {}
 
 	async loadTheme(theme?: Theme) {
 		if (isServer()) return
@@ -72,5 +77,37 @@ export class DataService {
 		}
 
 		return ["en"]
+	}
+
+	setMeta(params: {
+		title: string
+		description: string
+		twitterCard?: string
+		image: string
+		url: string
+	}) {
+		this.title.setTitle(params.title)
+		this.meta.updateTag({ content: params.description }, "name='description'")
+
+		if (params.twitterCard != null) {
+			this.meta.updateTag(
+				{ content: params.twitterCard },
+				"name='twitter:card'"
+			)
+		}
+
+		this.meta.updateTag({ content: params.title }, "name='twitter:title'")
+		this.meta.updateTag(
+			{ content: params.description },
+			"name='twitter:description'"
+		)
+		this.meta.updateTag({ content: params.image }, "name='twitter:image'")
+
+		this.meta.updateTag({ content: params.title }, "property='og:title'")
+		this.meta.updateTag({ content: params.image }, "property='og:image'")
+		this.meta.updateTag(
+			{ content: `https://storyline.press/${params.url}` },
+			"property='og:url'"
+		)
 	}
 }

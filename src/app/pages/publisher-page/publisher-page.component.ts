@@ -13,10 +13,11 @@ import {
 	HasWebPushSubscription,
 	SetupWebPushSubscription
 } from "dav-js"
-import { ApiService } from "../../services/api-service"
-import { DataService } from "../../services/data-service"
-import { LocalizationService } from "../../services/localization-service"
-import { LoginPromptDialogComponent } from "../../dialogs/login-prompt-dialog/login-prompt-dialog.component"
+import { ApiService } from "src/app/services/api-service"
+import { DataService } from "src/app/services/data-service"
+import { LocalizationService } from "src/app/services/localization-service"
+import { LoginPromptDialogComponent } from "src/app/dialogs/login-prompt-dialog/login-prompt-dialog.component"
+import { isClient } from "src/app/utils"
 import { ArticleResource, PublisherResource } from "src/app/types"
 import {
 	followTablePublisherKey,
@@ -75,22 +76,32 @@ export class PublisherPageComponent {
 			)
 		}
 
-		// Try to find a Follow table object for the publisher
-		const follows = await GetAllTableObjects(environment.followTableId)
-		let i = follows.findIndex(
-			f => f.GetPropertyValue(followTablePublisherKey) == publisher.uuid
-		)
-		if (i != -1) this.followTableObject = follows[i]
+		this.dataService.setMeta({
+			title: `${this.publisher.name} | Storyline`,
+			description: this.publisher.description,
+			image: this.publisher.logoUrl,
+			url: `publisher/${this.publisher.slug}`
+		})
 
-		// Try to find a Notification table object for the publisher
-		const notifications = await GetAllTableObjects(
-			environment.notificationTableId
-		)
-		i = notifications.findIndex(
-			n =>
-				n.GetPropertyValue(notificationTablePublisherKey) == publisher.uuid
-		)
-		if (i != -1) this.notificationTableObject = notifications[i]
+		if (isClient()) {
+			// Try to find a Follow table object for the publisher
+			const follows = await GetAllTableObjects(environment.followTableId)
+			let i = follows.findIndex(
+				f => f.GetPropertyValue(followTablePublisherKey) == publisher.uuid
+			)
+			if (i != -1) this.followTableObject = follows[i]
+
+			// Try to find a Notification table object for the publisher
+			const notifications = await GetAllTableObjects(
+				environment.notificationTableId
+			)
+			i = notifications.findIndex(
+				n =>
+					n.GetPropertyValue(notificationTablePublisherKey) ==
+					publisher.uuid
+			)
+			if (i != -1) this.notificationTableObject = notifications[i]
+		}
 	}
 
 	ngOnDestroy() {
@@ -124,6 +135,7 @@ export class PublisherPageComponent {
 				uuid
 				slug
 				name
+				description
 				url
 				logoUrl
 				articles(limit: $limit, offset: $offset) {
