@@ -26,7 +26,7 @@
 }
 
 .navbar-tab-bar-container {
-	display: flex;
+	display: none;
 	align-items: center;
 }
 
@@ -49,9 +49,6 @@
 	right: 0;
 	overflow-x: hidden;
 	padding-top: calc(env(safe-area-inset-top) + 64px);
-}
-
-.content-container.mobile {
 	padding-bottom: calc(80px + env(safe-area-inset-bottom));
 }
 
@@ -70,4 +67,18 @@
 
 dav-navigation-bar {
 	background-color: transparent;
+}
+
+@media screen and (min-width: 576px) {
+	.navbar-tab-bar-container {
+		display: flex;
+	}
+
+	.content-container {
+		padding-bottom: 0;
+	}
+
+	.bottom-navbar {
+		display: none;
+	}
 }

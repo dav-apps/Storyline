@@ -5,7 +5,6 @@
 		<span>Storyline</span>
 	</a>
 
-	@if (!dataService.isMobile) {
 	<div class="navbar-tab-bar-container">
 		<dav-tab-bar>
 			<dav-tab-bar-item
@@ -23,7 +22,6 @@
 			</dav-tab-bar-item>
 		</dav-tab-bar>
 	</div>
-	}
 
 	<div class="navbar-spacer"></div>
 
@@ -83,15 +81,11 @@
 	</div>
 </div>
 
-<div
-	#contentContainer
-	class="content-container"
-	[class.mobile]="dataService.isMobile"
->
+<div #contentContainer class="content-container">
 	<router-outlet></router-outlet>
 </div>
 
-<div class="bottom-navbar acrylic" *ngIf="dataService.isMobile">
+<div class="bottom-navbar acrylic">
 	<dav-navigation-bar>
 		<dav-navigation-bar-item
 			[active]="newsFeedTabActive"
