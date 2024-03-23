@@ -300,36 +300,9 @@ export class StartPageComponent {
 			u => u == event.feed.uuid
 		)
 
-		if (i != -1) {
-			this.excludedFeeds[event.publisher.uuid].splice(i, 1)
-		}
-
-		i = this.followTableObjects.findIndex(
-			obj =>
-				obj.GetPropertyValue(followTablePublisherKey) ==
-				event.publisher.uuid
-		)
-
 		if (i == -1) return
 
-		let followTableObject = this.followTableObjects[i]
-		let feedUuidsString = followTableObject.GetPropertyValue(
-			followTableExcludedFeedsKey
-		) as string
-
-		if (feedUuidsString == null) return
-
-		let feedUuids = feedUuidsString.split(",")
-		let j = feedUuids.findIndex(f => f == event.feed.uuid)
-
-		// Remove the feed from the feed uuids string
-		feedUuids.splice(j, 1)
-
-		await followTableObject.SetPropertyValue({
-			name: followTableExcludedFeedsKey,
-			value: feedUuids.join(",")
-		})
-
+		this.excludedFeeds[event.publisher.uuid].splice(i, 1)
 		this.feedSettingsChanged = true
 	}
 
@@ -339,31 +312,6 @@ export class StartPageComponent {
 	}) {
 		// Add the feed to excluded feeds
 		this.excludedFeeds[event.publisher.uuid].push(event.feed.uuid)
-
-		let i = this.followTableObjects.findIndex(
-			obj =>
-				obj.GetPropertyValue(followTablePublisherKey) ==
-				event.publisher.uuid
-		)
-
-		if (i == -1) return
-
-		let followTableObject = this.followTableObjects[i]
-		let feedUuidsString = followTableObject.GetPropertyValue(
-			followTableExcludedFeedsKey
-		) as string
-
-		let newFeedUuidsString = event.feed.uuid
-
-		if (feedUuidsString != null && feedUuidsString.length > 0) {
-			newFeedUuidsString = `${feedUuidsString},${event.feed.uuid}`
-		}
-
-		await followTableObject.SetPropertyValue({
-			name: followTableExcludedFeedsKey,
-			value: newFeedUuidsString
-		})
-
 		this.feedSettingsChanged = true
 	}
 
@@ -373,6 +321,23 @@ export class StartPageComponent {
 		}
 
 		this.dataService.loadingScreenVisible = true
+
+		// Update all follow table objects
+		for (let uuid of Object.keys(this.excludedFeeds)) {
+			let i = this.followTableObjects.findIndex(
+				obj => obj.GetPropertyValue(followTablePublisherKey) == uuid
+			)
+
+			if (i == -1) continue
+
+			let followTableObject = this.followTableObjects[i]
+			let feedUuids = this.excludedFeeds[uuid]
+
+			await followTableObject.SetPropertyValue({
+				name: followTableExcludedFeedsKey,
+				value: feedUuids.join(",")
+			})
+		}
 
 		for (let publisher of this.unfollowedPublishers) {
 			let i = this.publisherUuids.findIndex(u => u == publisher.uuid)
