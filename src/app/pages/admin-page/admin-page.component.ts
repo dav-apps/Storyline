@@ -2,6 +2,7 @@ import { Component, ViewChild } from "@angular/core"
 import { Router } from "@angular/router"
 import { PublisherDialogComponent } from "src/app/dialogs/publisher-dialog/publisher-dialog.component"
 import { ApiService } from "src/app/services/api-service"
+import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { PublisherResource } from "src/app/types"
 import * as ErrorCodes from "src/app/errorCodes"
@@ -29,9 +30,12 @@ export class AdminPageComponent {
 
 	constructor(
 		private apiService: ApiService,
+		private dataService: DataService,
 		private localizationService: LocalizationService,
 		private router: Router
-	) {}
+	) {
+		this.dataService.setMeta({ url: "admin" })
+	}
 
 	async ngOnInit() {
 		await this.loadPublishers()

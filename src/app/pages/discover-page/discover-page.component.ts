@@ -21,7 +21,9 @@ export class DiscoverPageComponent {
 		private apiService: ApiService,
 		private dataService: DataService,
 		private localizationService: LocalizationService
-	) {}
+	) {
+		this.dataService.setMeta({ url: "discover" })
+	}
 
 	async ngOnInit() {
 		const articles = await this.loadArticles()

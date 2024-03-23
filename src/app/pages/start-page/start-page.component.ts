@@ -60,6 +60,7 @@ export class StartPageComponent {
 		private localizationService: LocalizationService,
 		private settingsService: SettingsService
 	) {
+		this.dataService.setMeta()
 		this.dataService.loadingScreenVisible = true
 	}
 

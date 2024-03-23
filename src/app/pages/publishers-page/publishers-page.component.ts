@@ -16,7 +16,9 @@ export class PublishersPageComponent {
 		private apiService: ApiService,
 		private dataService: DataService,
 		private localizationService: LocalizationService
-	) {}
+	) {
+		this.dataService.setMeta({ url: "publishers" })
+	}
 
 	async ngOnInit() {
 		this.dataService.loadingScreenVisible = true

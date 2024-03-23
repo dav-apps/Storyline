@@ -66,6 +66,7 @@ export class ArticlePageComponent {
 		this.dataService.setMeta({
 			title: `${this.article.title} | Storyline`,
 			description: this.article.content,
+			twitterCard: "summary_large_image",
 			image: this.article.imageUrl,
 			url: `article/${this.article.slug}`
 		})
@@ -86,6 +87,7 @@ export class ArticlePageComponent {
 			this.dataService.setMeta({
 				title: `${this.article.title} | Storyline`,
 				description: this.article.content,
+				twitterCard: "summary_large_image",
 				image: this.article.imageUrl,
 				url: `article/${this.article.slug}`
 			})

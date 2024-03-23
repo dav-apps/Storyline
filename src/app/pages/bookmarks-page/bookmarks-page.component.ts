@@ -1,6 +1,7 @@
 import { Component } from "@angular/core"
 import { GetAllTableObjects } from "dav-js"
 import { ApiService } from "src/app/services/api-service"
+import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { ArticleResource } from "src/app/types"
 import { bookmarkTableArticleKey } from "src/app/constants"
@@ -17,8 +18,11 @@ export class BookmarksPageComponent {
 
 	constructor(
 		private apiService: ApiService,
+		private dataService: DataService,
 		private localizationService: LocalizationService
-	) {}
+	) {
+		this.dataService.setMeta({ url: "bookmarks" })
+	}
 
 	async ngOnInit() {
 		const tableObjects = await GetAllTableObjects(environment.bookmarkTableId)

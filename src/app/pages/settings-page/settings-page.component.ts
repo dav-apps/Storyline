@@ -41,7 +41,9 @@ export class SettingsPageComponent {
 		private dataService: DataService,
 		private localizationService: LocalizationService,
 		private settingsService: SettingsService
-	) {}
+	) {
+		this.dataService.setMeta({ url: "settings" })
+	}
 
 	async ngOnInit() {
 		this.selectedTheme = await this.settingsService.getTheme()

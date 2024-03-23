@@ -79,34 +79,34 @@ export class DataService {
 		return ["en"]
 	}
 
-	setMeta(params: {
-		title: string
-		description: string
+	setMeta(params?: {
+		title?: string
+		description?: string
 		twitterCard?: string
-		image: string
-		url: string
+		image?: string
+		url?: string
 	}) {
-		this.title.setTitle(params.title)
-		this.meta.updateTag({ content: params.description }, "name='description'")
+		const title = params?.title ?? "Storyline"
+		const description =
+			params?.description ?? "The one place to get all your news"
+		const twitterCard = params?.twitterCard ?? "summary"
+		const image = params?.image ?? "/assets/icons/icon-192.png"
+		const url = params?.url ?? ""
 
-		if (params.twitterCard != null) {
-			this.meta.updateTag(
-				{ content: params.twitterCard },
-				"name='twitter:card'"
-			)
-		}
-
-		this.meta.updateTag({ content: params.title }, "name='twitter:title'")
+		this.title.setTitle(title)
+		this.meta.updateTag({ content: description }, "name='description'")
+		this.meta.updateTag({ content: twitterCard }, "name='twitter:card'")
+		this.meta.updateTag({ content: title }, "name='twitter:title'")
 		this.meta.updateTag(
-			{ content: params.description },
+			{ content: description },
 			"name='twitter:description'"
 		)
-		this.meta.updateTag({ content: params.image }, "name='twitter:image'")
+		this.meta.updateTag({ content: image }, "name='twitter:image'")
 
-		this.meta.updateTag({ content: params.title }, "property='og:title'")
-		this.meta.updateTag({ content: params.image }, "property='og:image'")
+		this.meta.updateTag({ content: title }, "property='og:title'")
+		this.meta.updateTag({ content: image }, "property='og:image'")
 		this.meta.updateTag(
-			{ content: `https://storyline.press/${params.url}` },
+			{ content: `https://storyline.press/${url}` },
 			"property='og:url'"
 		)
 	}

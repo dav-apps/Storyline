@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router"
 import { PublisherDialogComponent } from "src/app/dialogs/publisher-dialog/publisher-dialog.component"
 import { CreateFeedDialogComponent } from "src/app/dialogs/create-feed-dialog/create-feed-dialog.component"
 import { ApiService } from "src/app/services/api-service"
+import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { PublisherResource, FeedResource } from "src/app/types"
 import * as ErrorCodes from "src/app/errorCodes"
@@ -40,6 +41,7 @@ export class AdminPublisherPageComponent {
 
 	constructor(
 		private apiService: ApiService,
+		private dataService: DataService,
 		private localizationService: LocalizationService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute
@@ -59,6 +61,8 @@ export class AdminPublisherPageComponent {
 		for (let feed of publisher.feeds.items) {
 			this.feeds.push(feed)
 		}
+
+		this.dataService.setMeta({ url: `admin/publisher/${slug}` })
 	}
 
 	async loadPublisher(slug: string) {
