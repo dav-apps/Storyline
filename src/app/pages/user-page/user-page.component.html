@@ -103,31 +103,33 @@
 	<div class="plus-card-container">
 		<dav-card>
 			<div class="plus-card-inner-container">
-				<h3>Storyline Plus</h3>
-				<p class="card-price">3 € pro Monat</p>
+				<h3>{{ locale.upgradePlusCard.headline }}</h3>
+				<p class="card-price">{{ locale.upgradePlusCard.subhead }}</p>
 
 				<div class="border"></div>
 
 				<div class="card-item">
-					<p>Prägnante Artikelzusammenfassungen</p>
+					<p>{{ locale.upgradePlusCard.benefit1 }}</p>
 				</div>
 
 				<div class="border"></div>
 
 				<div class="card-item">
-					<p>Echtzeit-Updates</p>
+					<p>{{ locale.upgradePlusCard.benefit2 }}</p>
 				</div>
 
 				<div class="border"></div>
 
 				<div class="card-item">
-					<p>Optimierte Personalisierung deines Feeds</p>
+					<p>{{ locale.upgradePlusCard.benefit3 }}</p>
 				</div>
 
 				<div class="border"></div>
 
 				<div class="card-item action-button-container">
-					<dav-button size="small">Jetzt loslegen</dav-button>
+					<dav-button size="small">
+						{{ actionsLocale.getStarted }}
+					</dav-button>
 				</div>
 			</div>
 		</dav-card>

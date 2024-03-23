@@ -39,7 +39,14 @@ const enDefaults = {
 		planFree: "Free",
 		planPlus: "Plus",
 		planPro: "Pro",
-		storageUsed: "{0} GB of {1} GB used"
+		storageUsed: "{0} GB of {1} GB used",
+		upgradePlusCard: {
+			headline: "Storyline Plus",
+			subhead: "3 € pro Monat",
+			benefit1: "Smart Article Summaries",
+			benefit2: "Real-time Updates",
+			benefit3: "Enhanced Feed Personalization"
+		}
 	},
 	settingsPage: {
 		title: "Settings",
@@ -186,7 +193,14 @@ const deDefaults = {
 		planFree: "Free",
 		planPlus: "Plus",
 		planPro: "Pro",
-		storageUsed: "{0} GB von {1} GB verwendet"
+		storageUsed: "{0} GB von {1} GB verwendet",
+		upgradePlusCard: {
+			headline: "Storyline Plus",
+			subhead: "3 € pro Monat",
+			benefit1: "Prägnante Artikelzusammenfassungen",
+			benefit2: "Echtzeit-Updates",
+			benefit3: "Optimierte Personalisierung deines Feeds"
+		}
 	},
 	settingsPage: {
 		title: "Einstellungen",

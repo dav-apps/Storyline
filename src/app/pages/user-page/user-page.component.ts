@@ -17,6 +17,7 @@ import { environment } from "../../../environments/environment"
 })
 export class UserPageComponent {
 	locale = this.localizationService.locale.userPage
+	actionsLocale = this.localizationService.locale.actions
 	faRotateLight = faRotateLight
 	faBellRingLight = faBellRingLight
 	faUserPlusLight = faUserPlusLight
