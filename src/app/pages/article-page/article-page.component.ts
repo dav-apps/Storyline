@@ -12,7 +12,7 @@ import { ApiService } from "src/app/services/api-service"
 import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
-import { isClient } from "src/app/utils"
+import { isServer, isClient } from "src/app/utils"
 import { ArticleResource } from "src/app/types"
 import {
 	bookmarkTableArticleKey,
@@ -255,7 +255,7 @@ export class ArticlePageComponent {
 	}
 
 	share() {
-		if (isClient()) return
+		if (isServer()) return
 
 		navigator.share({
 			url: this.article.url,
