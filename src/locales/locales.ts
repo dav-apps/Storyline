@@ -87,8 +87,7 @@ const enDefaults = {
 			realTimeUpdates:
 				"⏳ <strong>Real-time Updates</strong>: Stay on the pulse of the latest news as it happens, ensuring that you are always informed and up-to-date with the latest developments.",
 			feedCustomization:
-				"🎯 <strong>Enhanced Feed Personalization</strong>: Take control of your content by customizing your feed based on your unique interests. Fine-tune preferences for each publisher, enabling you to filter out articles that don't align with your specific interests.",
-			getStarted: "Get started"
+				"🎯 <strong>Enhanced Feed Personalization</strong>: Take control of your content by customizing your feed based on your unique interests. Fine-tune preferences for each publisher, enabling you to filter out articles that don't align with your specific interests."
 		},
 		publisherDialog: {
 			headline: {
@@ -116,6 +115,7 @@ const enDefaults = {
 		create: "Create",
 		save: "Save",
 		activate: "Activate",
+		getStarted: "Get started",
 		cancel: "Cancel",
 		close: "Close"
 	},
@@ -235,8 +235,7 @@ const deDefaults = {
 			realTimeUpdates:
 				"⏳ <strong>Echtzeit-Updates</strong>: Sei immer am Puls der neuesten Ereignisse und bleibe so stets informiert über die aktuellen Entwicklungen.",
 			feedCustomization:
-				"🎯 <strong>Optimierte Personalisierung deines Feeds</strong>: Gestalte deine Inhalte nach deinen individuellen Interessen, indem du deinen Feed anpasst. Feinjustiere deine Vorlieben für jeden Anbieter, um Artikel auszusortieren, die nicht mit deinen spezifischen Interessen übereinstimmen.",
-			getStarted: "Jetzt loslegen"
+				"🎯 <strong>Optimierte Personalisierung deines Feeds</strong>: Gestalte deine Inhalte nach deinen individuellen Interessen, indem du deinen Feed anpasst. Feinjustiere deine Vorlieben für jeden Anbieter, um Artikel auszusortieren, die nicht mit deinen spezifischen Interessen übereinstimmen."
 		},
 		publisherDialog: {
 			headline: {
@@ -264,6 +263,7 @@ const deDefaults = {
 		create: "Erstellen",
 		save: "Speichern",
 		activate: "Aktivieren",
+		getStarted: "Jetzt loslegen",
 		cancel: "Abbrechen",
 		close: "Schließen"
 	},
