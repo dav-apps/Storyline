@@ -263,7 +263,7 @@ export class StartPageComponent {
 				{ uuid, hasName: true }
 			)
 
-			if (response.errors == null) {
+			if (response.errors == null && response.data.retrievePublisher) {
 				publishers.push(response.data.retrievePublisher)
 			}
 		}
