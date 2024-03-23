@@ -132,3 +132,41 @@ fa-icon {
 		margin-left: 40px;
 	}
 }
+
+.plus-card-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 90px;
+}
+
+.plus-card-inner-container {
+	text-align: center;
+	margin: 0;
+	min-width: 200px;
+	max-width: 250px;
+
+	h3 {
+		font-size: 20px;
+		margin: 4px 0;
+	}
+
+	.card-price {
+		margin: 10px 0 16px;
+	}
+
+	.border {
+		border-top: 1px solid rgb(var(--dav-color-outline-rgb), 0.15);
+	}
+
+	.card-item {
+		padding: 16px 0;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.action-button-container {
+		padding-bottom: 4px;
+	}
+}
