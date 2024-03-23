@@ -136,11 +136,11 @@ export class ApiService {
 			offset?: number
 		}
 	): Promise<ApolloQueryResult<{ retrievePublisher: PublisherResource }>> {
-		let hasNameParam = queryData.includes("hasName")
+		let hasNameParam = queryData.includes("$hasName")
 			? "$hasName: Boolean"
 			: ""
-		let limitParam = queryData.includes("limit") ? "$limit: Int" : ""
-		let offsetParam = queryData.includes("offset") ? "$offset: Int" : ""
+		let limitParam = queryData.includes("$limit") ? "$limit: Int" : ""
+		let offsetParam = queryData.includes("$offset") ? "$offset: Int" : ""
 
 		return await this.apollo
 			.query<{
@@ -249,9 +249,11 @@ export class ApiService {
 			offset?: number
 		}
 	): Promise<ApolloQueryResult<{ retrieveFeed: FeedResource }>> {
-		let excludeParam = queryData.includes("exclude") ? "$exclude: String" : ""
-		let limitParam = queryData.includes("limit") ? "$limit: Int" : ""
-		let offsetParam = queryData.includes("offset") ? "$offset: Int" : ""
+		let excludeParam = queryData.includes("$exclude")
+			? "$exclude: String"
+			: ""
+		let limitParam = queryData.includes("$limit") ? "$limit: Int" : ""
+		let offsetParam = queryData.includes("$offset") ? "$offset: Int" : ""
 
 		return await this.apollo
 			.query<{ retrieveFeed: FeedResource }>({

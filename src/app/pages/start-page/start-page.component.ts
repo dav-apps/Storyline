@@ -253,7 +253,10 @@ export class StartPageComponent {
 					uuid
 					name
 					logoUrl
-					feeds(hasName: $hasName) {
+					feeds(
+						hasName: $hasName
+						limit: 10000
+					) {
 						items {
 							uuid
 							name
