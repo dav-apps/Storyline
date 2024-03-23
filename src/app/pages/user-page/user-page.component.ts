@@ -6,10 +6,11 @@ import {
 } from "@fortawesome/pro-light-svg-icons"
 import { Dav } from "dav-js"
 import { LogoutDialogComponent } from "src/app/dialogs/logout-dialog/logout-dialog.component"
-import { DataService } from "../../services/data-service"
-import { LocalizationService } from "../../services/localization-service"
-import { bytesToGigabytesText } from "../../utils"
-import { environment } from "../../../environments/environment"
+import { DavApiService } from "src/app/services/dav-api-service"
+import { DataService } from "src/app/services/data-service"
+import { LocalizationService } from "src/app/services/localization-service"
+import { bytesToGigabytesText } from "src/app/utils"
+import { environment } from "src/environments/environment"
 
 @Component({
 	templateUrl: "./user-page.component.html",
@@ -26,8 +27,10 @@ export class UserPageComponent {
 	websiteUrl = environment.websiteUrl
 	usedStoragePercent: number = 0
 	usedStorageText: string = ""
+	plusCardLoading: boolean = false
 
 	constructor(
+		private davApiService: DavApiService,
 		public dataService: DataService,
 		private localizationService: LocalizationService
 	) {}
@@ -57,6 +60,27 @@ export class UserPageComponent {
 
 	navigateToSignupPage() {
 		Dav.ShowSignupPage(environment.apiKey, window.location.origin)
+	}
+
+	async navigateToCheckoutPage() {
+		this.plusCardLoading = true
+
+		let response = await this.davApiService.createSubscriptionCheckoutSession(
+			`url`,
+			{
+				plan: "PLUS",
+				successUrl: window.location.origin,
+				cancelUrl: window.location.href
+			}
+		)
+
+		const url = response.data?.createSubscriptionCheckoutSession?.url
+
+		if (url != null) {
+			window.location.href = url
+		} else {
+			this.plusCardLoading = false
+		}
 	}
 
 	showLogoutDialog() {

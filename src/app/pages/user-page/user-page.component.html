@@ -126,10 +126,19 @@
 
 				<div class="border"></div>
 
-				<div class="card-item action-button-container">
-					<dav-button size="small">
+				<div class="card-item action-button-container" [class.loading]="plusCardLoading">
+					<dav-button
+						size="small"
+						[disabled]="plusCardLoading"
+						(click)="navigateToCheckoutPage()"
+					>
 						{{ actionsLocale.getStarted }}
 					</dav-button>
+
+					<dav-progress-ring
+						size="16"
+						*ngIf="plusCardLoading"
+					></dav-progress-ring>
 				</div>
 			</div>
 		</dav-card>
