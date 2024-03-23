@@ -2,10 +2,12 @@ import { Component, ViewChild } from "@angular/core"
 import {
 	faRotate as faRotateLight,
 	faBellRing as faBellRingLight,
-	faUserPlus as faUserPlusLight
+	faUserPlus as faUserPlusLight,
+	faCircleInfo as faCircleInfoLight
 } from "@fortawesome/pro-light-svg-icons"
 import { Dav } from "dav-js"
 import { LogoutDialogComponent } from "src/app/dialogs/logout-dialog/logout-dialog.component"
+import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
@@ -22,8 +24,11 @@ export class UserPageComponent {
 	faRotateLight = faRotateLight
 	faBellRingLight = faBellRingLight
 	faUserPlusLight = faUserPlusLight
+	faCircleInfoLight = faCircleInfoLight
 	@ViewChild("logoutDialog")
 	logoutDialog: LogoutDialogComponent
+	@ViewChild("upgradePlusDialog")
+	upgradePlusDialog: UpgradePlusDialogComponent
 	websiteUrl = environment.websiteUrl
 	usedStoragePercent: number = 0
 	usedStorageText: string = ""
@@ -60,6 +65,10 @@ export class UserPageComponent {
 
 	navigateToSignupPage() {
 		Dav.ShowSignupPage(environment.apiKey, window.location.origin)
+	}
+
+	showUpgradePlusDialog() {
+		this.upgradePlusDialog.show()
 	}
 
 	async navigateToCheckoutPage() {

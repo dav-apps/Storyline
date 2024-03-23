@@ -110,23 +110,38 @@
 
 				<div class="card-item">
 					<p>{{ locale.upgradePlusCard.benefit1 }}</p>
+
+					<dav-icon-button size="small" (click)="showUpgradePlusDialog()">
+						<fa-icon [icon]="faCircleInfoLight"></fa-icon>
+					</dav-icon-button>
 				</div>
 
 				<div class="border"></div>
 
 				<div class="card-item">
 					<p>{{ locale.upgradePlusCard.benefit2 }}</p>
+
+					<dav-icon-button size="small" (click)="showUpgradePlusDialog()">
+						<fa-icon [icon]="faCircleInfoLight"></fa-icon>
+					</dav-icon-button>
 				</div>
 
 				<div class="border"></div>
 
 				<div class="card-item">
 					<p>{{ locale.upgradePlusCard.benefit3 }}</p>
+
+					<dav-icon-button size="small" (click)="showUpgradePlusDialog()">
+						<fa-icon [icon]="faCircleInfoLight"></fa-icon>
+					</dav-icon-button>
 				</div>
 
 				<div class="border"></div>
 
-				<div class="card-item action-button-container" [class.loading]="plusCardLoading">
+				<div
+					class="card-item action-button-container"
+					[class.loading]="plusCardLoading"
+				>
 					<dav-button
 						size="small"
 						[disabled]="plusCardLoading"
@@ -150,3 +165,9 @@
 	#logoutDialog
 	(primaryButtonClick)="logout()"
 ></storyline-logout-dialog>
+
+<storyline-upgrade-plus-dialog
+	#upgradePlusDialog
+	[loading]="plusCardLoading"
+	(primaryButtonClick)="navigateToCheckoutPage()"
+></storyline-upgrade-plus-dialog>

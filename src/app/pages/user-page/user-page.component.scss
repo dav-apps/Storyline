@@ -41,12 +41,16 @@
 	text-align: center;
 	color: var(--dav-color-on-surface);
 	max-width: 240px;
-}
 
-.benefit > p {
-	font-size: 22px;
-	line-height: 28px;
-	margin-top: 2rem;
+	p {
+		font-size: 22px;
+		line-height: 28px;
+		margin-top: 2rem;
+	}
+
+	fa-icon {
+		font-size: 60px;
+	}
 }
 
 @media screen and (min-width: 400px) {
@@ -67,10 +71,6 @@
 	.benefit-3 {
 		grid-column: 3;
 	}
-}
-
-fa-icon {
-	font-size: 60px;
 }
 
 .header-logged-in-container {
@@ -159,9 +159,14 @@ fa-icon {
 	}
 
 	.card-item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
 		padding: 16px 0;
 
 		p {
+			width: 80%;
 			margin: 0;
 		}
 	}

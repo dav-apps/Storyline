@@ -42,10 +42,10 @@ const enDefaults = {
 		storageUsed: "{0} GB of {1} GB used",
 		upgradePlusCard: {
 			headline: "Storyline Plus",
-			subhead: "3 € pro Monat",
-			benefit1: "Smart Article Summaries",
-			benefit2: "Real-time Updates",
-			benefit3: "Enhanced Feed Personalization"
+			subhead: "3 € per month",
+			benefit1: "📄 Smart Article Summaries",
+			benefit2: "⏳ Real-time Updates",
+			benefit3: "🎯 Enhanced Feed Personalization"
 		}
 	},
 	settingsPage: {
@@ -197,9 +197,9 @@ const deDefaults = {
 		upgradePlusCard: {
 			headline: "Storyline Plus",
 			subhead: "3 € pro Monat",
-			benefit1: "Prägnante Artikelzusammenfassungen",
-			benefit2: "Echtzeit-Updates",
-			benefit3: "Optimierte Personalisierung deines Feeds"
+			benefit1: "📄 Prägnante Artikelzusammenfassungen",
+			benefit2: "⏳ Echtzeit-Updates",
+			benefit3: "🎯 Optimierte Personalisierung deines Feeds"
 		}
 	},
 	settingsPage: {
