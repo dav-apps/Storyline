@@ -39,6 +39,7 @@ export class ArticlePageComponent {
 	offset: number = 0
 	articleRecommendationsLoading: boolean = false
 	bookmarkTableObject: TableObject = null
+	openArticleLinkText: string = ""
 
 	//#region UpgradePlusDialog
 	@ViewChild("upgradePlusDialog")
@@ -173,6 +174,11 @@ export class ArticlePageComponent {
 		}
 
 		this.article = responseData
+
+		this.openArticleLinkText = this.locale.openArticle.replace(
+			"{0}",
+			new URL(this.article.url).host
+		)
 
 		// Load article recommendations
 		await this.loadArticleRecommendations()

@@ -61,7 +61,7 @@ const enDefaults = {
 		privacy: "Privacy Policy"
 	},
 	articlePage: {
-		openArticle: "Open article",
+		openArticle: "Open original article on {0}",
 		articleRecommendationsHeadline: {
 			byPublisher: "More articles by {0}",
 			inFeed: "More articles in the category {0}"
@@ -215,7 +215,7 @@ const deDefaults = {
 		privacy: "Datenschutzerklärung"
 	},
 	articlePage: {
-		openArticle: "Artikel öffnen",
+		openArticle: "Zum Originalartikel auf {0}",
 		articleRecommendationsHeadline: {
 			byPublisher: "Weitere Artikel von {0}",
 			inFeed: "Weitere Artikel aus der Rubrik {0}"
