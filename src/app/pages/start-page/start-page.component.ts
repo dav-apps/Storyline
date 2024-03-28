@@ -212,6 +212,7 @@ export class StartPageComponent {
 			{
 				publishers,
 				excludeFeeds,
+				languages: this.dataService.getLanguages(),
 				limit,
 				offset
 			}
