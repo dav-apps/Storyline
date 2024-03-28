@@ -64,14 +64,6 @@ export class ArticlePageComponent {
 
 		await this.loadData()
 
-		this.dataService.setMeta({
-			title: `${this.article.title} | Storyline`,
-			description: this.article.content,
-			twitterCard: "summary_large_image",
-			image: this.article.imageUrl,
-			url: `article/${this.article.slug}`
-		})
-
 		this.activatedRoute.paramMap.subscribe(async (paramMap: ParamMap) => {
 			let slug = paramMap.get("slug")
 			if (this.slug == slug) return
@@ -84,23 +76,6 @@ export class ArticlePageComponent {
 			this.dataService.contentContainer.scrollTo(0, 0)
 
 			await this.loadData()
-
-			this.dataService.setMeta({
-				title: `${this.article.title} | Storyline`,
-				description: this.article.content,
-				twitterCard: "summary_large_image",
-				image: this.article.imageUrl,
-				url: `article/${this.article.slug}`
-			})
-
-			await this.dataService.userPromiseHolder.AwaitResult()
-
-			// Try to find a bookmark table object for the article
-			const bookmarks = await GetAllTableObjects(environment.bookmarkTableId)
-			let i = bookmarks.findIndex(b =>
-				slug.endsWith(b.GetPropertyValue(bookmarkTableArticleKey) as string)
-			)
-			if (i != -1) this.bookmarkTableObject = bookmarks[i]
 		})
 
 		if (this.dataService.contentContainer != null) {
@@ -179,6 +154,22 @@ export class ArticlePageComponent {
 			"{0}",
 			new URL(this.article.url).host
 		)
+
+		this.dataService.setMeta({
+			title: `${this.article.title} | Storyline`,
+			description: this.article.content,
+			twitterCard: "summary_large_image",
+			image: this.article.imageUrl,
+			url: `article/${this.article.slug}`
+		})
+
+		// Try to find a bookmark table object for the article
+		const bookmarks = await GetAllTableObjects(environment.bookmarkTableId)
+		let i = bookmarks.findIndex(
+			b => b.GetPropertyValue(bookmarkTableArticleKey) == this.article.uuid
+		)
+
+		this.bookmarkTableObject = i == -1 ? null : bookmarks[i]
 
 		// Load article recommendations
 		await this.loadArticleRecommendations()
