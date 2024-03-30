@@ -58,7 +58,12 @@ const enDefaults = {
 		suggestProviderLink:
 			"https://docs.google.com/forms/d/e/1FAIpQLSdlpLbkqIMiIx9wN5vsQ9MFu42fWtufYV_5Mh5-TFcpcoO26g/viewform?usp=sf_link",
 		github: "Storyline on GitHub",
-		privacy: "Privacy Policy"
+		privacy: "Privacy Policy",
+		updateSearch: "Searching for updates...",
+		installingUpdate: "Installing the update...",
+		updateError: "Error while installing the update",
+		noUpdateAvailable: "The app is up-to-date",
+		activateUpdate: "Activate update"
 	},
 	articlePage: {
 		openArticle: "Open original article on {0}",
@@ -212,7 +217,12 @@ const deDefaults = {
 		suggestProviderLink:
 			"https://docs.google.com/forms/d/e/1FAIpQLSfT3tKCHY_EkEqV5LBIVywPTm8j0jNSK-YFEMGv-LPe3QCbIA/viewform?usp=sf_link",
 		github: "Storyline auf GitHub",
-		privacy: "Datenschutzerklärung"
+		privacy: "Datenschutzerklärung",
+		updateSearch: "Suche nach Updates...",
+		installingUpdate: "Update wird installiert...",
+		updateError: "Fehler beim Installieren des Updates",
+		noUpdateAvailable: "Die App ist aktuell",
+		activateUpdate: "Update aktivieren"
 	},
 	articlePage: {
 		openArticle: "Zum Originalartikel auf {0}",

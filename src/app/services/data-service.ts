@@ -16,6 +16,7 @@ export class DataService {
 	contentContainer: HTMLDivElement = null
 	loadingScreenVisible: boolean = false
 	isMobile: boolean = false
+	updateInstalled: boolean = false
 	bookmarksCount: number = 0
 	startPagePosition: number = 0
 	startPageOffset: number = 0

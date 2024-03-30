@@ -37,6 +37,34 @@
 				Version {{ version }}<br />
 				Copyright &copy; {{ year }} by dav
 			</p>
+
+			<div class="search-update-container" *ngIf="searchForUpdates">
+				<dav-progress-ring size="16"></dav-progress-ring>
+				<p>{{ updateMessage }}</p>
+			</div>
+
+			<div
+				class="no-update-container"
+				[ngClass]="hideNoUpdateAvailable ? 'slide-down-out' : ''"
+				*ngIf="noUpdateAvailable"
+			>
+				<fa-icon [icon]="faCheck"></fa-icon>
+				<p>{{ locale.noUpdateAvailable }}</p>
+			</div>
+
+			<div class="update-error-container" *ngIf="updateError">
+				<p>{{ locale.updateError }}</p>
+			</div>
+
+			<dav-button
+				class="activate-update-button"
+				size="small"
+				outline
+				(click)="activateUpdate()"
+				*ngIf="dataService.updateInstalled"
+			>
+				{{ locale.activateUpdate }}
+			</dav-button>
 		</div>
 	</div>
 </div>
