@@ -1,12 +1,14 @@
 <div class="container">
 	@if (publishers.length > 0) {
-	<storyline-horizontal-publisher-list
-		#horizontalPublisherList
-		[headline]="locale.youFollow"
-		[publisherUuids]="publisherUuids"
-		[showSettingsButton]="true"
-		(settingsButtonClick)="showFeedSettingsDialog()"
-	></storyline-horizontal-publisher-list>
+	<div class="publishers-container">
+		<storyline-horizontal-publisher-list
+			#horizontalPublisherList
+			[headline]="locale.youFollow"
+			[publisherUuids]="publisherUuids"
+			[showSettingsButton]="true"
+			(settingsButtonClick)="showFeedSettingsDialog()"
+		></storyline-horizontal-publisher-list>
+	</div>
 	}
 
 	<dav-card
