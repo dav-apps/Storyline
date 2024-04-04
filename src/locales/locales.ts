@@ -66,7 +66,7 @@ const enDefaults = {
 		activateUpdate: "Activate update"
 	},
 	articlePage: {
-		openArticle: "Open original article on {0}",
+		openArticle: "Open original article",
 		articleRecommendationsHeadline: {
 			byPublisher: "More articles by {0}",
 			inFeed: "More articles in the category {0}"
@@ -225,7 +225,7 @@ const deDefaults = {
 		activateUpdate: "Update aktivieren"
 	},
 	articlePage: {
-		openArticle: "Zum Originalartikel auf {0}",
+		openArticle: "Zum Originalartikel",
 		articleRecommendationsHeadline: {
 			byPublisher: "Weitere Artikel von {0}",
 			inFeed: "Weitere Artikel aus der Rubrik {0}"
