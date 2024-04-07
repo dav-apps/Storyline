@@ -1,27 +1,26 @@
 # Storyline
+Storyline is the one place to get all your news.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+🌟 Streamlined News Feed\
+Access news from a multitude of sources, all in one convenient feed.
 
-## Development server
+📌 Personalized Feed\
+Follow your favorite publishers and customize your feed to match your interests. Tailor your news experience to suit your preferences, ensuring you never miss out on what matters most to you.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+☁ Seamlessly sync across devices\
+Log in with your dav Account to effortlessly synchronize your feed and preferences across all your devices.
 
-## Code scaffolding
+<img src="https://dav-misc.fra1.cdn.digitaloceanspaces.com/StorylineScreenshot.png" alt="PocketLib Screenshot" width="320" />
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting started
+You can find Storyline on [storyline.press](https://storyline.press/)
 
-## Build
+<a href='https://storyline.press/' target="_blank"><img src='https://dav-misc.fra1.cdn.digitaloceanspaces.com/PWA-white-en.svg' height="48" /></a>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Contributing
 
-## Running unit tests
+We are currently not accepting any contributions, but if you have any feature requests or ideas for how to improve the app, you can always create an issue.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Licensing
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The code in this project is licensed under MIT license.
