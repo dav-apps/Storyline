@@ -1,4 +1,5 @@
-import { Injectable } from "@angular/core"
+import { Injectable, Inject } from "@angular/core"
+import { DOCUMENT } from "@angular/common"
 import { Title, Meta } from "@angular/platform-browser"
 import { Dav, PromiseHolder } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
@@ -25,7 +26,8 @@ export class DataService {
 	constructor(
 		private settingsService: SettingsService,
 		private title: Title,
-		private meta: Meta
+		private meta: Meta,
+		@Inject(DOCUMENT) private document: Document
 	) {}
 
 	async loadTheme(theme?: Theme) {
@@ -93,6 +95,7 @@ export class DataService {
 		const twitterCard = params?.twitterCard ?? "summary"
 		const image = params?.image ?? "/assets/icons/icon-192.png"
 		const url = params?.url ?? ""
+		const absoluteUrl = `https://storyline.press/${url}`
 
 		this.title.setTitle(title)
 		this.meta.updateTag({ content: description }, "name='description'")
@@ -106,9 +109,14 @@ export class DataService {
 
 		this.meta.updateTag({ content: title }, "property='og:title'")
 		this.meta.updateTag({ content: image }, "property='og:image'")
-		this.meta.updateTag(
-			{ content: `https://storyline.press/${url}` },
-			"property='og:url'"
+		this.meta.updateTag({ content: absoluteUrl }, "property='og:url'")
+
+		let canonicalLinkTag = this.document.querySelector(
+			"link[rel='canonical']"
 		)
+
+		if (canonicalLinkTag != null) {
+			canonicalLinkTag.setAttribute("href", absoluteUrl)
+		}
 	}
 }
