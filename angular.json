@@ -29,6 +29,11 @@
               "src/manifest.webmanifest",
               "src/assets",
               {
+                "glob": "robots.txt",
+                "input": "src/assets",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "node_modules/dav-js/dist/lib/workers/",
                 "output": "./"
