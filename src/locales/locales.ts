@@ -54,6 +54,7 @@ const enDefaults = {
 		lightTheme: "Light",
 		darkTheme: "Dark",
 		systemTheme: "System default",
+		news: "News and updates",
 		suggestProvider: "Send suggestions for providers",
 		suggestProviderLink:
 			"https://docs.google.com/forms/d/e/1FAIpQLSdlpLbkqIMiIx9wN5vsQ9MFu42fWtufYV_5Mh5-TFcpcoO26g/viewform?usp=sf_link",
@@ -213,6 +214,7 @@ const deDefaults = {
 		lightTheme: "Hell",
 		darkTheme: "Dunkel",
 		systemTheme: "System-Standard",
+		news: "Neuigkeiten und Updates",
 		suggestProvider: "Vorschläge für Anbieter senden",
 		suggestProviderLink:
 			"https://docs.google.com/forms/d/e/1FAIpQLSfT3tKCHY_EkEqV5LBIVywPTm8j0jNSK-YFEMGv-LPe3QCbIA/viewform?usp=sf_link",
