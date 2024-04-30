@@ -68,6 +68,7 @@ const enDefaults = {
 	},
 	articlePage: {
 		openArticle: "Open original article",
+		openArticleOn: "Open original article on {0}",
 		articleRecommendationsHeadline: {
 			byPublisher: "More articles by {0}",
 			inFeed: "More articles in the category {0}"
@@ -228,6 +229,7 @@ const deDefaults = {
 	},
 	articlePage: {
 		openArticle: "Zum Originalartikel",
+		openArticleOn: "Zum Originalartikel auf {0}",
 		articleRecommendationsHeadline: {
 			byPublisher: "Weitere Artikel von {0}",
 			inFeed: "Weitere Artikel aus der Rubrik {0}"

@@ -39,6 +39,7 @@ export class ArticlePageComponent {
 	offset: number = 0
 	articleRecommendationsLoading: boolean = false
 	bookmarkTableObject: TableObject = null
+	openArticleLinkText: string = ""
 
 	//#region UpgradePlusDialog
 	@ViewChild("upgradePlusDialog")
@@ -148,6 +149,15 @@ export class ArticlePageComponent {
 		}
 
 		this.article = responseData
+
+		if (this.article.publisher.slug == "tagesschau") {
+			this.openArticleLinkText = this.locale.openArticleOn.replace(
+				"{0}",
+				"tagesschau.de"
+			)
+		} else {
+			this.openArticleLinkText = this.locale.openArticle
+		}
 
 		this.dataService.setMeta({
 			title: `${this.article.title} | Storyline`,
