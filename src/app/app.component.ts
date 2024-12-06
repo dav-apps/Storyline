@@ -128,8 +128,7 @@ export class AppComponent {
 					if (url != null) {
 						window.location.href = url
 					} else {
-						window.location.href =
-							window.location.origin + window.location.pathname
+						window.location.href = redirectUrl
 					}
 				}
 			}

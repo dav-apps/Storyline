@@ -8,13 +8,13 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
 import { Environment } from "dav-js"
 import { environment } from "src/environments/environment"
 
-// Local modules
-import { GraphQLModule } from "./graphql.module"
-import { AppRoutingModule } from "./app-routing.module"
-
 // Apollo
 import { HttpClientModule } from "@angular/common/http"
 import { ApolloModule } from "apollo-angular"
+
+// Local modules
+import { GraphQLModule } from "./graphql.module"
+import { AppRoutingModule } from "./app-routing.module"
 
 // Components
 import { AppComponent } from "./app.component"
@@ -75,10 +75,10 @@ import { SettingsService } from "./services/settings-service"
 	imports: [
 		BrowserModule,
 		FontAwesomeModule,
-		ApolloModule,
 		HttpClientModule,
-		AppRoutingModule,
+		ApolloModule,
 		GraphQLModule,
+		AppRoutingModule,
 		ServiceWorkerModule.register("sw.js", {
 			enabled:
 				environment.environment == Environment.Staging ||

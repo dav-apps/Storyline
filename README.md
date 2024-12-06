@@ -10,10 +10,10 @@ Follow your favorite publishers and customize your feed to match your interests.
 ☁ Seamlessly sync across devices\
 Log in with your dav Account to effortlessly synchronize your feed and preferences across all your devices.
 
-<img src="https://dav-misc.fra1.cdn.digitaloceanspaces.com/StorylineScreenshot.png" alt="PocketLib Screenshot" width="320" />
+<img src="https://dav-misc.fra1.cdn.digitaloceanspaces.com/StorylineScreenshot.png" alt="Storyline Screenshot" width="320" />
 
 ## Getting started
-You can find Storyline on [storyline.press](https://storyline.press/)
+You can find Storyline on [storyline.press](https://storyline.press/).
 
 <a href='https://storyline.press/' target="_blank"><img src='https://dav-misc.fra1.cdn.digitaloceanspaces.com/PWA-white-en.svg' height="48" /></a>
 

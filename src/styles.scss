@@ -472,8 +472,10 @@ body {
 	margin-bottom: calc(env(safe-area-inset-bottom));
 }
 
-.mobile::-webkit-scrollbar-track {
-	margin-bottom: calc(80px + env(safe-area-inset-bottom));
+@media screen and (max-width: 639px) {
+	::-webkit-scrollbar-track {
+		margin-bottom: calc(env(safe-area-inset-bottom) + 80px);
+	}
 }
 
 // Animation classes
