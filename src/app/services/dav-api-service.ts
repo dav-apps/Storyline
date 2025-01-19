@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"
 import { Apollo, ApolloBase, MutationResult, gql } from "apollo-angular"
-import { ApolloQueryResult, ErrorPolicy } from "@apollo/client/core"
+import { ErrorPolicy } from "@apollo/client/core"
 import { renewSession } from "dav-js"
 import { davApiClientName } from "src/app/constants"
 import * as ErrorCodes from "src/app/errorCodes"
@@ -54,7 +54,7 @@ export class DavApiService {
 		if (
 			result.errors != null &&
 			result.errors.length > 0 &&
-			result.errors[0].extensions["code"] == ErrorCodes.sessionEnded
+			result.errors[0].extensions["code"] == ErrorCodes.sessionExpired
 		) {
 			// Renew the access token and run the query again
 			await renewSession()
