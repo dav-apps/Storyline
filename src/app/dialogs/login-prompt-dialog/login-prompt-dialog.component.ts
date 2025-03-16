@@ -3,11 +3,13 @@ import {
 	ViewChild,
 	ElementRef,
 	Output,
-	EventEmitter
+	EventEmitter,
+	Inject,
+	PLATFORM_ID
 } from "@angular/core"
+import { isPlatformBrowser } from "@angular/common"
 import { Dialog } from "dav-ui-components"
 import { LocalizationService } from "src/app/services/localization-service"
-import { isClient } from "src/app/utils"
 
 @Component({
 	selector: "storyline-login-prompt-dialog",
@@ -21,16 +23,19 @@ export class LoginPromptDialogComponent {
 	@ViewChild("dialog") dialog: ElementRef<Dialog>
 	visible: boolean = false
 
-	constructor(private localizationService: LocalizationService) {}
+	constructor(
+		private localizationService: LocalizationService,
+		@Inject(PLATFORM_ID) private platformId: object
+	) {}
 
 	ngAfterViewInit() {
-		if (isClient()) {
+		if (isPlatformBrowser(this.platformId)) {
 			document.body.appendChild(this.dialog.nativeElement)
 		}
 	}
 
 	ngOnDestroy() {
-		if (isClient()) {
+		if (isPlatformBrowser(this.platformId)) {
 			document.body.removeChild(this.dialog.nativeElement)
 		}
 	}

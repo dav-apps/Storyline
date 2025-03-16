@@ -1,4 +1,5 @@
-import { Component, ViewChild } from "@angular/core"
+import { Component, ViewChild, Inject, PLATFORM_ID } from "@angular/core"
+import { isPlatformBrowser } from "@angular/common"
 import { Router, ActivatedRoute } from "@angular/router"
 import { faBellOn } from "@fortawesome/pro-solid-svg-icons"
 import {
@@ -17,7 +18,6 @@ import { ApiService } from "src/app/services/api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
 import { LoginPromptDialogComponent } from "src/app/dialogs/login-prompt-dialog/login-prompt-dialog.component"
-import { isClient } from "src/app/utils"
 import { ArticleResource, PublisherResource } from "src/app/types"
 import {
 	followTablePublisherKey,
@@ -51,7 +51,8 @@ export class PublisherPageComponent {
 		private dataService: DataService,
 		private localizationService: LocalizationService,
 		private router: Router,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		@Inject(PLATFORM_ID) private platformId: object
 	) {}
 
 	async ngOnInit() {
@@ -83,7 +84,7 @@ export class PublisherPageComponent {
 			url: `publisher/${this.publisher.slug}`
 		})
 
-		if (isClient()) {
+		if (isPlatformBrowser(this.platformId)) {
 			// Try to find a Follow table object for the publisher
 			const follows = await GetAllTableObjects(environment.followTableId)
 			let i = follows.findIndex(

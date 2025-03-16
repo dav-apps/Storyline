@@ -1,11 +1,11 @@
-import { Injectable, Inject } from "@angular/core"
-import { DOCUMENT } from "@angular/common"
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core"
+import { DOCUMENT, isPlatformBrowser, isPlatformServer } from "@angular/common"
 import { Title, Meta } from "@angular/platform-browser"
 import { Dav, PromiseHolder } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { SettingsService } from "./settings-service"
 import { ArticleResource, Theme } from "../types"
-import { convertStringToTheme, isClient, isServer } from "../utils"
+import { convertStringToTheme } from "../utils"
 import { darkThemeKey, lightThemeKey, themeKey } from "../constants"
 
 @Injectable()
@@ -27,11 +27,12 @@ export class DataService {
 		private settingsService: SettingsService,
 		private title: Title,
 		private meta: Meta,
-		@Inject(DOCUMENT) private document: Document
+		@Inject(DOCUMENT) private document: Document,
+		@Inject(PLATFORM_ID) private platformId: object
 	) {}
 
 	async loadTheme(theme?: Theme) {
-		if (isServer()) return
+		if (isPlatformServer(this.platformId)) return
 
 		if (theme == null) {
 			// Get the theme from the settings
@@ -75,7 +76,10 @@ export class DataService {
 	}
 
 	getLanguages() {
-		if (isClient() && navigator.language.startsWith("de")) {
+		if (
+			isPlatformBrowser(this.platformId) &&
+			navigator.language.startsWith("de")
+		) {
 			return ["de", "en"]
 		}
 

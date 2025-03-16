@@ -1,4 +1,12 @@
-import { Component, ViewChild, ElementRef, HostListener } from "@angular/core"
+import {
+	Component,
+	ViewChild,
+	ElementRef,
+	HostListener,
+	Inject,
+	PLATFORM_ID
+} from "@angular/core"
+import { isPlatformBrowser, isPlatformServer } from "@angular/common"
 import { Router, ActivatedRoute, NavigationStart } from "@angular/router"
 import { HttpHeaders } from "@angular/common/http"
 import { Apollo } from "apollo-angular"
@@ -26,7 +34,7 @@ import { DataService } from "./services/data-service"
 import { ApiService } from "./services/api-service"
 import { DavApiService } from "./services/dav-api-service"
 import { LocalizationService } from "./services/localization-service"
-import { dataIdFromObject, isServer } from "src/app/utils"
+import { dataIdFromObject } from "src/app/utils"
 import {
 	smallWindowMaxSize,
 	admins,
@@ -75,7 +83,8 @@ export class AppComponent {
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		private apollo: Apollo,
-		private httpLink: HttpLink
+		private httpLink: HttpLink,
+		@Inject(PLATFORM_ID) private platformId: object
 	) {
 		DavUIComponents.setLocale("en-EN")
 
@@ -139,7 +148,7 @@ export class AppComponent {
 	}
 
 	async ngOnInit() {
-		if (isServer()) {
+		if (isPlatformServer(this.platformId)) {
 			this.userLoaded()
 			return
 		}
@@ -175,7 +184,8 @@ export class AppComponent {
 	@HostListener("window:resize")
 	setSize() {
 		this.dataService.isMobile =
-			!isServer() && window.innerWidth <= smallWindowMaxSize
+			isPlatformBrowser(this.platformId) &&
+			window.innerWidth <= smallWindowMaxSize
 	}
 
 	navigateToPage(path: string) {

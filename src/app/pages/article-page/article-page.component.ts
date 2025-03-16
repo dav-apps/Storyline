@@ -1,4 +1,5 @@
-import { Component, ViewChild } from "@angular/core"
+import { Component, ViewChild, Inject, PLATFORM_ID } from "@angular/core"
+import { isPlatformBrowser, isPlatformServer } from "@angular/common"
 import { Router, ActivatedRoute, ParamMap } from "@angular/router"
 import { faBookmark as faBookmarkSolid } from "@fortawesome/pro-solid-svg-icons"
 import {
@@ -12,7 +13,6 @@ import { ApiService } from "src/app/services/api-service"
 import { DavApiService } from "src/app/services/dav-api-service"
 import { DataService } from "src/app/services/data-service"
 import { LocalizationService } from "src/app/services/localization-service"
-import { isServer, isClient } from "src/app/utils"
 import { ArticleResource } from "src/app/types"
 import {
 	bookmarkTableArticleKey,
@@ -52,9 +52,11 @@ export class ArticlePageComponent {
 		public dataService: DataService,
 		private localizationService: LocalizationService,
 		private activatedRoute: ActivatedRoute,
-		private router: Router
+		private router: Router,
+		@Inject(PLATFORM_ID) private platformId: object
 	) {
-		this.showShareButton = isClient() && navigator.share != null
+		this.showShareButton =
+			isPlatformBrowser(this.platformId) && navigator.share != null
 		this.dataService.loadingScreenVisible = true
 	}
 
@@ -246,7 +248,7 @@ export class ArticlePageComponent {
 	}
 
 	share() {
-		if (isServer()) return
+		if (isPlatformServer(this.platformId)) return
 
 		navigator.share({
 			url: this.article.url,
