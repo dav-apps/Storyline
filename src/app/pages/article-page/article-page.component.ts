@@ -5,7 +5,7 @@ import {
 	faShareFromSquare,
 	faBookmark as faBookmarkRegular
 } from "@fortawesome/pro-regular-svg-icons"
-import { Dav, GetAllTableObjects, TableObject } from "dav-js"
+import { Dav, GetAllTableObjects, TableObject, Plan } from "dav-js"
 import { Toast } from "dav-ui-components"
 import { UpgradePlusDialogComponent } from "src/app/dialogs/upgrade-plus-dialog/upgrade-plus-dialog.component"
 import { ApiService } from "src/app/services/api-service"
@@ -111,7 +111,7 @@ export class ArticlePageComponent {
 	}
 
 	async loadData() {
-		const isUserOnPlus = this.dataService.dav.user.Plan > 0
+		const isUserOnPlus = this.dataService.dav.user.Plan != Plan.Free
 		const slug = this.activatedRoute.snapshot.paramMap.get("slug")
 
 		const response = await this.apiService.retrieveArticle(

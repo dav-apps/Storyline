@@ -4,7 +4,8 @@ import {
 	GetAllTableObjects,
 	TableObject,
 	CanSetupWebPushSubscription,
-	SetupWebPushSubscription
+	SetupWebPushSubscription,
+	Plan
 } from "dav-js"
 import { Toast } from "dav-ui-components"
 import { HorizontalPublisherListComponent } from "src/app/components/horizontal-publisher-list/horizontal-publisher-list.component"
@@ -276,7 +277,7 @@ export class StartPageComponent {
 	}
 
 	showFeedSettingsDialog() {
-		if (this.dataService.dav.user.Plan > 0) {
+		if (this.dataService.dav.user.Plan != Plan.Free) {
 			this.unfollowedPublishers = []
 			this.feedSettingsChanged = false
 			this.feedSettingsDialog.show()

@@ -73,9 +73,9 @@
 
 			<p class="plan-label">
 				{{
-					dataService.dav.user.Plan == 0
+					dataService.dav.user.Plan == "FREE"
 						? locale.planFree
-						: dataService.dav.user.Plan == 1
+						: dataService.dav.user.Plan == "PLUS"
 						? locale.planPlus
 						: locale.planPro
 				}}
@@ -100,7 +100,7 @@
 		</div>
 	</div>
 
-	@if (dataService.dav.user.Plan == 0) {
+	@if (dataService.dav.user.Plan == "FREE") {
 	<div class="plus-card-container">
 		<dav-card>
 			<div class="plus-card-inner-container">

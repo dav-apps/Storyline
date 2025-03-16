@@ -41,7 +41,7 @@
 			</dav-link-button>
 		</div>
 
-		@if (dataService.dav.user.Plan == 0) {
+		@if (dataService.dav.user.Plan == "FREE") {
 		<div class="upgrade-card-container">
 			<dav-card
 				[headline]="locale.upgradeCardHeadline"

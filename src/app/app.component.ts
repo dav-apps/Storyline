@@ -20,7 +20,7 @@ import {
 	faCircleUser as faCircleUserRegular,
 	faGear as faGearRegular
 } from "@fortawesome/pro-regular-svg-icons"
-import { Dav, GetAllTableObjects } from "dav-js"
+import { Dav, GetAllTableObjects, Plan } from "dav-js"
 import * as DavUIComponents from "dav-ui-components"
 import { DataService } from "./services/data-service"
 import { ApiService } from "./services/api-service"
@@ -31,7 +31,10 @@ import {
 	smallWindowMaxSize,
 	admins,
 	davApiClientName,
-	storylineApiClientName
+	storylineApiClientName,
+	followTableName,
+	bookmarkTableName,
+	notificationTableName
 } from "src/app/constants"
 import { environment } from "src/environments/environment"
 
@@ -108,7 +111,7 @@ export class AppComponent {
 
 				if (
 					this.dataService.dav.isLoggedIn &&
-					this.dataService.dav.user.Plan == 0
+					this.dataService.dav.user.Plan == Plan.Free
 				) {
 					let redirectUrl =
 						window.location.origin + window.location.pathname
@@ -117,7 +120,7 @@ export class AppComponent {
 						await this.davApiService.createSubscriptionCheckoutSession(
 							`url`,
 							{
-								plan: "PLUS",
+								plan: Plan.Plus,
 								successUrl: redirectUrl,
 								cancelUrl: redirectUrl
 							}
@@ -148,10 +151,10 @@ export class AppComponent {
 		new Dav({
 			environment: environment.environment,
 			appId: environment.appId,
-			tableIds: [
-				environment.followTableId,
-				environment.bookmarkTableId,
-				environment.notificationTableId
+			tableNames: [
+				followTableName,
+				bookmarkTableName,
+				notificationTableName
 			],
 			notificationOptions: {
 				icon: "/assets/icons/icon-192.png",
