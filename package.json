@@ -1,6 +1,6 @@
 {
   "name": "storyline",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "ng": "ng",
     "start": "node dist/storyline/server/server.mjs",
